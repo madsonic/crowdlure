@@ -1,0 +1,3 @@
+# treat file as binary and suppress diff outputs
+# automatically perform a 3 way merge whenever there is conflict for this file
+*.pbxproj binary merge=union
