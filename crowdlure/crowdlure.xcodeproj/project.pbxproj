@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A3EBBE91D72102900106483 /* ACTabScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBBE71D72102900106483 /* ACTabScrollView.swift */; };
+		2A3EBBEA1D72102900106483 /* ACTabScrollView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBBE81D72102900106483 /* ACTabScrollView+Protocol.swift */; };
 		74FDA3CF1D72093200BA2470 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3CE1D72093200BA2470 /* AppDelegate.swift */; };
 		74FDA3D61D72093200BA2470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74FDA3D51D72093200BA2470 /* Assets.xcassets */; };
 		74FDA3D91D72093200BA2470 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FDA3D71D72093200BA2470 /* LaunchScreen.storyboard */; };
@@ -51,6 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A3EBBE71D72102900106483 /* ACTabScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTabScrollView.swift; sourceTree = "<group>"; };
+		2A3EBBE81D72102900106483 /* ACTabScrollView+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ACTabScrollView+Protocol.swift"; sourceTree = "<group>"; };
 		2B8FC64FA10B7CABF05F3E0D /* Pods-crowdlure.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crowdlure.debug.xcconfig"; path = "Pods/Target Support Files/Pods-crowdlure/Pods-crowdlure.debug.xcconfig"; sourceTree = "<group>"; };
 		675EA82E3AA875E92793113B /* Pods_crowdlure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_crowdlure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74FDA3CB1D72093100BA2470 /* crowdlure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crowdlure.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +114,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A3EBBEB1D72103000106483 /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				2A3EBBEC1D72103C00106483 /* ACTabScrollView */,
+			);
+			name = "Third Party";
+			sourceTree = "<group>";
+		};
+		2A3EBBEC1D72103C00106483 /* ACTabScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				2A3EBBE71D72102900106483 /* ACTabScrollView.swift */,
+				2A3EBBE81D72102900106483 /* ACTabScrollView+Protocol.swift */,
+			);
+			name = ACTabScrollView;
+			sourceTree = "<group>";
+		};
 		74FDA3C21D72093100BA2470 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +162,7 @@
 				74FDA4041D720C9C00BA2470 /* Purchase */,
 				74FDA4051D720CA300BA2470 /* Profile */,
 				74FDA4201D720DB400BA2470 /* Extensions.swift */,
+				2A3EBBEB1D72103000106483 /* Third Party */,
 				74FDA4281D720E2700BA2470 /* Resources */,
 				74FDA4241D720DED00BA2470 /* Endpoint.swift */,
 				74FDA4261D720E0500BA2470 /* Constants.swift */,
@@ -397,6 +419,7 @@
 				74FDA40F1D720D0200BA2470 /* ProfileNavigationController.swift in Sources */,
 				74FDA4171D720D4300BA2470 /* SearchNavigationController.swift in Sources */,
 				74FDA4151D720D3400BA2470 /* ProfileSettingCell.swift in Sources */,
+				2A3EBBE91D72102900106483 /* ACTabScrollView.swift in Sources */,
 				74FDA40B1D720CD600BA2470 /* PurchaseCell.swift in Sources */,
 				74FDA3FC1D720C6300BA2470 /* LureDetailViewController.swift in Sources */,
 				74FDA4271D720E0500BA2470 /* Constants.swift in Sources */,
@@ -420,6 +443,7 @@
 				74FDA3F71D720C3200BA2470 /* PollFormViewController.swift in Sources */,
 				74FDA41D1D720D7800BA2470 /* SearchResultsController.swift in Sources */,
 				74FDA4211D720DB400BA2470 /* Extensions.swift in Sources */,
+				2A3EBBEA1D72102900106483 /* ACTabScrollView+Protocol.swift in Sources */,
 				74FDA3E51D720B8200BA2470 /* ModalNavigationController.swift in Sources */,
 				74FDA4111D720D1400BA2470 /* ProfileTableViewController.swift in Sources */,
 				74FDA41F1D720D8700BA2470 /* SearchTableCell.swift in Sources */,
