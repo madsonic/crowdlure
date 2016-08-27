@@ -12,7 +12,8 @@ enum DiscoverCategory: String {
     case Nearby = "NEARBY",
     Favorites = "FAVORITES",
     Popular = "POPULAR",
-    Polls = "POLLS"
+    Polls = "POLLS",
+    Campaign = "CAMPAIGN"
 }
 
 class DiscoverTableView: UITableView {

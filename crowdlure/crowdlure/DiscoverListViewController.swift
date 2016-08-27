@@ -35,6 +35,8 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
     private let discoverTabScrollView = ACTabScrollView()
     private let discoverTableView = UITableView()
 
+    private let numberOfPages = 5
+
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -119,7 +121,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
 
     // MARK: ACTabScrollViewDataSource
     func numberOfPagesInTabScrollView(tabScrollView: ACTabScrollView) -> Int {
-        return 4
+        return numberOfPages
     }
 
     func tabScrollView(tabScrollView: ACTabScrollView, tabViewForPageAtIndex index: Int) -> UIView {
@@ -134,8 +136,10 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
             label.text = DiscoverCategory.Nearby.rawValue
         case 3:
             label.text = DiscoverCategory.Favorites.rawValue
+        case 4:
+            label.text = DiscoverCategory.Campaign.rawValue
         default:
-            break
+            assertionFailure("U missed out a case")
         }
         label.font = UIFont.systemFontOfSize(16, weight: UIFontWeightThin)
         label.textColor = UIColor(red: 77.0 / 255, green: 79.0 / 255, blue: 84.0 / 255, alpha: 1)
@@ -159,6 +163,8 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
             discoverTableView = DiscoverTableView(category: .Nearby)
         case 3:
             discoverTableView = DiscoverTableView(category: .Favorites)
+        case 4:
+            discoverTableView = DiscoverTableView(category: .Campaign)
         default:
             break
         }
@@ -191,6 +197,8 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
                 return 3
             case .Polls:
                 return self.pollData.count
+            case .Campaign:
+                return 1
             }
         }
         return 0
@@ -222,6 +230,8 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
                 break
             case .Polls:
                 break
+            case .Campaign:
+                break
             }
             return DiscoverCell()
         }
@@ -238,6 +248,8 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
             case .Favorites:
                 break
             case .Polls:
+                break
+            case .Campaign:
                 break
             }
             let vc = LureDetailViewController()
