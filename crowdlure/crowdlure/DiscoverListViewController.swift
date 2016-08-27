@@ -65,7 +65,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
 
         self.setupLayoutConstraints()
 
-        print("init")
+        print("init discover list view controller")
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         delegate.hashToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsInR5cGUiOiJVc2VyIn0.LvykZ9svrudRAGBFYZxfrxY3f7hSBxh3MRUE_ZeVEo8"
 
@@ -173,6 +173,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
         discoverTableView.dataSource = self
         discoverTableView.registerClass(DiscoverCell.self, forCellReuseIdentifier: "DiscoverCell")
         discoverTableView.registerClass(PollCell.self, forCellReuseIdentifier: "PollCell")
+        discoverTableView.registerClass(CampaignCell.self, forCellReuseIdentifier: CampaignCell.identifier)
         return discoverTableView
     }
 
@@ -209,9 +210,14 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if let discoverTableView = tableView as? DiscoverTableView where discoverTableView.category == .Polls {
-            return 160
+        if let discoverTableView = tableView as? DiscoverTableView {
+            if discoverTableView.category == .Polls {
+                return 160
+            } else if discoverTableView.category == .Campaign {
+                return 500
+            }
         }
+
         return 240
     }
 
@@ -231,7 +237,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
             case .Polls:
                 break
             case .Campaign:
-                break
+                return CampaignCell(merchantName: "Donald", price: 12.0)
             }
             return DiscoverCell()
         }
