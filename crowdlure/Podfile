@@ -1,0 +1,16 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '9.0'
+
+target 'crowdlure' do
+  # Comment this line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for crowdlure
+  # Network wrapper
+  pod 'Alamofire', '~> 3.4'
+  # JSON wrapper
+  pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+  # TabScrollView
+  pod 'ACTabScrollView', :git => 'https://github.com/azurechen/ACTabScrollView.git'
+
+end

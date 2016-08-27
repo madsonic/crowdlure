@@ -1,0 +1,32 @@
+PODS:
+  - ACTabScrollView (0.2.4)
+  - Alamofire (3.4.0)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - ACTabScrollView (from `https://github.com/azurechen/ACTabScrollView.git`)
+  - Alamofire (~> 3.4)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+
+EXTERNAL SOURCES:
+  ACTabScrollView:
+    :git: https://github.com/azurechen/ACTabScrollView.git
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  ACTabScrollView:
+    :commit: 73e345aa65309048d5dd6f784c63ce404feaab26
+    :git: https://github.com/azurechen/ACTabScrollView.git
+  SwiftyJSON:
+    :commit: 73670b94292b8d8496c398a973f56ac67789ba9f
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  ACTabScrollView: 0ebfd66ebe1eab4e794e3a973c0f2d556dd51ad0
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+PODFILE CHECKSUM: b0851457d6fa1d62f679cd938e93447fa680b656
+
+COCOAPODS: 1.0.1
