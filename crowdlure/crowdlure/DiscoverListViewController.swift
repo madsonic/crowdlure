@@ -186,7 +186,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
         if let discoverTableView = tableView as? DiscoverTableView where discoverTableView.category == .Polls {
             return 250
         }
-        return 370
+        return 430
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
