@@ -17,6 +17,14 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        if let url = NSUserDefaults.standardUserDefaults().stringForKey(userImage) {
+            getDataFromUrl(NSURL(string: url)!) { (data, response, error)  in
+                guard let data = data where error == nil else { return }
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.profileImageView.image = UIImage(data: data)
+                })
+            }
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -26,8 +34,7 @@ class ProfileHeaderView: UIView {
     func setupUI() {
         self.backgroundColor = UIColor.groupTableViewBackgroundColor()
 
-        let profileImage = UIImage(named: "club.jpg")
-        self.profileImageView.image = profileImage
+        self.profileImageView.image = UIImage()
         self.profileImageView.layer.borderWidth = 1.0
         self.profileImageView.layer.masksToBounds = false
         self.profileImageView.layer.borderColor = UIColor.whiteColor().CGColor

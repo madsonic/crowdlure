@@ -37,6 +37,7 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
         self.detailVC = LureTableViewController(lure: lure)
         self.dataProvider = LureDataProvider(lure: lure)
         super.init(nibName: nil, bundle: nil)
+        self.dataProvider.delegate = self
         self.edgesForExtendedLayout = UIRectEdge.None
         self.view.backgroundColor = UIColor.whiteColor()
         setupUI()
@@ -47,7 +48,7 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
         // Header
         self.purchaseDetailHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.headerBgView.image = UIImage(named: "club.jpg")
+        self.headerBgView.image = UIImage()
         self.headerBgView.translatesAutoresizingMaskIntoConstraints = false
         self.headerBgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.headerBgView.clipsToBounds = true
@@ -57,7 +58,7 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
         
         self.bizProfileView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.bizImageView.image = UIImage(named: "club.jpg")
+        self.bizImageView.image = UIImage(named: "placeholder.png")
         self.bizImageView.layer.masksToBounds = false
         self.bizImageView.layer.cornerRadius = 40
         self.bizImageView.clipsToBounds = true
@@ -201,6 +202,7 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dataProvider.viewDidLoad()
     }
     
     // MARK: ACTabScrollViewDelegate
@@ -235,7 +237,13 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
     }
     
     func dataUpdated() {
-        print("Updated")
+        if let bizLogoData = self.dataProvider.bizLogoData {
+            self.bizImageView.image = UIImage(data: bizLogoData)
+        }
+        
+        if let imgData = self.dataProvider.imgData {
+            self.headerBgView.image = UIImage(data: imgData)
+        }
     }
     
     func didPressPurchaseButton() {

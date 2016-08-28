@@ -12,13 +12,6 @@ import Foundation
 
 class DiscoverListDataProvider: DataProvider {
     
-    let pollData = [
-        ["Philz Coffee", "What flavour of coffee would you like to see?", 5, 12],
-        ["BMW", "What would be a good incentive to get a BMW?", 3, 6],
-        ["Coca Cola", "Would a visit to our factory appeal to you?", 3, 12],
-        ["Waka Waka", "What lure should we have next for you?", 4, 24]
-    ]
-    
     var lures: [JSON]
     var polls: [JSON]
     

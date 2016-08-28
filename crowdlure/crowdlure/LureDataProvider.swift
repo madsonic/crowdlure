@@ -26,16 +26,15 @@ class LureDataProvider: DataProvider {
             guard let data = data where error == nil else { return }
             dispatch_async(dispatch_get_main_queue(), {
                 self.imgData = data
+                self.delegate?.dataUpdated()
             })
         }
-    }
-    
-    func downloadImage(url: NSURL){
-        print("Download Started")
-        getDataFromUrl(url) { (data, response, error)  in
+        
+        getDataFromUrl(NSURL(string: self.lure["business"]["logo_url"].string ?? "")!) { (data, response, error)  in
             guard let data = data where error == nil else { return }
             dispatch_async(dispatch_get_main_queue(), {
-                
+                self.bizLogoData = data
+                self.delegate?.dataUpdated()
             })
         }
     }

@@ -16,7 +16,7 @@ class PriceLabel: UILabel {
     }
 }
 
-class DiscoverCell: UITableViewCell {
+class DiscoverCell: UITableViewCell, DataProviderDelegate {
 
     // MARK: UI elements
     let containerView = UIView(frame: CGRectZero)
@@ -46,7 +46,9 @@ class DiscoverCell: UITableViewCell {
         }
         
         super.init(style: .Default, reuseIdentifier: "DiscoverCell")
+        self.dataProvider.delegate = self
         setupUI()
+        self.dataProvider.viewDidLoad()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -192,6 +194,12 @@ class DiscoverCell: UITableViewCell {
         allConstraints += getConstraintFromFormat(boostTargetsFormat, views: views)
 
         NSLayoutConstraint.activateConstraints(allConstraints)
+    }
+    
+    func dataUpdated() {
+        if let imgData = self.dataProvider.imgData {
+            self.imgView.image = UIImage(data: imgData)
+        }
     }
     
 }

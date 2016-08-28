@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class PurchaseCell: UITableViewCell {
+class PurchaseCell: UITableViewCell, DataProviderDelegate {
     
     let bgView = UIImageView()
     let containerView = UIView(frame: CGRectZero)
@@ -26,12 +26,24 @@ class PurchaseCell: UITableViewCell {
     init(lure: JSON) {
         self.dataProvider = LureDataProvider(lure: lure)
         super.init(style: .Default, reuseIdentifier: "PurchaseCell")
+        self.dataProvider.delegate = self
+        self.dataProvider.viewDidLoad()
         self.selectionStyle = .None
         setupUI()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func dataUpdated() {
+        if let bizLogoData = self.dataProvider.bizLogoData {
+            self.imgView.image = UIImage(data: bizLogoData)
+        }
+        
+        if let imgData = self.dataProvider.imgData {
+            self.bgView.image = UIImage(data: imgData)
+        }
     }
 
     func setupUI() {

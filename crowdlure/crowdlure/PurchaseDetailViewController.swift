@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrollViewDataSource {
+class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrollViewDataSource, DataProviderDelegate {
 
     let purchaseDetailHeaderView = UIView()
     let headerBgView = UIImageView()
@@ -34,9 +34,20 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         self.detailVC = LureTableViewController(lure: lure)
         self.dataProvider = LureDataProvider(lure: lure)
         super.init(nibName: nil, bundle: nil)
+        self.dataProvider.delegate = self
         self.edgesForExtendedLayout = UIRectEdge.None
         self.view.backgroundColor = UIColor.whiteColor()
         setupUI()
+    }
+    
+    func dataUpdated() {
+        if let bizLogoData = self.dataProvider.bizLogoData {
+            self.bizImageView.image = UIImage(data: bizLogoData)
+        }
+        
+        if let imgData = self.dataProvider.imgData {
+            self.headerBgView.image = UIImage(data: imgData)
+        }
     }
     
     func setupUI() {
@@ -44,7 +55,7 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         // Header
         self.purchaseDetailHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.headerBgView.image = UIImage(named: "club.jpg")
+        self.headerBgView.image = UIImage()
         self.headerBgView.translatesAutoresizingMaskIntoConstraints = false
         self.headerBgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.headerBgView.clipsToBounds = true
@@ -54,7 +65,7 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         
         self.bizProfileView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.bizImageView.image = UIImage(named: "club.jpg")
+        self.bizImageView.image = UIImage(named: "placeholder.png")
         self.bizImageView.layer.masksToBounds = false
         self.bizImageView.layer.cornerRadius = 40
         self.bizImageView.clipsToBounds = true
@@ -187,6 +198,7 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dataProvider.viewDidLoad()
     }
     
     // MARK: ACTabScrollViewDelegate
