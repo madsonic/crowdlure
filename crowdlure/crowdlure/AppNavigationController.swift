@@ -16,6 +16,6 @@ class AppNavigationController: UINavigationController {
         UINavigationBar.appearance().titleTextAttributes =
             [NSForegroundColorAttributeName: UIColor.wordColor(),
              NSFontAttributeName: UIFont.cairoBoldFont(19)]
+        UINavigationBar.appearance().tintColor = .deepGrayColor()
     }
-
 }

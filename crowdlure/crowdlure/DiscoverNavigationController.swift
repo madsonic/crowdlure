@@ -20,5 +20,4 @@ class DiscoverNavigationController: AppNavigationController {
     func setupUI() {
 
     }
-
 }
