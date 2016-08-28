@@ -70,23 +70,23 @@ class PollCell: UITableViewCell {
         self.headerView.translatesAutoresizingMaskIntoConstraints = false
 
         self.bizNameLabel.text = "\(self.bizName) asks"
-        self.bizNameLabel.font = UIFont.systemFontOfSize(13)
+        self.bizNameLabel.font = UIFont.cairoRegularFont(13)
         self.bizNameLabel.textColor = UIColor.whiteColor()
         self.bizNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.bizLocationLabel.text = "\(self.bizName) asks"
-        self.bizLocationLabel.font = UIFont.systemFontOfSize(13)
+        self.bizLocationLabel.font = UIFont.cairoRegularFont(13)
         self.bizLocationLabel.textColor = UIColor.pastelYellowColor()
         self.bizLocationLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.questionLabel.text = self.question
         self.questionLabel.numberOfLines = 0
         self.questionLabel.textColor = UIColor.faintGrayColor()
-        self.questionLabel.font = UIFont.systemFontOfSize(15)
+        self.questionLabel.font = UIFont.cairoRegularFont(15)
         self.questionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.dateLeftLabel.text = "1 day left"
-        self.dateLeftLabel.font = UIFont.systemFontOfSize(10)
+        self.dateLeftLabel.font = UIFont.cairoRegularFont(10)
         self.dateLeftLabel.textColor = UIColor.faintGrayColor()
         self.dateLeftLabel.textAlignment = .Right
         self.dateLeftLabel.translatesAutoresizingMaskIntoConstraints = false
