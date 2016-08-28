@@ -19,7 +19,7 @@ import SwiftyJSON
  */
 enum Endpoint: URLRequestConvertible {
     // update with your end point
-    static let baseURL = "https://sheltered-bayou-29760.herokuapp.com"
+    static let baseURL = "https://booster-api.herokuapp.com"
 
     // MARK: Endpoints
 
@@ -40,11 +40,11 @@ enum Endpoint: URLRequestConvertible {
     // MARK:- Choice for Poll
     // pass nil to choice to clear previous selections
     // this is for customers to use
-    case submitChoiceForPoll(bizID: Int, pollID: Int, choiceID: Int?)
+    case submitChoiceForPoll(pollID: Int, choiceID: Int?)
 
     // MARK:- Polls
     case getPolls
-    case getBusinessPoll(bizID: Int, pollID: Int)
+    case getPoll(pollID: Int)
     case getBusinessPolls(bizID: Int)
 
     // MARK: - Endpoints params
@@ -74,14 +74,17 @@ enum Endpoint: URLRequestConvertible {
         case .searchLure(let query):
             param = ["query": query]
 
-        case let .submitChoiceForPoll(_, _, choice):
+        case let .submitChoiceForPoll(_, choice):
             if let choice = choice {
                 param = ["choice": choice]
             } else {
                 break
             }
 
-        case .getBusinessPoll, getBusinessPolls, .getPolls:
+        case .getBusinessPolls, .getPolls:
+            break
+
+        case .getPoll:
             break
 
         }
@@ -108,8 +111,8 @@ enum Endpoint: URLRequestConvertible {
              .getBusinessLures,
              .getLures,
              .searchLure,
-             .getBusinessPoll,
              .getBusinessPolls,
+             .getPoll,
              .getPolls:
 
             return .GET
@@ -129,9 +132,10 @@ enum Endpoint: URLRequestConvertible {
         case .getBusinessLures(let bizID): return "/businesses/\(bizID)/lures"
         case .searchLure: return "/lures/search"
 
-        case let .submitChoiceForPoll(bizID, pollID, _): return "/businesses/\(bizID)/polls/\(pollID)/choice"
+        case let .submitChoiceForPoll(pollID, _): return "/polls/\(pollID)/choice"
 
-        case let .getBusinessPoll(bizID, pollID): return "/businesses/\(bizID)/polls/\(pollID)"
+
+        case let .getPoll(pollID): return "/polls/\(pollID)"
         case let .getBusinessPolls(bizID): return "/businesses/\(bizID)/polls"
         case .getPolls: return "/polls"
         }

@@ -40,6 +40,8 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
     
     let categories: [DiscoverCategory] = [.Polls, .Nearby, .Popular, .Favorites]
 
+    private let numberOfPages = 5
+
     init() {
         self.dataProvider = DiscoverListDataProvider()
         self.tabViews = [UITableView]()
@@ -149,7 +151,18 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
 
     // MARK: TableView
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 8.0
+        return 50
+    }
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        if let discoverTableView = tableView as? DiscoverTableView {
+//            if discoverTableView.category == .Campaign {
+//                return CampaignHeaderView(merchantName: "Artistry", merchantLocation: "420 S Wolfe Road, Sunnyvale")
+//            }
+        }
+
+        return nil
     }
 
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -166,7 +179,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
             case .Favorites:
                 return self.dataProvider.lures.count
             case .Polls:
-                return self.dataProvider.polls.count
+                return self.pollData.count
             }
         }
         return 0
@@ -180,6 +193,13 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
         if let discoverTableView = tableView as? DiscoverTableView where discoverTableView.category == .Polls {
             return 250
         }
+//        if let discoverTableView = tableView as? DiscoverTableView {
+//            if discoverTableView.category == .Polls {
+//                return 160
+//            } else if discoverTableView.category == .Campaign {
+//                return 500
+//            }
+
         return 240
     }
 
