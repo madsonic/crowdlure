@@ -60,7 +60,7 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         self.headerBgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.headerBgView.clipsToBounds = true
         
-        self.headerOverlayBgView.backgroundColor = UIColor.pastelTealColor().colorWithAlphaComponent(0.9)
+        self.headerOverlayBgView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
         self.headerOverlayBgView.translatesAutoresizingMaskIntoConstraints = false
         
         self.bizProfileView.translatesAutoresizingMaskIntoConstraints = false
