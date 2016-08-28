@@ -57,14 +57,17 @@ class CampaignHeaderView: UIView {
         merchantNameLabel.translatesAutoresizingMaskIntoConstraints = false
 
         merchantLocationLabel.text = merchantLocation
-        merchantLocationLabel.font = UIFont.systemFontOfSize(10)
+        merchantLocationLabel.font = UIFont.cairoRegularFont(10)
         merchantLocationLabel.textColor = .pastelYellowColor()
         merchantLocationLabel.translatesAutoresizingMaskIntoConstraints = false
 
-
-        merchantInitialsLabel.text = merchantFirstLetter
-        merchantInitialsLabel.font = UIFont.systemFontOfSize(30)
+        merchantInitialsLabel.text = merchantFirstLetter.uppercaseString
+        merchantInitialsLabel.textAlignment = .Center
+        merchantInitialsLabel.font = UIFont.cairoRegularFont(30)
         merchantInitialsLabel.textColor = .whiteColor()
+        merchantInitialsLabel.backgroundColor = .mediumGrayColor()
+        merchantInitialsLabel.layer.masksToBounds = true
+        merchantInitialsLabel.layer.cornerRadius = 20
         merchantInitialsLabel.translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(merchantStackView)
@@ -86,6 +89,20 @@ class CampaignHeaderView: UIView {
             metrics: nil,
             views: views)
         allConstraints += merchantStackViewXConstraints
+
+        let merchantInitialsLabelWidthConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:[merchantInitialsLabel(40)]",
+            options: [],
+            metrics: nil,
+            views: views)
+        allConstraints += merchantInitialsLabelWidthConstraints
+
+        let merchantInitialsLabelHeightConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "V:[merchantInitialsLabel(40)]",
+            options: [],
+            metrics: nil,
+            views: views)
+        allConstraints += merchantInitialsLabelHeightConstraints
 
         NSLayoutConstraint(item: self, attribute: .CenterY, relatedBy: .Equal, toItem: merchantStackView, attribute: .CenterY, multiplier: 1, constant: 0).active = true
 

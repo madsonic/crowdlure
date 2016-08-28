@@ -37,6 +37,7 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "PURCHASES"
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
         let view = UIView.init(frame: UIScreen.mainScreen().bounds)
         view.backgroundColor = UIColor.whiteColor()
         self.view = view

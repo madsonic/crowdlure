@@ -21,16 +21,7 @@ class AppTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for family: String in UIFont.familyNames()
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNamesForFamilyName(family)
-            {
-                print("== \(names)")
-            }
-        }
-        
+
         let discoverNC = DiscoverNavigationController()
         discoverNC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "discover.png"), selectedImage: nil)
         discoverNC.tabBarItem.imageInsets = UIEdgeInsets(top: 7, left: 0, bottom: -7, right: 0)
@@ -45,7 +36,7 @@ class AppTabBarController: UITabBarController {
         let profileNC = ProfileNavigationController()
         profileNC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "profile.png"), selectedImage: nil)
         profileNC.tabBarItem.imageInsets = UIEdgeInsets(top: 7, left: 0, bottom: -7, right: 0)
-
+        
         self.setViewControllers([discoverNC, purchaseNC, profileNC], animated: false)
     }
 }
