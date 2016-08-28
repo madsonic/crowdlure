@@ -13,6 +13,9 @@ class AppNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.wordColor(),
+             NSFontAttributeName: UIFont.cairoBoldFont(19)]
     }
 
 }
