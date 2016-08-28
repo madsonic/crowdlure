@@ -155,11 +155,12 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
         if let discoverTableView = tableView as? DiscoverTableView {
-//            if discoverTableView.category == .Campaign {
-//                return CampaignHeaderView(merchantName: "Artistry", merchantLocation: "420 S Wolfe Road, Sunnyvale")
-//            }
+            if discoverTableView.category == .Favorites {
+                return CampaignHeaderView(merchantName: "Artistry", merchantLocation: "420 S Wolfe Road, Sunnyvale")
+            } else if discoverTableView.category == .Polls {
+                return CampaignHeaderView(merchantName: "Philz Coffee", merchantLocation: "Some Location")
+            }
         }
 
         return nil
