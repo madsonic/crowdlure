@@ -12,9 +12,9 @@ import UIKit
 // Only use regular and bold for both fonts
 
 // for headers only
-let cairo = "Cairo"
+let cairoRegular = "Cairo-Regular"
+let cairoBold = "Cairo-Bold"
 
 // everything else
-let quattrocentoSans = "Quattrocento Sans"
-
-//UIFont(name: cairo, size: quattrocentoSans)import Foundation
+let quattrocentoSansRegular = "QuattrocentoSans"
+let quattrocentoSansBold = "QuattrocentoSans-Bold"

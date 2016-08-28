@@ -14,6 +14,26 @@ func getFBToken() -> String? {
 
 public extension UIFont {
     class func navigationTitleStyle() -> UIFont {
-        return UIFont.systemFontOfSize(14)
+        return UIFont(name: cairoBold, size: 14)!
+    }
+
+    class func scrollTabStyle() -> UIFont {
+        return UIFont(name: cairoRegular, size: 10)!
+    }
+
+    class func cairoRegularFont(size: CGFloat) -> UIFont {
+        return UIFont(name: cairoRegular, size: size)!
+    }
+
+    class func cairoBoldFont(size: CGFloat) -> UIFont {
+        return UIFont(name: cairoBold, size: size)!
+    }
+
+    class func quattroRegularFont(size: CGFloat) -> UIFont {
+        return UIFont(name: quattrocentoSansRegular, size: size)!
+    }
+
+    class func quattroBoldFont(size: CGFloat) -> UIFont {
+        return UIFont(name: quattrocentoSansBold, size: size)!
     }
 }
