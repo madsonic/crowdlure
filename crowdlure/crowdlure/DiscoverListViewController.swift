@@ -192,7 +192,8 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
         let discoverTableView = tableView as! DiscoverTableView
         if discoverTableView.category == .Polls {
             let poll = self.dataProvider.polls[indexPath.section]
-            return PollCell(poll: poll)
+            let cell = PollCell(poll: poll)
+            return cell
         } else {
             let lureInfo = self.dataProvider.lures[indexPath.section]
             return DiscoverCell(lure: lureInfo)

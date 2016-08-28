@@ -29,12 +29,17 @@ class PollCell: UITableViewCell {
         self.choices = [PollChoice]()
 
         for i in 0..<dataProvider.choices.count {
-            self.choices.append(PollChoice(choiceText: dataProvider.choicesTexts[i],
-                nReplies: dataProvider.choicesVotes[i],
-                choiceIndex: dataProvider.choiceIndex[i]))
+            let choice = PollChoice(choiceText: dataProvider.choicesTexts[i],
+                                    nReplies: dataProvider.choicesVotes[i],
+                                    choiceIndex: i,
+                                    choiceID: dataProvider.choiceID[i],
+                                    pollID: dataProvider.pollID)
+            self.choices.append(choice)
         }
-        print(choices.count)
+
         super.init(style: .Default, reuseIdentifier: "PollCell")
+
+        selectionStyle = .None
         setupUI()
     }
 
@@ -112,5 +117,4 @@ class PollCell: UITableViewCell {
 
         NSLayoutConstraint.activateConstraints(allConstraints)
     }
-
 }

@@ -16,6 +16,10 @@ class PollCellDataProvider {
         return poll["title"].stringValue
     }
 
+    var pollID: Int {
+        return poll["id"].intValue
+    }
+
     var bizName: String {
         let bizName = poll["business"]["name"].stringValue
         return bizName
@@ -37,7 +41,7 @@ class PollCellDataProvider {
         }
     }
 
-    var choiceIndex: [Int] {
+    var choiceID: [Int] {
         return choices.map {
             $0["id"].intValue
         }
