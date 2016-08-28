@@ -12,22 +12,15 @@ import SwiftyJSON
 
 class DiscoverListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ACTabScrollViewDelegate, ACTabScrollViewDataSource, DataProviderDelegate, PollCellDelegate {
     
-    let pollData = [
-        ["Philz Coffee", "What flavour of coffee would you like to see?", 5, 12],
-        ["BMW", "What would be a good incentive to get a BMW?", 3, 6],
-        ["Coca Cola", "Would a visit to our factory appeal to you?", 3, 12],
-        ["Waka Waka", "What lure should we have next for you?", 4, 24]
-    ]
-    
     var dataProvider: DiscoverListDataProvider
     var tabViews: [UITableView]
 
     private let discoverTabScrollView = ACTabScrollView()
     private let discoverTableView = UITableView()
     
+    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    
     let categories: [DiscoverCategory] = [.Polls, .Nearby, .Popular, .Favorites]
-
-    private let numberOfPages = 5
 
     init() {
         self.dataProvider = DiscoverListDataProvider()
@@ -60,6 +53,11 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
 
         setupTabScrollView()
         setupLayoutConstraints()
+        
+        spinner.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        spinner.center = self.view.center
+        UIApplication.sharedApplication().keyWindow?.addSubview(spinner)
+        spinner.startAnimating()
         
         self.dataProvider.viewDidLoad()
     }
@@ -102,6 +100,13 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
     func dataUpdated() {
         for tableView in self.tabViews {
             tableView.reloadData()
+        }
+    }
+    
+    func dataProviderStatusUpdated() {
+        if self.spinner.isAnimating() {
+            self.spinner.stopAnimating()
+            self.spinner.removeFromSuperview()
         }
     }
     
@@ -157,7 +162,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
                 let location = self.dataProvider.lures[section]["location"].string ?? ""
                 return CampaignHeaderView(merchantName: name , merchantLocation: location)
             } else {
-                let name = self.dataProvider.lures[section]["business"]["name"].string ?? ""
+                let name = self.dataProvider.polls[section]["business"]["name"].string ?? ""
                 return CampaignHeaderView(merchantName: name , merchantLocation: "")
             }
         }

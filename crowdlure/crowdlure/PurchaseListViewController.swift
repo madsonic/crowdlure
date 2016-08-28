@@ -14,6 +14,8 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
     private let redeemedTableView = UITableView()
     private let unredeemedTableView = UITableView()
     
+    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    
     var dataProvider: PurchaseListDataProvider
     
     init() {
@@ -49,6 +51,11 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
         setupTabScrollView()
         setupLayoutConstraints()
         
+        spinner.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        spinner.center = self.view.center
+        UIApplication.sharedApplication().keyWindow?.addSubview(spinner)
+        spinner.startAnimating()
+        
         self.dataProvider.viewDidLoad()
     }
     
@@ -77,6 +84,13 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
     func dataUpdated() {
         self.redeemedTableView.reloadData()
         self.unredeemedTableView.reloadData()
+    }
+    
+    func dataProviderStatusUpdated() {
+        if self.spinner.isAnimating() {
+            self.spinner.stopAnimating()
+            self.spinner.removeFromSuperview()
+        }
     }
     
     // MARK: ACTabScrollViewDelegate

@@ -51,12 +51,12 @@ class PollCell: UITableViewCell {
     func setupUI() {
         self.backgroundColor = UIColor.clearColor()
         
-        self.bgView.image = UIImage(named: "club.jpg")
+        self.bgView.image = UIImage(named: "placeholder.png")
         self.bgView.translatesAutoresizingMaskIntoConstraints = false
         self.bgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.bgView.clipsToBounds = true
         
-        self.containerView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.9)
+        self.containerView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.82)
         self.containerView.translatesAutoresizingMaskIntoConstraints = false
         
         self.questionLabel.text = self.dataProvider.question

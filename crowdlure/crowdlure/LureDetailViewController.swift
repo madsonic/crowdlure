@@ -48,7 +48,7 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
         // Header
         self.purchaseDetailHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.headerBgView.image = UIImage()
+        self.headerBgView.image = UIImage(named: "placeholder.png")
         self.headerBgView.translatesAutoresizingMaskIntoConstraints = false
         self.headerBgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.headerBgView.clipsToBounds = true

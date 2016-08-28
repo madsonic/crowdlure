@@ -20,7 +20,7 @@ extension DataProviderDelegate {
     }
     
     func dataProviderStatusUpdated() {
-        self.dataUpdated()
+        
     }
 }
 

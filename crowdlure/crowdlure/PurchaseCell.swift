@@ -49,7 +49,7 @@ class PurchaseCell: UITableViewCell, DataProviderDelegate {
     func setupUI() {
         self.contentView.backgroundColor = UIColor.groupTableViewBackgroundColor()
 
-        self.bgView.image = UIImage()
+        self.bgView.image = UIImage(named: "placeholder.png")
         self.bgView.translatesAutoresizingMaskIntoConstraints = false
         self.bgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.bgView.clipsToBounds = true

@@ -34,7 +34,7 @@ class ProfileHeaderView: UIView {
     func setupUI() {
         self.backgroundColor = UIColor.groupTableViewBackgroundColor()
 
-        self.profileImageView.image = UIImage()
+        self.profileImageView.image = UIImage(named: "placeholder.png")
         self.profileImageView.layer.borderWidth = 1.0
         self.profileImageView.layer.masksToBounds = false
         self.profileImageView.layer.borderColor = UIColor.whiteColor().CGColor

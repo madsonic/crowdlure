@@ -69,7 +69,7 @@ class CampaignCell: UITableViewCell {
         containerView.backgroundColor = .whiteColor()
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
-        merchantImageView.image = UIImage(named: "club.jpg")
+        merchantImageView.image = UIImage(named: "placeholder.png")
         merchantImageView.contentMode = .ScaleAspectFit
         merchantImageView.translatesAutoresizingMaskIntoConstraints = false
 

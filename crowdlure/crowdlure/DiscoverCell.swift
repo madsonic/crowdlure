@@ -59,7 +59,7 @@ class DiscoverCell: UITableViewCell, DataProviderDelegate {
     func setupUI() {
         self.backgroundColor = UIColor.clearColor()
 
-        self.imgView.image = UIImage(named: "club.jpg")
+        self.imgView.image = UIImage(named: "placeholder.png")
         self.imgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.imgView.clipsToBounds = true
         self.imgView.translatesAutoresizingMaskIntoConstraints = false

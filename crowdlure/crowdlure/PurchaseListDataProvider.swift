@@ -26,6 +26,7 @@ class PurchaseListDataProvider: DataProvider {
                 let resp = JSON(rawResp)
                 self.lures = resp["lures"].arrayValue
                 self.delegate?.dataUpdated()
+                self.delegate?.dataProviderStatusUpdated()
             },
             failureHandler: { error in
                 print(error)
