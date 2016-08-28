@@ -54,7 +54,7 @@ class PurchaseCell: UITableViewCell, DataProviderDelegate {
         self.bgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.bgView.clipsToBounds = true
         
-        self.containerView.backgroundColor = UIColor.deepBlueColor().colorWithAlphaComponent(0.8)
+        self.containerView.backgroundColor = UIColor.deepBlueColor().colorWithAlphaComponent(0.85)
         self.containerView.translatesAutoresizingMaskIntoConstraints = false
 
         self.overlayView.backgroundColor = UIColor.clearColor()

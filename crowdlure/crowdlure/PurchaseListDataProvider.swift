@@ -24,7 +24,12 @@ class PurchaseListDataProvider: DataProvider {
         lureRequest.responseJSON(
             successHandler: { rawResp in
                 let resp = JSON(rawResp)
-                self.lures = resp["lures"].arrayValue
+                for lure in resp["lures"].arrayValue {
+                    if lure["is_purchased"] {
+                        self.lures.append(lure)
+                    }
+                }
+                //self.lures = resp["lures"].arrayValue
                 self.delegate?.dataUpdated()
                 self.delegate?.dataProviderStatusUpdated()
             },

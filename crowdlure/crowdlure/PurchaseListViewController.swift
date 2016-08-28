@@ -50,6 +50,12 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
         
         setupTabScrollView()
         setupLayoutConstraints()
+
+        self.dataProvider.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         spinner.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         spinner.center = self.view.center
