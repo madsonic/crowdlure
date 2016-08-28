@@ -48,8 +48,15 @@ class AppLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 let fbToken = FBSDKAccessToken.currentAccessToken().tokenString
                 let foo = request(Endpoint.authUser(fbAccessToken: fbToken))
                 foo.responseJSON(successHandler: { res in
-                        let token = JSON(res)["user"]["hash_token"].string!
+                        let userInfo = JSON(res)["user"]
+                        let token = userInfo["hash_token"].string!
+                        let name = userInfo["name"].string!
+                        let image = userInfo["image_url"].string!
+                    
                         NSUserDefaults.standardUserDefaults().setValue(token, forKey: hashToken)
+                        NSUserDefaults.standardUserDefaults().setValue(name, forKey: userName)
+                        NSUserDefaults.standardUserDefaults().setValue(image, forKey: userImage)
+                    
                         dispatch_async(dispatch_get_main_queue()) {
                             spinner.stopAnimating()
                             if let window = UIApplication.sharedApplication().keyWindow {
