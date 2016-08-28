@@ -61,7 +61,7 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
     
     func setupTabScrollView() {
         self.purchaseTabScrollView.translatesAutoresizingMaskIntoConstraints = false
-        self.purchaseTabScrollView.defaultPage = 1
+        self.purchaseTabScrollView.defaultPage = 0
         self.purchaseTabScrollView.tabSectionHeight = 40
         self.purchaseTabScrollView.pagingEnabled = true
         self.purchaseTabScrollView.cachedPageLimit = 3
@@ -135,7 +135,7 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: TableView
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 16.0
+            return 0
         }
         return 8.0
     }

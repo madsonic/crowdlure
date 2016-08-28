@@ -30,8 +30,18 @@ class LureTableViewController: UITableViewController {
     
     // MARK: TableView
     
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 3
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .deepGrayColor()
+        return view
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

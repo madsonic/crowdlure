@@ -39,7 +39,7 @@ class BoostTargetView: UIView {
         self.indexLabel.translatesAutoresizingMaskIntoConstraints = false
 
         self.descLabel.text = self.desc
-        self.descLabel.font = UIFont.systemFontOfSize(14)
+        self.descLabel.font = UIFont.cairoRegularFont(14)
         self.descLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(self.indexLabel)

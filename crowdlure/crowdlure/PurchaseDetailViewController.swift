@@ -60,7 +60,7 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         self.headerBgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.headerBgView.clipsToBounds = true
         
-        self.headerOverlayBgView.backgroundColor = UIColor.pastelTealColor().colorWithAlphaComponent(0.9)
+        self.headerOverlayBgView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
         self.headerOverlayBgView.translatesAutoresizingMaskIntoConstraints = false
         
         self.bizProfileView.translatesAutoresizingMaskIntoConstraints = false
@@ -72,20 +72,22 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         self.bizImageView.translatesAutoresizingMaskIntoConstraints = false
         
         self.bizNameLabel.text = self.dataProvider.getBusinessName()
-        self.bizNameLabel.font = UIFont.cairoBoldFont(18)
+        self.bizNameLabel.font = UIFont.cairoBoldFont(17)
         self.bizNameLabel.textColor = UIColor.whiteColor()
         self.bizNameLabel.textAlignment = .Center
+        self.bizNameLabel.numberOfLines = 0
         self.bizNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.productLabel.text = self.dataProvider.getLureTitle()
-        self.productLabel.font = UIFont.cairoBoldFont(20)
+        self.productLabel.font = UIFont.cairoBoldFont(16)
         self.productLabel.textColor = UIColor.whiteColor()
+        self.productLabel.numberOfLines = 0
         self.productLabel.translatesAutoresizingMaskIntoConstraints = false
         
         if self.dataProvider.lure["targets"].count > 0 {
             self.incentiveLabel.text = self.dataProvider.lure["targets"][0]["description"].string ?? ""
         }
-        self.incentiveLabel.font = UIFont.cairoRegularFont(18)
+        self.incentiveLabel.font = UIFont.cairoRegularFont(16)
         self.incentiveLabel.numberOfLines = 0
         self.incentiveLabel.textColor = UIColor.whiteColor()
         self.incentiveLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -151,7 +153,7 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         allConstraints += getConstraintFromFormat("H:|[bizProfileView(160)][productLabel]-10-|", views: views)
         allConstraints += getConstraintFromFormat("H:|[bizProfileView(160)][incentiveLabel]-10-|", views: views)
         allConstraints += getConstraintFromFormat("V:|[bizProfileView]|", views: views)
-        allConstraints += getConstraintFromFormat("V:|-50-[productLabel][incentiveLabel]", views: views)
+        allConstraints += getConstraintFromFormat("V:|-20-[productLabel][incentiveLabel]", views: views)
         
         allConstraints += getConstraintFromFormat("V:|[purchaseDetailHeaderView(200)][purchaseDetailTabScrollView]|", views: views)
         allConstraints += getConstraintFromFormat("H:|[purchaseDetailHeaderView]|", views: views)

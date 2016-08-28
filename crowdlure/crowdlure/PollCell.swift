@@ -13,7 +13,7 @@ protocol PollCellDelegate: class {
     func dismissCell(cell: UITableViewCell)
 }
 
-class PollCell: UITableViewCell {
+class PollCell: UITableViewCell, DataProviderDelegate {
 
     weak var delegate: PollCellDelegate?
     
@@ -34,6 +34,7 @@ class PollCell: UITableViewCell {
         self.choices = [PollChoice]()
 
         super.init(style: .Default, reuseIdentifier: "PollCell")
+        self.dataProvider.delegate = self
         
         for i in 0..<self.dataProvider.choices.count {
             let c = PollChoice(pollMaster: self, choiceText: self.dataProvider.choicesTexts[i], nReplies: self.dataProvider.choicesVotes[i], choiceIndex: i, choiceID: self.dataProvider.choiceID[i], pollID: self.dataProvider.pollID)
@@ -56,7 +57,7 @@ class PollCell: UITableViewCell {
         self.bgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.bgView.clipsToBounds = true
         
-        self.containerView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.82)
+        self.containerView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         self.containerView.translatesAutoresizingMaskIntoConstraints = false
         
         self.questionLabel.text = self.dataProvider.question
@@ -109,11 +110,17 @@ class PollCell: UITableViewCell {
         allConstraints += getConstraintFromFormat("V:|[containerView]|", views: views)
         allConstraints += getConstraintFromFormat("H:|[bgView]|", views: views)
         allConstraints += getConstraintFromFormat("V:|[bgView]|", views: views)
-        allConstraints += getConstraintFromFormat("V:|-10-[questionLabel]-6-\(choicesGrp)-12-[dateLeftLabel(10)]", views: views)
+        allConstraints += getConstraintFromFormat("V:|-10-[questionLabel]-6-\(choicesGrp)-12-[dateLeftLabel(14)]", views: views)
         allConstraints += getConstraintFromFormat("H:|-30-[questionLabel]-30-|", views: views)
         allConstraints += getConstraintFromFormat("H:[dateLeftLabel]-30-|", views: views)
 
         NSLayoutConstraint.activateConstraints(allConstraints)
+    }
+    
+    func dataUpdated() {
+        if let data = self.dataProvider.pollImgData {
+            self.bgView.image = UIImage(data: data)
+        }
     }
     
     func dismissPoll() {

@@ -26,6 +26,7 @@ class ProfileSettingCell: UITableViewCell {
         self.title = title
         self.type = type
         super.init(style: .Default, reuseIdentifier: "ProfileSettingCell")
+        selectionStyle = .None
         setupUI()
     }
 
