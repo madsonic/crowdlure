@@ -73,11 +73,11 @@ class LureDataProvider: DataProvider {
     }
     
     func getStartDate() -> String {
-        return self.lure["start_date"].string ?? ""
+        return self.lure["start_date"].string?.simplifyDate() ?? ""
     }
     
     func getValidTill() -> String {
-        return self.lure["end_date"].string ?? ""
+        return self.lure["end_date"].string?.simplifyDate() ?? ""
     }
     
     func getBoostPercent() -> Double {

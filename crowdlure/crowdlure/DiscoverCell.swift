@@ -77,7 +77,7 @@ class DiscoverCell: UITableViewCell, DataProviderDelegate {
         self.boostCountLabel.textColor = UIColor.mediumGrayColor()
         self.boostCountLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        self.timeLeftLabel.text = "\(self.dataProvider.getValidTill())"
+        self.timeLeftLabel.text = "Valid Till \(self.dataProvider.getValidTill())"
         self.timeLeftLabel.sizeToFit()
         self.timeLeftLabel.font = UIFont.cairoRegularFont(12)
         self.timeLeftLabel.textColor = UIColor.mediumGrayColor()

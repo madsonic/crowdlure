@@ -21,7 +21,7 @@ class DiscoverTableView: UITableView {
 
     init(category: DiscoverCategory) {
         self.category = category
-        super.init(frame: CGRectZero, style: .Grouped)
+        super.init(frame: CGRectZero, style: .Plain)
         self.separatorColor = UIColor.clearColor()
     }
 

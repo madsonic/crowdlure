@@ -75,7 +75,7 @@ class PurchaseCell: UITableViewCell, DataProviderDelegate {
         self.bizNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // Validity date
-        self.dateLabel.text = self.dataProvider.getValidTill()
+        self.dateLabel.text = "Valid Till \(self.dataProvider.getValidTill())"
         self.dateLabel.font = UIFont.cairoRegularFont(13)
         self.dateLabel.textColor = UIColor.whiteColor()
         self.dateLabel.textAlignment = .Right

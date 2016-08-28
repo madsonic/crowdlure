@@ -157,10 +157,6 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
         return nil
     }
 
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 16.0
-    }
-
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if let discoverTableView = tableView as? DiscoverTableView {
             switch (discoverTableView.category) {
