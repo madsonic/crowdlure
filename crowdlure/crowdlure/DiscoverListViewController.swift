@@ -134,13 +134,13 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
         // create a label
         let label = UILabel()
         label.text = self.categories[index].rawValue
-        label.font = UIFont.systemFontOfSize(16, weight: UIFontWeightThin)
-        label.textColor = UIColor(red: 77.0 / 255, green: 79.0 / 255, blue: 84.0 / 255, alpha: 1)
+        label.font = UIFont.cairoRegularFont(16)
+        label.textColor = .wordColor()
         label.textAlignment = .Center
 
         // if the size of your tab is not fixed, you can adjust the size by the following way.
         label.sizeToFit() // resize the label to the size of content
-        label.frame.size = CGSize(width: label.frame.size.width + 28, height: label.frame.size.height + 22) // add some paddings
+        label.frame.size = CGSize(width: label.frame.size.width + 28, height: label.frame.size.height + 13) // add some paddings
         return label
     }
 
