@@ -53,6 +53,7 @@ class CampaignHeaderView: UIView {
         merchantInfoStackView.translatesAutoresizingMaskIntoConstraints = false
 
         merchantNameLabel.text = merchantName
+        merchantNameLabel.font = UIFont.cairoRegularFont(17)
         merchantNameLabel.textColor = .whiteColor()
         merchantNameLabel.translatesAutoresizingMaskIntoConstraints = false
 

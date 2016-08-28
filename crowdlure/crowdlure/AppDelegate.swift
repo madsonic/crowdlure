@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        self.fbToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6bnVsbCwidHlwZSI6IlVzZXIifQ.R9uWZXAQnyGh4LrNboqHpw4sW4-v2Izb1neobgTk0Ww"
         self.initializeUIScreen(application)
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -25,10 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func initializeUIScreen(application: UIApplication) {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.makeKeyAndVisible()
-        //let appLoginVC = AppLoginViewController()
-        //self.window?.rootViewController = appLoginVC
-        let appTabBarController = AppTabBarController()
-        self.window?.rootViewController = appTabBarController
+        if let _ = NSUserDefaults.standardUserDefaults().stringForKey(hashToken) {
+            self.window?.rootViewController = AppTabBarController()
+        } else {
+            self.window?.rootViewController = AppLoginViewController()
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
