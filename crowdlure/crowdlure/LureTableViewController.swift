@@ -31,7 +31,7 @@ class LureTableViewController: UITableViewController {
     // MARK: TableView
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 3
+        return 1
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
