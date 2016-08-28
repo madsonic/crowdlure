@@ -53,7 +53,7 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
         self.headerBgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.headerBgView.clipsToBounds = true
         
-        self.headerOverlayBgView.backgroundColor = UIColor.pastelTealColor().colorWithAlphaComponent(0.9)
+        self.headerOverlayBgView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
         self.headerOverlayBgView.translatesAutoresizingMaskIntoConstraints = false
         
         self.bizProfileView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,20 +65,20 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
         self.bizImageView.translatesAutoresizingMaskIntoConstraints = false
         
         self.bizNameLabel.text = self.dataProvider.getBusinessName()
-        self.bizNameLabel.font = UIFont.boldSystemFontOfSize(18)
+        self.bizNameLabel.font = UIFont.cairoBoldFont(18)
         self.bizNameLabel.textColor = UIColor.whiteColor()
         self.bizNameLabel.textAlignment = .Center
         self.bizNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.productLabel.text = self.dataProvider.getLureTitle()
-        self.productLabel.font = UIFont.boldSystemFontOfSize(18)
+        self.productLabel.font = UIFont.cairoBoldFont(18)
         self.productLabel.textColor = UIColor.whiteColor()
         self.productLabel.translatesAutoresizingMaskIntoConstraints = false
         
         if self.dataProvider.getTargetDescriptions().count > 0 {
             self.incentiveLabel.text = self.dataProvider.getTargetDescriptions()[0]
         }
-        self.incentiveLabel.font = UIFont.systemFontOfSize(18)
+        self.incentiveLabel.font = UIFont.cairoRegularFont(18)
         self.incentiveLabel.numberOfLines = 0
         self.incentiveLabel.textColor = UIColor.whiteColor()
         self.incentiveLabel.translatesAutoresizingMaskIntoConstraints = false
