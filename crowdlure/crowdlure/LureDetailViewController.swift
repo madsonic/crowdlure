@@ -82,7 +82,7 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
         self.productLabel.textColor = UIColor.whiteColor()
         self.productLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        self.incentiveLabel.text = "Get 20% off your next drink"
+        self.incentiveLabel.text = "Get 50% off your next pizza"
         self.incentiveLabel.font = UIFont.systemFontOfSize(18)
         self.incentiveLabel.numberOfLines = 0
         self.incentiveLabel.textColor = UIColor.whiteColor()
@@ -159,7 +159,7 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
         allConstraints += getConstraintFromFormat("H:|[bizProfileView(160)][productLabel]-10-|", views: views)
         allConstraints += getConstraintFromFormat("H:|[bizProfileView(160)][incentiveLabel]-10-|", views: views)
         allConstraints += getConstraintFromFormat("V:|[bizProfileView]|", views: views)
-        allConstraints += getConstraintFromFormat("V:|-50-[productLabel]-10-[incentiveLabel]", views: views)
+        allConstraints += getConstraintFromFormat("V:|-50-[productLabel][incentiveLabel]", views: views)
         
         allConstraints += getConstraintFromFormat("V:|[purchaseDetailHeaderView(200)][purchaseDetailTabScrollView][purchaseButton(50)]|", views: views)
         allConstraints += getConstraintFromFormat("H:|[purchaseDetailHeaderView]|", views: views)
@@ -226,13 +226,13 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
     func tabScrollView(tabScrollView: ACTabScrollView, tabViewForPageAtIndex index: Int) -> UIView {
         let label = UILabel()
         label.text = "DETAILS"
-        label.font = UIFont.systemFontOfSize(16, weight: UIFontWeightThin)
-        label.textColor = UIColor(red: 77.0 / 255, green: 79.0 / 255, blue: 84.0 / 255, alpha: 1)
+        label.font = UIFont.cairoRegularFont(16)
+        label.textColor = .wordColor()
         label.textAlignment = .Center
         
         // if the size of your tab is not fixed, you can adjust the size by the following way.
         label.sizeToFit() // resize the label to the size of content
-        label.frame.size = CGSize(width: label.frame.size.width + 28, height: label.frame.size.height + 22) // add some paddings
+        label.frame.size = CGSize(width: label.frame.size.width + 28, height: label.frame.size.height + 13) // add some paddings
         return label
     }
     
