@@ -174,19 +174,3 @@ class DiscoverCell: UITableViewCell {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
