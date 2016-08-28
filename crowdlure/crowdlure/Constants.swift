@@ -20,3 +20,5 @@ let quattrocentoSansRegular = "QuattrocentoSans"
 let quattrocentoSansBold = "QuattrocentoSans-Bold"
 
 let hashToken = "hash_token"
+let userName = "name_of_user"
+let userImage = "user_image_url"
