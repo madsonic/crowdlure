@@ -19,6 +19,14 @@ extension UIColor {
                        alpha: 1)
     }
 
+    /// 46C8EC
+    static func lighterSkyBlueColor() -> UIColor {
+        return UIColor(red: CGFloat(70) / rgbRange,
+                       green: CGFloat(200) / rgbRange,
+                       blue: CGFloat(236) / rgbRange,
+                       alpha: 1)
+    }
+
     /// FF4A5D
     static func pastelRedColor() -> UIColor {
         return UIColor(red: CGFloat(255) / rgbRange,
@@ -91,5 +99,38 @@ extension UIColor {
                        green: CGFloat(35) / rgbRange,
                        blue: CGFloat(35) / rgbRange,
                        alpha: 1)
+    }
+
+
+    func changeSaturation(multiplier: Double, times: Int = 1) -> UIColor? {
+        guard times > 0 else {
+            return self
+        }
+
+        var h, s, b, a: CGFloat
+        h = 0.0
+        s = 0.0
+        b = 0.0
+        a = 0.0
+
+        if getHue(&h, saturation: &s, brightness: &b, alpha: &a) {
+            let factor = CGFloat(pow(multiplier, Double(times)))
+            let color = UIColor(hue: h,
+                                saturation: min(s * factor, 1.0),
+                                brightness: b,
+                                alpha: a)
+            return color
+        }
+        return nil
+    }
+
+    /**
+     use case: 10 days might be long for some goals but too short for a big goal
+     - parameters:
+     - times: number of times to call this method
+     10 times gives close to a value of 0
+     */
+    func desaturate(times times: Int = 1) -> UIColor? {
+        return changeSaturation(0.8, times: times)
     }
 }
