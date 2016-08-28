@@ -39,6 +39,7 @@
 		2A3EBC2C1D72ABF600106483 /* QuattrocentoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC281D72ABF600106483 /* QuattrocentoSans-BoldItalic.ttf */; };
 		2A3EBC2D1D72ABF600106483 /* QuattrocentoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC291D72ABF600106483 /* QuattrocentoSans-Italic.ttf */; };
 		2A3EBC2E1D72ABF600106483 /* QuattrocentoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC2A1D72ABF600106483 /* QuattrocentoSans-Regular.ttf */; };
+		74641E421D72F25E00FFAA50 /* PollDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74641E411D72F25E00FFAA50 /* PollDataProvider.swift */; };
 		74FDA3CF1D72093200BA2470 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3CE1D72093200BA2470 /* AppDelegate.swift */; };
 		74FDA3D61D72093200BA2470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74FDA3D51D72093200BA2470 /* Assets.xcassets */; };
 		74FDA3D91D72093200BA2470 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FDA3D71D72093200BA2470 /* LaunchScreen.storyboard */; };
@@ -118,6 +119,7 @@
 		2A3EBC2A1D72ABF600106483 /* QuattrocentoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "QuattrocentoSans-Regular.ttf"; sourceTree = "<group>"; };
 		2B8FC64FA10B7CABF05F3E0D /* Pods-crowdlure.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crowdlure.debug.xcconfig"; path = "Pods/Target Support Files/Pods-crowdlure/Pods-crowdlure.debug.xcconfig"; sourceTree = "<group>"; };
 		675EA82E3AA875E92793113B /* Pods_crowdlure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_crowdlure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74641E411D72F25E00FFAA50 /* PollDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollDataProvider.swift; sourceTree = "<group>"; };
 		74FDA3CB1D72093100BA2470 /* crowdlure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crowdlure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74FDA3CE1D72093200BA2470 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74FDA3D51D72093200BA2470 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				74FDA3F21D720C0D00BA2470 /* DiscoverTabView.swift */,
 				2A2EA3871D72B95900C9E9B9 /* BoostTargetView.swift */,
 				74FDA3F41D720C1900BA2470 /* PollCell.swift */,
+				74641E411D72F25E00FFAA50 /* PollDataProvider.swift */,
 				2A3EBC141D7260BF00106483 /* PollChoice.swift */,
 			);
 			name = Discover;
@@ -565,6 +568,7 @@
 				2A3EBBF51D72242F00106483 /* DataProvider.swift in Sources */,
 				2A3EBC011D72339E00106483 /* AppHelpers.swift in Sources */,
 				74FDA40B1D720CD600BA2470 /* PurchaseCell.swift in Sources */,
+				74641E421D72F25E00FFAA50 /* PollDataProvider.swift in Sources */,
 				2A2EA3881D72B95900C9E9B9 /* BoostTargetView.swift in Sources */,
 				74FDA3FC1D720C6300BA2470 /* LureDetailViewController.swift in Sources */,
 				2A3EBC191D729B0A00106483 /* LureAttributeCell.swift in Sources */,
