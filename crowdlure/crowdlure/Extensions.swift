@@ -67,6 +67,13 @@ extension UIColor {
                        alpha: 1)
     }
 
+    static func deepBlueColor() -> UIColor {
+        return UIColor(red: CGFloat(40) / rgbRange,
+                       green: CGFloat(59) / rgbRange,
+                       blue: CGFloat(140) / rgbRange,
+                       alpha: 1)
+    }
+
     /// 333333
     static func deepGrayColor() -> UIColor {
         return UIColor(red: CGFloat(51) / rgbRange,

@@ -54,7 +54,7 @@ class PurchaseCell: UITableViewCell, DataProviderDelegate {
         self.bgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.bgView.clipsToBounds = true
         
-        self.containerView.backgroundColor = UIColor.pastelTealColor().colorWithAlphaComponent(0.9)
+        self.containerView.backgroundColor = UIColor.deepBlueColor().colorWithAlphaComponent(0.9)
         self.containerView.translatesAutoresizingMaskIntoConstraints = false
 
         self.overlayView.backgroundColor = UIColor.clearColor()
@@ -147,4 +147,12 @@ class PurchaseCell: UITableViewCell, DataProviderDelegate {
         NSLayoutConstraint.activateConstraints(allConstraints)
     }
 
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        if highlighted {
+            contentView.backgroundColor = .whiteColor()
+        } else {
+            contentView.backgroundColor = .grayColor()
+        }
+
+    }
 }

@@ -27,8 +27,6 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
     
     let categories: [DiscoverCategory] = [.Polls, .Nearby, .Popular, .Favorites]
 
-    private let numberOfPages = 5
-
     init() {
         self.dataProvider = DiscoverListDataProvider()
         self.tabViews = [UITableView]()
