@@ -77,7 +77,7 @@ class DiscoverCell: UITableViewCell {
         self.timeLeftLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //
-        self.boostPercentLabel.text = "\(self.dataProvider.getBoostPercent()) Boosted"
+        self.boostPercentLabel.text = "\(self.dataProvider.getBoostPercent())% Boosted"
         self.boostPercentLabel.sizeToFit()
         self.boostPercentLabel.font = UIFont.cairoBoldFont(13)
         self.boostPercentLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -91,7 +91,7 @@ class DiscoverCell: UITableViewCell {
         //
         self.boostView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.priceLabel.text = "$25"
+        self.priceLabel.text = "$" + String(format: "%.2f", self.dataProvider.getPrice())
         self.priceLabel.font = UIFont.cairoBoldFont(36)
         self.priceLabel.textAlignment = .Center
         self.priceLabel.translatesAutoresizingMaskIntoConstraints = false
