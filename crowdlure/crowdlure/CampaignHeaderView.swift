@@ -66,7 +66,7 @@ class CampaignHeaderView: UIView {
         merchantInitialsLabel.textAlignment = .Center
         merchantInitialsLabel.font = UIFont.cairoRegularFont(30)
         merchantInitialsLabel.textColor = .whiteColor()
-        merchantInitialsLabel.backgroundColor = .mediumGrayColor()
+        merchantInitialsLabel.backgroundColor = .spaceGrayColor()
         merchantInitialsLabel.layer.masksToBounds = true
         merchantInitialsLabel.layer.cornerRadius = 20
         merchantInitialsLabel.translatesAutoresizingMaskIntoConstraints = false

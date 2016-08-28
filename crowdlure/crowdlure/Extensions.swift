@@ -85,4 +85,11 @@ extension UIColor {
                        blue: CGFloat(204) / rgbRange,
                        alpha: 1)
     }
+
+    static func spaceGrayColor() -> UIColor {
+        return UIColor(red: CGFloat(35) / rgbRange,
+                       green: CGFloat(35) / rgbRange,
+                       blue: CGFloat(35) / rgbRange,
+                       alpha: 1)
+    }
 }
