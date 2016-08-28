@@ -8,13 +8,36 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
-class LureDataProvider {
+class LureDataProvider: DataProvider {
 
     var lure: JSON
+    var imgData: NSData?
+    var bizLogoData: NSData?
     
     init(lure: JSON) {
         self.lure = lure
+        super.init()
+    }
+    
+    override func loadServerData(loadMore loadMore: Bool) {
+        getDataFromUrl(NSURL(string: self.lure["image_url"].string ?? "")!) { (data, response, error)  in
+            guard let data = data where error == nil else { return }
+            dispatch_async(dispatch_get_main_queue(), {
+                self.imgData = data
+            })
+        }
+    }
+    
+    func downloadImage(url: NSURL){
+        print("Download Started")
+        getDataFromUrl(url) { (data, response, error)  in
+            guard let data = data where error == nil else { return }
+            dispatch_async(dispatch_get_main_queue(), {
+                
+            })
+        }
     }
     
     func getTitle() -> String {

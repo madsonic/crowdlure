@@ -50,7 +50,7 @@ class PurchaseCell: UITableViewCell {
 
         self.bodyView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.imgView.image = UIImage()
+        self.imgView.image = UIImage(named: "placeholder.png")
         self.imgView.layer.masksToBounds = false
         self.imgView.layer.borderColor = UIColor.whiteColor().CGColor
         self.imgView.layer.cornerRadius = 25
