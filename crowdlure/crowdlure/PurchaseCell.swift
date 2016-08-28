@@ -61,26 +61,26 @@ class PurchaseCell: UITableViewCell {
         self.imgView.translatesAutoresizingMaskIntoConstraints = false
 
         self.bizNameLabel.text = "Ashtray"
-        self.bizNameLabel.font = UIFont.boldSystemFontOfSize(14)
+        self.bizNameLabel.font = UIFont.cairoBoldFont(14)
         self.bizNameLabel.textColor = UIColor.whiteColor()
         self.bizNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // Validity date
         self.dateLabel.text = "Valid till 20 Aug"
-        self.dateLabel.font = UIFont.systemFontOfSize(13)
+        self.dateLabel.font = UIFont.cairoRegularFont(13)
         self.dateLabel.textColor = UIColor.whiteColor()
         self.dateLabel.textAlignment = .Right
         self.dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // For the purchased good
         self.titleLabel.text = "Philz Coffee"
-        self.titleLabel.font = UIFont.boldSystemFontOfSize(15)
+        self.titleLabel.font = UIFont.cairoBoldFont(15)
         self.titleLabel.textColor = UIColor.whiteColor()
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // For the incentive
         self.descLabel.text = "Performance by Beatles"
-        self.descLabel.font = UIFont.systemFontOfSize(15)
+        self.descLabel.font = UIFont.cairoRegularFont(15)
         self.descLabel.textColor = UIColor.whiteColor()
         self.descLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -126,7 +126,7 @@ class PurchaseCell: UITableViewCell {
         allConstraints += getConstraintFromFormat("H:|-20-[titleLabel]-20-|", views: views)
         allConstraints += getConstraintFromFormat("H:|-20-[descLabel]-20-|", views: views)
         
-        allConstraints += getConstraintFromFormat("V:|[bodyView(70)]-5-[titleLabel]-5-[descLabel]", views: views)
+        allConstraints += getConstraintFromFormat("V:|[bodyView(65)][titleLabel][descLabel]", views: views)
         
         allConstraints += getConstraintFromFormat("V:|-10-[imgView(50)]", views: views)
         allConstraints += getConstraintFromFormat("V:|-[bizNameLabel]-|", views: views)
