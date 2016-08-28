@@ -73,35 +73,33 @@ class DiscoverCell: UITableViewCell {
         self.imgView.clipsToBounds = true
         self.imgView.translatesAutoresizingMaskIntoConstraints = false
 
-        //
         self.titleLabel.text = "T.G.I.F Gathering"
-        self.titleLabel.font = UIFont.systemFontOfSize(20)
+        self.titleLabel.font = UIFont.cairoRegularFont(20)
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        //
         self.detailView.translatesAutoresizingMaskIntoConstraints = false
         
         self.locationLabel.text = "San Francisco"
-        self.locationLabel.font = UIFont.systemFontOfSize(12)
+        self.locationLabel.font = UIFont.cairoRegularFont(12)
         self.locationLabel.textColor = UIColor.mediumGrayColor()
         self.locationLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.boostCountLabel.text = "160 boosts"
         self.boostCountLabel.sizeToFit()
-        self.boostCountLabel.font = UIFont.systemFontOfSize(12)
+        self.boostCountLabel.font = UIFont.cairoRegularFont(12)
         self.boostCountLabel.textColor = UIColor.mediumGrayColor()
         self.boostCountLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.timeLeftLabel.text = "4 hours left"
         self.timeLeftLabel.sizeToFit()
-        self.timeLeftLabel.font = UIFont.systemFontOfSize(12)
+        self.timeLeftLabel.font = UIFont.cairoRegularFont(12)
         self.timeLeftLabel.textColor = UIColor.mediumGrayColor()
         self.timeLeftLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //
         self.boostPercentLabel.text = "114% boosted"
         self.boostPercentLabel.sizeToFit()
-        self.boostPercentLabel.font = UIFont.boldSystemFontOfSize(13)
+        self.boostPercentLabel.font = UIFont.cairoBoldFont(13)
         self.boostPercentLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //
@@ -114,12 +112,12 @@ class DiscoverCell: UITableViewCell {
         self.boostView.translatesAutoresizingMaskIntoConstraints = false
         
         self.priceLabel.text = "$25"
-        self.priceLabel.font = UIFont.boldSystemFontOfSize(36)
+        self.priceLabel.font = UIFont.cairoBoldFont(36)
         self.priceLabel.textAlignment = .Center
         self.priceLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.boostButton.setTitle("BOOST", forState: .Normal)
-        self.boostButton.titleLabel?.font = UIFont.boldSystemFontOfSize(13)
+        self.boostButton.titleLabel?.font = UIFont.cairoBoldFont(13)
         self.boostButton.backgroundColor = UIColor.pastelTealColor()
         self.boostButton.layer.cornerRadius = 20
         self.boostButton.layer.masksToBounds = true

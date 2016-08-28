@@ -57,13 +57,13 @@ class CampaignHeaderView: UIView {
         merchantNameLabel.translatesAutoresizingMaskIntoConstraints = false
 
         merchantLocationLabel.text = merchantLocation
-        merchantLocationLabel.font = UIFont.systemFontOfSize(10)
+        merchantLocationLabel.font = UIFont.cairoRegularFont(10)
         merchantLocationLabel.textColor = .pastelYellowColor()
         merchantLocationLabel.translatesAutoresizingMaskIntoConstraints = false
 
 
         merchantInitialsLabel.text = merchantFirstLetter
-        merchantInitialsLabel.font = UIFont.systemFontOfSize(30)
+        merchantInitialsLabel.font = UIFont.cairoRegularFont(30)
         merchantInitialsLabel.textColor = .whiteColor()
         merchantInitialsLabel.translatesAutoresizingMaskIntoConstraints = false
 
