@@ -35,7 +35,7 @@ class ProfileHeaderView: UIView {
         self.profileImageView.clipsToBounds = true
         self.profileImageView.translatesAutoresizingMaskIntoConstraints = false
 
-        self.profileName.text = "WENQI WU"
+        self.profileName.text = NSUserDefaults.standardUserDefaults().stringForKey(userName)
         self.profileName.font = UIFont.quattroBoldFont(24)
         self.profileName.textAlignment = .Center
         self.profileName.translatesAutoresizingMaskIntoConstraints = false

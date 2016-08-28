@@ -65,7 +65,12 @@ class ProfileTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+        if indexPath.row != 0 {
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(hashToken)
+            if let window = UIApplication.sharedApplication().keyWindow {
+                window.rootViewController = AppLoginViewController()
+            }
+        }
     }
 
 }
