@@ -77,7 +77,7 @@ class PollCell: UITableViewCell {
     }
 
     func setupLayoutConstraints() {
-        let views = [
+        var views = [
             "containerView": self.containerView,
             "bgView": self.bgView,
             "dateLeftLabel": self.dateLeftLabel,
@@ -87,17 +87,28 @@ class PollCell: UITableViewCell {
             "choice3": self.choices[2].mainView
         ]
 
+        for i in 0..<choices.count {
+            views["choice\(i)"] = choices[i].mainView
+        }
+
         var allConstraints = [NSLayoutConstraint]()
+        
+        var choicesGrp = ""
+        for i in 0..<choices.count {
+            allConstraints += getConstraintFromFormat("H:|-20-[choice\(i)]-20-|", views: views)
+            var choiceStr = "[choice"
+            choiceStr += String(i)
+            choiceStr += "(40)]"
+            choicesGrp += choiceStr
+        }
+
         allConstraints += getConstraintFromFormat("H:|[containerView]|", views: views)
         allConstraints += getConstraintFromFormat("V:|[containerView]|", views: views)
         allConstraints += getConstraintFromFormat("H:|[bgView]|", views: views)
         allConstraints += getConstraintFromFormat("V:|[bgView]|", views: views)
-        allConstraints += getConstraintFromFormat("V:|-10-[questionLabel]-6-[choice1(40)][choice2(40)][choice3(40)]-12-[dateLeftLabel(10)]", views: views)
+        allConstraints += getConstraintFromFormat("V:|-10-[questionLabel]-6-\(choicesGrp)-12-[dateLeftLabel(10)]", views: views)
         allConstraints += getConstraintFromFormat("H:|-30-[questionLabel]-30-|", views: views)
         allConstraints += getConstraintFromFormat("H:[dateLeftLabel]-30-|", views: views)
-        allConstraints += getConstraintFromFormat("H:|-20-[choice1]-20-|", views: views)
-        allConstraints += getConstraintFromFormat("H:|-20-[choice2]-20-|", views: views)
-        allConstraints += getConstraintFromFormat("H:|-20-[choice3]-20-|", views: views)
 
         NSLayoutConstraint.activateConstraints(allConstraints)
     }
