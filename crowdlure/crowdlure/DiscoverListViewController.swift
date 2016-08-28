@@ -180,7 +180,18 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
 
     // MARK: TableView
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 8.0
+        return 50
+    }
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        if let discoverTableView = tableView as? DiscoverTableView {
+            if discoverTableView.category == .Campaign {
+                return CampaignHeaderView(merchantName: "Artistry", merchantLocation: "420 S Wolfe Road, Sunnyvale")
+            }
+        }
+
+        return nil
     }
 
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
