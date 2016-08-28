@@ -121,7 +121,7 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: TableView
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 16.0
+            return 0
         }
         return 8.0
     }
