@@ -15,6 +15,7 @@ class LureDataProvider: DataProvider {
     var lure: JSON
     var imgData: NSData?
     var bizLogoData: NSData?
+    var purchased: Bool = false
     
     init(lure: JSON) {
         self.lure = lure
@@ -35,6 +36,21 @@ class LureDataProvider: DataProvider {
             dispatch_async(dispatch_get_main_queue(), {
                 self.bizLogoData = data
                 self.delegate?.dataUpdated()
+            })
+        }
+    }
+    
+    func updateServerOfPurchase() {
+        if let id = self.lure["id"].int {
+            let req = request(Endpoint.purchaseLure(lureID: id))
+            req.responseJSON(
+                successHandler: { rawResp in
+                    let resp = JSON(rawResp)
+                    self.purchased = true
+                    self.delegate?.dataUpdated()
+                },
+                failureHandler: { error in
+                    print(error)
             })
         }
     }
@@ -65,7 +81,7 @@ class LureDataProvider: DataProvider {
     }
     
     func getBoostPercent() -> Double {
-        return Double(getBoostCount()) / Double(getTargetCount())
+        return Double(getBoostCount()) / Double(getTargetCount()) * 100
     }
     
     func getPrice() -> Float {

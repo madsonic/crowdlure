@@ -36,6 +36,7 @@ enum Endpoint: URLRequestConvertible {
     case getLure(id: Int)
     case getBusinessLures(bizID: Int)
     case searchLure(query: String)
+    case purchaseLure(lureID: Int)
 
     // MARK:- Choice for Poll
     // pass nil to choice to clear previous selections
@@ -70,6 +71,9 @@ enum Endpoint: URLRequestConvertible {
 
         case .getLures, getLure, .getBusinessLures:
             break
+            
+        case .purchaseLure:
+            param = ["amount": 1]
 
         case .searchLure(let query):
             param = ["query": query]
@@ -100,6 +104,7 @@ enum Endpoint: URLRequestConvertible {
     var method: Alamofire.Method {
         switch self {
         case .authUser,
+             .purchaseLure,
              .submitChoiceForPoll:
 
             return .POST
@@ -131,6 +136,7 @@ enum Endpoint: URLRequestConvertible {
         case .getLures: return "/lures"
         case .getBusinessLures(let bizID): return "/businesses/\(bizID)/lures"
         case .searchLure: return "/lures/search"
+        case .purchaseLure(let lureID): return "/lures/\(lureID)/purchase"
 
         case let .submitChoiceForPoll(pollID, _): return "/polls/\(pollID)/choice"
 

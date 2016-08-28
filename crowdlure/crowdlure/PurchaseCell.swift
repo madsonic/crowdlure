@@ -143,22 +143,6 @@ class PurchaseCell: UITableViewCell, DataProviderDelegate {
         allConstraints += getConstraintFromFormat("V:|-[bizNameLabel]-|", views: views)
         allConstraints += getConstraintFromFormat("V:|-[dateLabel]-|", views: views)
         allConstraints += getConstraintFromFormat("H:|-20-[imgView(50)]-20-[bizNameLabel]-[dateLabel]-20-|", views: views)
-        
-//        allConstraints += getConstraintFromFormat("H:|-10-[containerView]-10-|", views: views)
-//        allConstraints += getConstraintFromFormat("V:|[containerView]|", views: views)
-//
-//        allConstraints += getConstraintFromFormat("H:|[overlayView]|", views: views)
-//        allConstraints += getConstraintFromFormat("V:|[overlayView]|", views: views)
-//
-//        allConstraints += getConstraintFromFormat("V:|[imgView(90)]", views: views)
-//        allConstraints += getConstraintFromFormat("H:|[imgView(90)]-[bodyView]|", views: views)
-//        allConstraints += getConstraintFromFormat("V:|[bodyView(90)]", views: views)
-//
-//        allConstraints += getConstraintFromFormat("H:|-[titleLabel]-|", views: views)
-//        allConstraints += getConstraintFromFormat("H:|-[descLabel]-|", views: views)
-//        allConstraints += getConstraintFromFormat("H:|-[dateLabel]-|", views: views)
-//
-//        allConstraints += getConstraintFromFormat("V:|-[titleLabel(14)]-[descLabel(20)]-[dateLabel(14)]-|", views: views)
 
         NSLayoutConstraint.activateConstraints(allConstraints)
     }

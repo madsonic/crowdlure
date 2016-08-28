@@ -46,6 +46,7 @@ class DiscoverCell: UITableViewCell, DataProviderDelegate {
         }
         
         super.init(style: .Default, reuseIdentifier: "DiscoverCell")
+        self.selectionStyle = .None
         self.dataProvider.delegate = self
         setupUI()
         self.dataProvider.viewDidLoad()
@@ -91,7 +92,7 @@ class DiscoverCell: UITableViewCell, DataProviderDelegate {
         //
         self.countProgressView.progressTintColor = UIColor.skyBlueColor()
         self.countProgressView.trackTintColor = UIColor.faintGrayColor()
-        self.countProgressView.setProgress(0.3, animated: true)
+        self.countProgressView.setProgress(Float(self.dataProvider.getBoostPercent() / 100), animated: true)
         self.countProgressView.translatesAutoresizingMaskIntoConstraints = false
         
         //

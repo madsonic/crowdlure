@@ -244,12 +244,20 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
         if let imgData = self.dataProvider.imgData {
             self.headerBgView.image = UIImage(data: imgData)
         }
+        
+        // Lure has already been purchased
+        if self.dataProvider.purchased {
+            self.purchaseButton.setTitle("Purchased", forState: .Normal)
+            self.purchaseButton.backgroundColor = UIColor.pastelTealColor()
+        }
     }
     
     func didPressPurchaseButton() {
-        let chargeVC:SIMChargeCardViewController = SIMChargeCardViewController.init(publicKey: "sbpb_MGU4MWQ5Y2ItMGI1Ny00MDhjLWEyMzEtMzhmMTBhMTlkMDZh")
-            chargeVC.delegate = self
-            self.presentViewController(chargeVC, animated: true, completion: nil)
+        if !self.dataProvider.purchased {
+            let chargeVC:SIMChargeCardViewController = SIMChargeCardViewController.init(publicKey: "sbpb_MGU4MWQ5Y2ItMGI1Ny00MDhjLWEyMzEtMzhmMTBhMTlkMDZh")
+                chargeVC.delegate = self
+                self.presentViewController(chargeVC, animated: true, completion: nil)
+        }
     }
     
     //MARK: SIMChargeCardViewControllerDelegate
@@ -298,6 +306,8 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
             
             let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
             print("responseString = \(responseString)")
+            
+            self.dataProvider.updateServerOfPurchase()
         }
         task.resume()
     }
