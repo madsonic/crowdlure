@@ -18,3 +18,5 @@ let cairoBold = "Cairo-Bold"
 // everything else
 let quattrocentoSansRegular = "QuattrocentoSans"
 let quattrocentoSansBold = "QuattrocentoSans-Bold"
+
+let hashToken = "hash_token"

@@ -51,7 +51,7 @@ enum Endpoint: URLRequestConvertible {
     var URLRequest: NSMutableURLRequest {
         let url = NSURL(string: Endpoint.baseURL)!
         let mutableURLRequest = NSMutableURLRequest(URL: url.URLByAppendingPathComponent(path))
-        if let delegate = UIApplication.sharedApplication().delegate as? AppDelegate, token = delegate.fbToken {
+        if let token = NSUserDefaults.standardUserDefaults().stringForKey(hashToken) {
             mutableURLRequest.setValue(token, forHTTPHeaderField: "Authorization")
         }
         mutableURLRequest.HTTPMethod = method.rawValue
