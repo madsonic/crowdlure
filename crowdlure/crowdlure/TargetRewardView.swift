@@ -53,7 +53,7 @@ class TargetRewardView: UIView {
         rewardStackView.translatesAutoresizingMaskIntoConstraints = false
 
         targetNumberLabel.text = String(targetNumber)
-        targetNumberLabel.font = UIFont.systemFontOfSize(30)
+        targetNumberLabel.font = UIFont.cairoRegularFont(30)
         targetNumberLabel.textColor = .whiteColor()
         targetNumberLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -74,7 +74,7 @@ class TargetRewardView: UIView {
         participantStackView.translatesAutoresizingMaskIntoConstraints = false
 
         participantsLabel.text = "\(currentParticipants)/\(totalParticipants)"
-        participantsLabel.font = UIFont.systemFontOfSize(10)
+        participantsLabel.font = UIFont.cairoRegularFont(10)
         participantsLabel.textColor = .skyBlueColor()
         participantsLabel.translatesAutoresizingMaskIntoConstraints = false
 
