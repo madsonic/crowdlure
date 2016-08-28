@@ -19,7 +19,7 @@ import SwiftyJSON
  */
 enum Endpoint: URLRequestConvertible {
     // update with your end point
-    static let baseURL = "https://sheltered-bayou-29760.herokuapp.com"
+    static let baseURL = "https://booster-api.herokuapp.com"
 
     // MARK: Endpoints
 
