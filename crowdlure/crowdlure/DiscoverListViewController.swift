@@ -144,8 +144,12 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let discoverTableView = tableView as? DiscoverTableView {
             if discoverTableView.category != .Polls {
-                print(self.dataProvider.lures[section]["business"]["name"])
-                return CampaignHeaderView(merchantName: "self" , merchantLocation: "San Francisco")
+                let name = self.dataProvider.lures[section]["business"]["name"].string ?? ""
+                let location = self.dataProvider.lures[section]["location"].string ?? ""
+                return CampaignHeaderView(merchantName: name , merchantLocation: location)
+            } else {
+                let name = self.dataProvider.lures[section]["business"]["name"].string ?? ""
+                return CampaignHeaderView(merchantName: name , merchantLocation: "")
             }
         }
         return nil
@@ -189,17 +193,8 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
             let poll = self.pollData[0]
             return PollCell(bizName: poll[0] as! String, question: poll[1] as! String, choiceCount: poll[2] as! Int, answerCount: poll[3] as! Int)
         } else {
-            switch (discoverTableView.category) {
-            case .Nearby:
-                break
-            case .Popular:
-                break
-            case .Favorites:
-                break
-            case .Polls:
-                break
-            }
-            return DiscoverCell()
+            let lureInfo = self.dataProvider.lures[indexPath.section]
+            return DiscoverCell(lure: lureInfo)
         }
     }
 
@@ -211,7 +206,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
                 //vc.hidesBottomBarWhenPushed = true
                 //self.navigationController?.pushViewController(vc, animated: true)
             } else {
-                let lureInfo = self.dataProvider.lures[indexPath.row]
+                let lureInfo = self.dataProvider.lures[indexPath.section]
                 let vc = LureDetailViewController(lure: lureInfo)
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)

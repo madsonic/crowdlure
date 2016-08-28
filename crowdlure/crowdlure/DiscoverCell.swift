@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class PriceLabel: UILabel {
     override func drawTextInRect(rect: CGRect) {
@@ -17,15 +18,6 @@ class PriceLabel: UILabel {
 
 class DiscoverCell: UITableViewCell {
 
-    // MARK: Data variables
-    var title: String
-    var owner: String
-    var mainDesc: String
-    var secondaryDesc: String
-    var location: String
-    var currentCount: Int
-    var totalCount: Int
-
     // MARK: UI elements
     let containerView = UIView(frame: CGRectZero)
     let imgView = UIImageView(frame: CGRectZero)
@@ -34,7 +26,6 @@ class DiscoverCell: UITableViewCell {
     let detailView = UIView()
     let boostCountLabel = UILabel()
     let timeLeftLabel = UILabel()
-    let locationLabel = UILabel()
     let countProgressView = UIProgressView()
     let boostView = UIView()
     let priceLabel = PriceLabel()
@@ -44,15 +35,8 @@ class DiscoverCell: UITableViewCell {
 
     var dataProvider: DiscoverCellDataProvider
 
-    init() {
-        self.dataProvider = DiscoverCellDataProvider()
-        self.title = self.dataProvider.title
-        self.owner = self.dataProvider.owner
-        self.mainDesc = self.dataProvider.mainDesc
-        self.secondaryDesc = self.dataProvider.secondaryDesc
-        self.location = self.dataProvider.location
-        self.currentCount = self.dataProvider.currentCount
-        self.totalCount = self.dataProvider.totalCount
+    init(lure: JSON) {
+        self.dataProvider = DiscoverCellDataProvider(lure: lure)
         
         self.boostTargets = [BoostTargetView]()
         self.boostTargets.append(BoostTargetView())
@@ -74,32 +58,27 @@ class DiscoverCell: UITableViewCell {
         self.imgView.translatesAutoresizingMaskIntoConstraints = false
 
         //
-        self.titleLabel.text = "T.G.I.F Gathering"
+        self.titleLabel.text = self.dataProvider.getTitle()
         self.titleLabel.font = UIFont.systemFontOfSize(20)
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //
         self.detailView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.locationLabel.text = "San Francisco"
-        self.locationLabel.font = UIFont.systemFontOfSize(12)
-        self.locationLabel.textColor = UIColor.mediumGrayColor()
-        self.locationLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.boostCountLabel.text = "160 boosts"
+        self.boostCountLabel.text = "\(self.dataProvider.getBoostCount()) Boosts"
         self.boostCountLabel.sizeToFit()
         self.boostCountLabel.font = UIFont.systemFontOfSize(12)
         self.boostCountLabel.textColor = UIColor.mediumGrayColor()
         self.boostCountLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        self.timeLeftLabel.text = "4 hours left"
+        self.timeLeftLabel.text = "\(self.dataProvider.getValidTill())"
         self.timeLeftLabel.sizeToFit()
         self.timeLeftLabel.font = UIFont.systemFontOfSize(12)
         self.timeLeftLabel.textColor = UIColor.mediumGrayColor()
         self.timeLeftLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //
-        self.boostPercentLabel.text = "114% boosted"
+        self.boostPercentLabel.text = "\(self.dataProvider.getBoostPercent()) Boosted"
         self.boostPercentLabel.sizeToFit()
         self.boostPercentLabel.font = UIFont.boldSystemFontOfSize(13)
         self.boostPercentLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -113,7 +92,7 @@ class DiscoverCell: UITableViewCell {
         //
         self.boostView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.priceLabel.text = "$25"
+        self.priceLabel.text = "$0.00"
         self.priceLabel.font = UIFont.boldSystemFontOfSize(36)
         self.priceLabel.textAlignment = .Center
         self.priceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -134,7 +113,6 @@ class DiscoverCell: UITableViewCell {
         self.containerView.addSubview(self.imgView)
         self.containerView.addSubview(self.titleLabel)
         
-        self.detailView.addSubview(self.locationLabel)
         self.detailView.addSubview(self.boostCountLabel)
         self.detailView.addSubview(self.timeLeftLabel)
         self.containerView.addSubview(self.detailView)
@@ -159,7 +137,6 @@ class DiscoverCell: UITableViewCell {
             "imgView": self.imgView,
             "titleLabel": self.titleLabel,
             "detailView": self.detailView,
-            "locationLabel": self.locationLabel,
             "boostCountLabel": self.boostCountLabel,
             "timeLeftLabel": self.timeLeftLabel,
             "boostPercentLabel": self.boostPercentLabel,
@@ -178,9 +155,7 @@ class DiscoverCell: UITableViewCell {
         allConstraints += getConstraintFromFormat("H:|-16-[titleLabel]-16-|", views: views)
         allConstraints += getConstraintFromFormat("H:|-16-[detailView]-16-|", views: views)
         
-        allConstraints += getConstraintFromFormat("H:|[locationLabel]", views: views)
         allConstraints += getConstraintFromFormat("H:[boostCountLabel]-16-[timeLeftLabel]|", views: views)
-        allConstraints += getConstraintFromFormat("V:|[locationLabel]|", views: views)
         allConstraints += getConstraintFromFormat("V:|[boostCountLabel]|", views: views)
         allConstraints += getConstraintFromFormat("V:|[timeLeftLabel]|", views: views)
         

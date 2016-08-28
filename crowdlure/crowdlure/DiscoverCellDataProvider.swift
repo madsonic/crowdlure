@@ -7,18 +7,54 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class DiscoverCellDataProvider {
 
-    var title = "Title"
-    var owner = "Owner"
-    var mainDesc = "Main description"
-    var secondaryDesc = "Secondary description"
-    var location = "Location"
-    var currentCount = 100
-    var totalCount = 51
-
-    init() {
-
+    var lure: JSON
+    
+    init(lure: JSON) {
+        self.lure = lure
+    }
+    
+    func getTitle() -> String {
+        return self.lure["title"].string ?? ""
+    }
+    
+    func getBoostCount() -> Int {
+        let transactions = self.lure["transactions"].array ?? []
+        var n = 0
+        for t in transactions {
+            n += t["amount"].int ?? 0
+        }
+        return n
+    }
+    
+    func getTargetCount() -> Int {
+        return self.lure["targets"][0]["amount"].int ?? 0
+    }
+    
+    func getValidTill() -> String {
+        return self.lure["end_date"].string ?? ""
+    }
+    
+    func getBoostPercent() -> Double {
+        return Double(getBoostCount()) / Double(getTargetCount())
+    }
+    
+    func getPrice() -> Float {
+        return self.lure["price"].float ?? 0.0
+    }
+    
+    func getTargetDescriptions() -> [String] {
+        var n = 3
+        if self.lure["targets"].count < 3 {
+            n = self.lure["targets"].count
+        }
+        var descriptions = [String]()
+        for i in 0..<n {
+            descriptions.append(self.lure["targets"][i]["description"].string ?? "")
+        }
+        return descriptions
     }
 }
