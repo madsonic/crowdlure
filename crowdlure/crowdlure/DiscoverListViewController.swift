@@ -151,22 +151,25 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
 
     // MARK: TableView
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        if let discoverTableView = tableView as? DiscoverTableView {
+            if discoverTableView.category != .Polls {
+                return 50
+            }
+        }
+        return 16.0
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
         if let discoverTableView = tableView as? DiscoverTableView {
-//            if discoverTableView.category == .Campaign {
-//                return CampaignHeaderView(merchantName: "Artistry", merchantLocation: "420 S Wolfe Road, Sunnyvale")
-//            }
+            if discoverTableView.category != .Polls {
+                return CampaignHeaderView(merchantName: "Artistry", merchantLocation: "420 S Wolfe Road, Sunnyvale")
+            }
         }
-
         return nil
     }
 
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 8.0
+        return 16.0
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -193,14 +196,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
         if let discoverTableView = tableView as? DiscoverTableView where discoverTableView.category == .Polls {
             return 250
         }
-//        if let discoverTableView = tableView as? DiscoverTableView {
-//            if discoverTableView.category == .Polls {
-//                return 160
-//            } else if discoverTableView.category == .Campaign {
-//                return 500
-//            }
-
-        return 240
+        return 370
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

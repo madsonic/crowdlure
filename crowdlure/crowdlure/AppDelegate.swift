@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        self.fbToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsInR5cGUiOiJVc2VyIn0.LvykZ9svrudRAGBFYZxfrxY3f7hSBxh3MRUE_ZeVEo8"
+        self.fbToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6bnVsbCwidHlwZSI6IlVzZXIifQ.R9uWZXAQnyGh4LrNboqHpw4sW4-v2Izb1neobgTk0Ww"
         self.initializeUIScreen(application)
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

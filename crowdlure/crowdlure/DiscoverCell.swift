@@ -29,12 +29,18 @@ class DiscoverCell: UITableViewCell {
     // MARK: UI elements
     let containerView = UIView(frame: CGRectZero)
     let imgView = UIImageView(frame: CGRectZero)
-    let dateLabel = UILabel()
     let titleLabel = UILabel()
+    let boostPercentLabel = UILabel()
+    let detailView = UIView()
+    let boostCountLabel = UILabel()
+    let timeLeftLabel = UILabel()
     let locationLabel = UILabel()
     let countProgressView = UIProgressView()
-    let countLabel = UILabel()
+    let boostView = UIView()
     let priceLabel = PriceLabel()
+    let boostButton = UIButton()
+    
+    var boostTargets: [BoostTargetView]
 
     var dataProvider: DiscoverCellDataProvider
 
@@ -47,6 +53,10 @@ class DiscoverCell: UITableViewCell {
         self.location = self.dataProvider.location
         self.currentCount = self.dataProvider.currentCount
         self.totalCount = self.dataProvider.totalCount
+        
+        self.boostTargets = [BoostTargetView]()
+        self.boostTargets.append(BoostTargetView())
+        
         super.init(style: .Default, reuseIdentifier: "DiscoverCell")
         setupUI()
     }
@@ -63,46 +73,82 @@ class DiscoverCell: UITableViewCell {
         self.imgView.clipsToBounds = true
         self.imgView.translatesAutoresizingMaskIntoConstraints = false
 
-        self.priceLabel.text = "$70"
-        self.priceLabel.font = UIFont.systemFontOfSize(16)
-        self.priceLabel.textAlignment = .Center
-        self.priceLabel.textColor = UIColor.lightGrayColor()
-        self.priceLabel.backgroundColor = UIColor.blackColor()
-        self.priceLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        self.dateLabel.text = "25 AUG TO 31 AUG"
-        self.dateLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
-        self.dateLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        self.countLabel.text = "19 MORE TO GO"
-        self.countLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
-        self.countLabel.textAlignment = .Right
-        self.countLabel.textColor = UIColor.grayColor()
-        self.countLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        //
         self.titleLabel.text = "T.G.I.F Gathering"
-        self.titleLabel.font = UIFont.boldSystemFontOfSize(20)
+        self.titleLabel.font = UIFont.systemFontOfSize(20)
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        self.locationLabel.text = "SAN FRANCISCO"
-        self.locationLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
+        
+        //
+        self.detailView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.locationLabel.text = "San Francisco"
+        self.locationLabel.font = UIFont.systemFontOfSize(12)
+        self.locationLabel.textColor = UIColor.mediumGrayColor()
         self.locationLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        self.countProgressView.progressTintColor = self.tintColor
-        self.countProgressView.setProgress(0.3, animated: false)
+        
+        self.boostCountLabel.text = "160 boosts"
+        self.boostCountLabel.sizeToFit()
+        self.boostCountLabel.font = UIFont.systemFontOfSize(12)
+        self.boostCountLabel.textColor = UIColor.mediumGrayColor()
+        self.boostCountLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.timeLeftLabel.text = "4 hours left"
+        self.timeLeftLabel.sizeToFit()
+        self.timeLeftLabel.font = UIFont.systemFontOfSize(12)
+        self.timeLeftLabel.textColor = UIColor.mediumGrayColor()
+        self.timeLeftLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //
+        self.boostPercentLabel.text = "114% boosted"
+        self.boostPercentLabel.sizeToFit()
+        self.boostPercentLabel.font = UIFont.boldSystemFontOfSize(13)
+        self.boostPercentLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        //
+        self.countProgressView.progressTintColor = UIColor.skyBlueColor()
+        self.countProgressView.trackTintColor = UIColor.faintGrayColor()
+        self.countProgressView.setProgress(0.3, animated: true)
         self.countProgressView.translatesAutoresizingMaskIntoConstraints = false
+        
+        //
+        self.boostView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.priceLabel.text = "$25"
+        self.priceLabel.font = UIFont.boldSystemFontOfSize(36)
+        self.priceLabel.textAlignment = .Center
+        self.priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.boostButton.setTitle("BOOST", forState: .Normal)
+        self.boostButton.titleLabel?.font = UIFont.boldSystemFontOfSize(13)
+        self.boostButton.backgroundColor = UIColor.pastelTealColor()
+        self.boostButton.layer.cornerRadius = 20
+        self.boostButton.layer.masksToBounds = true
+        self.boostButton.translatesAutoresizingMaskIntoConstraints = false
 
+        //
+        self.boostTargets[0].translatesAutoresizingMaskIntoConstraints = false
+        
         self.containerView.backgroundColor = UIColor.whiteColor()
         self.containerView.translatesAutoresizingMaskIntoConstraints = false
 
-        self.contentView.addSubview(self.containerView)
         self.containerView.addSubview(self.imgView)
-        self.containerView.addSubview(self.priceLabel)
-        self.containerView.addSubview(self.countProgressView)
-        self.containerView.addSubview(self.dateLabel)
-        self.containerView.addSubview(self.countLabel)
         self.containerView.addSubview(self.titleLabel)
-        self.containerView.addSubview(self.locationLabel)
+        
+        self.detailView.addSubview(self.locationLabel)
+        self.detailView.addSubview(self.boostCountLabel)
+        self.detailView.addSubview(self.timeLeftLabel)
+        self.containerView.addSubview(self.detailView)
+        
+        self.containerView.addSubview(self.boostPercentLabel)
+        self.containerView.addSubview(self.countProgressView)
+        
+        self.boostView.addSubview(self.priceLabel)
+        self.boostView.addSubview(self.boostButton)
+        self.containerView.addSubview(self.boostView)
+        
+        self.containerView.addSubview(self.boostTargets[0])
+        
+        self.contentView.addSubview(self.containerView)
 
         setupLayoutConstraints()
     }
@@ -111,94 +157,62 @@ class DiscoverCell: UITableViewCell {
         let views = [
             "containerView": self.containerView,
             "imgView": self.imgView,
-            "countProgressView": self.countProgressView,
-            "dateLabel": self.dateLabel,
-            "countLabel": self.countLabel,
             "titleLabel": self.titleLabel,
+            "detailView": self.detailView,
             "locationLabel": self.locationLabel,
-            "priceLabel": self.priceLabel
+            "boostCountLabel": self.boostCountLabel,
+            "timeLeftLabel": self.timeLeftLabel,
+            "boostPercentLabel": self.boostPercentLabel,
+            "countProgressView": self.countProgressView,
+            "boostView": self.boostView,
+            "priceLabel": self.priceLabel,
+            "boostButton": self.boostButton,
+            "boostTarget1": self.boostTargets[0]
         ]
 
         var allConstraints = [NSLayoutConstraint]()
-
-        let priceLabelXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:[priceLabel]-|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += priceLabelXConstraints
-
-        let priceLabelYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[priceLabel]",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += priceLabelYConstraints
-
-        let imgViewXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|[imgView]|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += imgViewXConstraints
-
-        let countProgressViewXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|[countProgressView]|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += countProgressViewXConstraints
-
-        let dateLabelXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-[dateLabel]-[countLabel]-|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += dateLabelXConstraints
-
-        let titleLabelXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-[titleLabel]-|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += titleLabelXConstraints
-
-        let locationLabelXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-[locationLabel]-|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += locationLabelXConstraints
-
-        let containerViewXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-[containerView]-|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += containerViewXConstraints
-
-        let containerViewYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[containerView]|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += containerViewYConstraints
-
-        let countLabelYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-157-[countLabel(14)]",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += countLabelYConstraints
-
-        let mainYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[imgView(140)][countProgressView(3)]-14-[dateLabel(14)]-5-[titleLabel(26)]-5-[locationLabel(14)]",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += mainYConstraints
+        allConstraints += getConstraintFromFormat("H:|[containerView]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|[containerView]|", views: views)
+        
+        allConstraints += getConstraintFromFormat("H:|[imgView]|", views: views)
+        allConstraints += getConstraintFromFormat("H:|-16-[titleLabel]-16-|", views: views)
+        allConstraints += getConstraintFromFormat("H:|-16-[detailView]-16-|", views: views)
+        
+        allConstraints += getConstraintFromFormat("H:|[locationLabel]", views: views)
+        allConstraints += getConstraintFromFormat("H:[boostCountLabel]-16-[timeLeftLabel]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|[locationLabel]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|[boostCountLabel]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|[timeLeftLabel]|", views: views)
+        
+        allConstraints += getConstraintFromFormat("H:|-16-[boostPercentLabel]-16-|", views: views)
+        allConstraints += getConstraintFromFormat("H:|-16-[countProgressView]-16-|", views: views)
+        
+        allConstraints += getConstraintFromFormat("H:|[boostView(140)][boostTarget1]-16-|", views: views)
+        
+        allConstraints += getConstraintFromFormat("H:|-[priceLabel]-|", views: views)
+        allConstraints += getConstraintFromFormat("H:|-30-[boostButton(80)]-30-|", views: views)
+        allConstraints += getConstraintFromFormat("V:|[priceLabel]-10-[boostButton(40)]", views: views)
+        
+        allConstraints += getConstraintFromFormat("V:|[imgView(140)]-14-[titleLabel]-5-[detailView]-10-[boostPercentLabel]-5-[countProgressView(10)]-16-[boostView]", views: views)
+        allConstraints += getConstraintFromFormat("V:|[imgView(140)]-14-[titleLabel]-5-[detailView]-10-[boostPercentLabel]-5-[countProgressView(10)]-20-[boostTarget1]", views: views)
 
         NSLayoutConstraint.activateConstraints(allConstraints)
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
