@@ -13,7 +13,12 @@ class BoostTargetView: UIView {
     let indexLabel = UILabel()
     let descLabel = UILabel()
     
-    init() {
+    var desc: String
+    var index: Int
+    
+    init(description: String, index: Int) {
+        self.desc = description
+        self.index = index
         super.init(frame: CGRectZero)
         self.translatesAutoresizingMaskIntoConstraints = false
         setupUI()
@@ -25,7 +30,7 @@ class BoostTargetView: UIView {
     
     func setupUI() {
         
-        self.indexLabel.text = "1"
+        self.indexLabel.text = "\(self.index + 1)"
         self.indexLabel.backgroundColor = UIColor.pastelTealColor()
         self.indexLabel.textColor = UIColor.whiteColor()
         self.indexLabel.layer.cornerRadius = 10
@@ -33,7 +38,7 @@ class BoostTargetView: UIView {
         self.indexLabel.textAlignment = .Center
         self.indexLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        self.descLabel.text = "Target description here"
+        self.descLabel.text = self.desc
         self.descLabel.font = UIFont.systemFontOfSize(14)
         self.descLabel.translatesAutoresizingMaskIntoConstraints = false
         

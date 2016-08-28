@@ -11,8 +11,6 @@ import MapKit
 import SwiftyJSON
 
 class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrollViewDataSource, SIMChargeCardViewControllerDelegate, DataProviderDelegate {
-
-    var lure: JSON?
     
     let purchaseButton = UIButton()
 
@@ -33,17 +31,11 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
     
     var detailVC: LureTableViewController
     
-    init() {
-        self.detailVC = LureTableViewController()
-        super.init(nibName: nil, bundle: nil)
-        self.edgesForExtendedLayout = UIRectEdge.None
-        self.view.backgroundColor = UIColor.whiteColor()
-        setupUI()
-    }
+    var dataProvider: LureDataProvider
     
     init(lure: JSON) {
-        self.lure = lure
-        self.detailVC = LureTableViewController()
+        self.detailVC = LureTableViewController(lure: lure)
+        self.dataProvider = LureDataProvider(lure: lure)
         super.init(nibName: nil, bundle: nil)
         self.edgesForExtendedLayout = UIRectEdge.None
         self.view.backgroundColor = UIColor.whiteColor()
@@ -71,18 +63,20 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
         self.bizImageView.clipsToBounds = true
         self.bizImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.bizNameLabel.text = "Ashtray"
+        self.bizNameLabel.text = self.dataProvider.getBusinessName()
         self.bizNameLabel.font = UIFont.boldSystemFontOfSize(18)
         self.bizNameLabel.textColor = UIColor.whiteColor()
         self.bizNameLabel.textAlignment = .Center
         self.bizNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        self.productLabel.text = "Philz Coffee"
+        self.productLabel.text = self.dataProvider.getLureTitle()
         self.productLabel.font = UIFont.boldSystemFontOfSize(18)
         self.productLabel.textColor = UIColor.whiteColor()
         self.productLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        self.incentiveLabel.text = "Get 50% off your next pizza"
+        if self.dataProvider.getTargetDescriptions().count > 0 {
+            self.incentiveLabel.text = self.dataProvider.getTargetDescriptions()[0]
+        }
         self.incentiveLabel.font = UIFont.systemFontOfSize(18)
         self.incentiveLabel.numberOfLines = 0
         self.incentiveLabel.textColor = UIColor.whiteColor()
@@ -93,7 +87,7 @@ class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTab
         self.qrCodeImageView.translatesAutoresizingMaskIntoConstraints = false
         
         // Purchase button
-        self.purchaseButton.setTitle("Purchase for $70", forState: .Normal)
+        self.purchaseButton.setTitle("Purchase for $" + String(format: "%.2f", self.dataProvider.getPrice()), forState: .Normal)
         self.purchaseButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.purchaseButton.backgroundColor = UIColor.skyBlueColor()
         self.purchaseButton.translatesAutoresizingMaskIntoConstraints = false

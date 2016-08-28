@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrollViewDataSource {
 
@@ -26,9 +27,12 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
     var qrCodeImage: CIImage?
     
     var detailVC: LureTableViewController
+    
+    var dataProvider: LureDataProvider
 
-    init() {
-        self.detailVC = LureTableViewController()
+    init(lure: JSON) {
+        self.detailVC = LureTableViewController(lure: lure)
+        self.dataProvider = LureDataProvider(lure: lure)
         super.init(nibName: nil, bundle: nil)
         self.edgesForExtendedLayout = UIRectEdge.None
         self.view.backgroundColor = UIColor.whiteColor()
@@ -56,25 +60,27 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         self.bizImageView.clipsToBounds = true
         self.bizImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.bizNameLabel.text = "Ashtray"
+        self.bizNameLabel.text = self.dataProvider.getBusinessName()
         self.bizNameLabel.font = UIFont.cairoBoldFont(18)
         self.bizNameLabel.textColor = UIColor.whiteColor()
         self.bizNameLabel.textAlignment = .Center
         self.bizNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        self.productLabel.text = "Philz Coffee"
+        self.productLabel.text = self.dataProvider.getLureTitle()
         self.productLabel.font = UIFont.cairoBoldFont(20)
         self.productLabel.textColor = UIColor.whiteColor()
         self.productLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        self.incentiveLabel.text = "Get 20% off your next drink"
+        if self.dataProvider.lure["targets"].count > 0 {
+            self.incentiveLabel.text = self.dataProvider.lure["targets"][0]["description"].string ?? ""
+        }
         self.incentiveLabel.font = UIFont.cairoRegularFont(18)
         self.incentiveLabel.numberOfLines = 0
         self.incentiveLabel.textColor = UIColor.whiteColor()
         self.incentiveLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // Redeem view
-        self.ticketView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        self.ticketView.backgroundColor = UIColor.whiteColor()
         self.qrCodeImageView.translatesAutoresizingMaskIntoConstraints = false
         
         self.bizProfileView.addSubview(self.bizImageView)
@@ -125,7 +131,7 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
             metrics: nil,
             views: views)
         allConstraints += qrCodeImageViewXConstraints
-        allConstraints += getConstraintFromFormat("V:|-50-[qrCodeImageView(120)]", views: views)
+        allConstraints += getConstraintFromFormat("V:|-60-[qrCodeImageView(160)]", views: views)
         
         allConstraints += getConstraintFromFormat("V:|-40-[bizImageView(80)]-10-[bizNameLabel]", views: views)
         allConstraints += getConstraintFromFormat("H:|-40-[bizImageView(80)]-40-|", views: views)
@@ -172,8 +178,8 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
             filter.setValue(data, forKey: "inputMessage")
             filter.setValue("Q", forKey: "inputCorrectionLevel")
             if let qr = filter.outputImage {
-                let scaleX = 120.0 / qr.extent.size.width
-                let scaleY = 120.0 / qr.extent.size.height
+                let scaleX = 160.0 / qr.extent.size.width
+                let scaleY = 160.0 / qr.extent.size.height
                 self.qrCodeImage = qr.imageByApplyingTransform(CGAffineTransformMakeScale(scaleX, scaleY))
             }
         }

@@ -7,10 +7,9 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class PurchaseCell: UITableViewCell {
-
-    private(set) var expired: Bool
     
     let bgView = UIImageView()
     let containerView = UIView(frame: CGRectZero)
@@ -22,8 +21,10 @@ class PurchaseCell: UITableViewCell {
     let descLabel = UILabel()
     let dateLabel = UILabel()
 
-    init(expired: Bool = false) {
-        self.expired = expired
+    var dataProvider: LureDataProvider
+    
+    init(lure: JSON) {
+        self.dataProvider = LureDataProvider(lure: lure)
         super.init(style: .Default, reuseIdentifier: "PurchaseCell")
         self.selectionStyle = .None
         setupUI()
@@ -36,7 +37,7 @@ class PurchaseCell: UITableViewCell {
     func setupUI() {
         self.contentView.backgroundColor = UIColor.groupTableViewBackgroundColor()
 
-        self.bgView.image = UIImage(named: "club.jpg")
+        self.bgView.image = UIImage()
         self.bgView.translatesAutoresizingMaskIntoConstraints = false
         self.bgView.contentMode = UIViewContentMode.ScaleAspectFill
         self.bgView.clipsToBounds = true
@@ -44,42 +45,40 @@ class PurchaseCell: UITableViewCell {
         self.containerView.backgroundColor = UIColor.pastelTealColor().colorWithAlphaComponent(0.9)
         self.containerView.translatesAutoresizingMaskIntoConstraints = false
 
-        if self.expired {
-            self.overlayView.backgroundColor = UIColor.groupTableViewBackgroundColor().colorWithAlphaComponent(0.5)
-        } else {
-            self.overlayView.backgroundColor = UIColor.clearColor()
-        }
+        self.overlayView.backgroundColor = UIColor.clearColor()
         self.overlayView.translatesAutoresizingMaskIntoConstraints = false
 
         self.bodyView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.imgView.image = UIImage(named: "club.jpg")
+        self.imgView.image = UIImage()
         self.imgView.layer.masksToBounds = false
         self.imgView.layer.borderColor = UIColor.whiteColor().CGColor
         self.imgView.layer.cornerRadius = 25
         self.imgView.clipsToBounds = true
         self.imgView.translatesAutoresizingMaskIntoConstraints = false
 
-        self.bizNameLabel.text = "Ashtray"
+        self.bizNameLabel.text = self.dataProvider.getBusinessName()
         self.bizNameLabel.font = UIFont.cairoBoldFont(14)
         self.bizNameLabel.textColor = UIColor.whiteColor()
         self.bizNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // Validity date
-        self.dateLabel.text = "Valid till 20 Aug"
+        self.dateLabel.text = self.dataProvider.getValidTill()
         self.dateLabel.font = UIFont.cairoRegularFont(13)
         self.dateLabel.textColor = UIColor.whiteColor()
         self.dateLabel.textAlignment = .Right
         self.dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // For the purchased good
-        self.titleLabel.text = "Philz Coffee"
+        self.titleLabel.text = self.dataProvider.getLureTitle()
         self.titleLabel.font = UIFont.cairoBoldFont(15)
         self.titleLabel.textColor = UIColor.whiteColor()
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // For the incentive
-        self.descLabel.text = "Performance by Beatles"
+        if self.dataProvider.getTargetDescriptions().count > 0 {
+            self.descLabel.text = self.dataProvider.getTargetDescriptions()[0]
+        }
         self.descLabel.font = UIFont.cairoRegularFont(15)
         self.descLabel.textColor = UIColor.whiteColor()
         self.descLabel.translatesAutoresizingMaskIntoConstraints = false

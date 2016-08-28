@@ -14,8 +14,12 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
     private let redeemedTableView = UITableView()
     private let unredeemedTableView = UITableView()
     
+    var dataProvider: PurchaseListDataProvider
+    
     init() {
+        self.dataProvider = PurchaseListDataProvider()
         super.init(nibName: nil, bundle: nil)
+        self.dataProvider.delegate = self
         
         self.redeemedTableView.separatorStyle = .None
         self.redeemedTableView.backgroundColor = UIColor.groupTableViewBackgroundColor()
@@ -44,6 +48,8 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
         
         setupTabScrollView()
         setupLayoutConstraints()
+        
+        self.dataProvider.viewDidLoad()
     }
     
     func setupTabScrollView() {
@@ -69,7 +75,8 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func dataUpdated() {
-       
+        self.redeemedTableView.reloadData()
+        self.unredeemedTableView.reloadData()
     }
     
     // MARK: ACTabScrollViewDelegate
@@ -124,7 +131,7 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 5
+        return self.dataProvider.lures.count
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,18 +144,18 @@ class PurchaseListViewController: UIViewController, UITableViewDelegate, UITable
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: PurchaseCell
-        if indexPath.row > 2 {
-            cell = PurchaseCell(expired: true)
-        } else {
-            cell = PurchaseCell()
-        }
+        cell = PurchaseCell(lure: self.dataProvider.lures[indexPath.section])
         return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let vc = PurchaseDetailViewController()
+        let vc = PurchaseDetailViewController(lure: self.dataProvider.lures[indexPath.section])
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+
+
+

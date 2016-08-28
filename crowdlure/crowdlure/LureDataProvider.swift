@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class DiscoverCellDataProvider {
+class LureDataProvider {
 
     var lure: JSON
     
@@ -34,6 +34,10 @@ class DiscoverCellDataProvider {
         return self.lure["targets"][0]["amount"].int ?? 0
     }
     
+    func getStartDate() -> String {
+        return self.lure["start_date"].string ?? ""
+    }
+    
     func getValidTill() -> String {
         return self.lure["end_date"].string ?? ""
     }
@@ -56,5 +60,21 @@ class DiscoverCellDataProvider {
             descriptions.append(self.lure["targets"][i]["description"].string ?? "")
         }
         return descriptions
+    }
+    
+    func getLureTitle() -> String {
+        return self.lure["title"].string ?? ""
+    }
+    
+    func getBusinessName() -> String {
+        return self.lure["business"]["name"].string ?? ""
+    }
+    
+    func getLocation() -> String {
+        return self.lure["location"].string ?? ""
+    }
+    
+    func getPhoneNumber() -> String {
+        return "650 123 4567"
     }
 }

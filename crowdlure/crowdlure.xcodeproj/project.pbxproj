@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2A2EA3881D72B95900C9E9B9 /* BoostTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2EA3871D72B95900C9E9B9 /* BoostTargetView.swift */; };
+		2A2EA38D1D72F01000C9E9B9 /* PurchaseListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2EA38C1D72F01000C9E9B9 /* PurchaseListDataProvider.swift */; };
 		2A3EBBE91D72102900106483 /* ACTabScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBBE71D72102900106483 /* ACTabScrollView.swift */; };
 		2A3EBBEA1D72102900106483 /* ACTabScrollView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBBE81D72102900106483 /* ACTabScrollView+Protocol.swift */; };
 		2A3EBBEF1D72131900106483 /* Simplify.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBBED1D72131900106483 /* Simplify.bundle */; };
@@ -47,7 +48,7 @@
 		74FDA3E91D720BB200BA2470 /* DiscoverListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3E81D720BB200BA2470 /* DiscoverListViewController.swift */; };
 		74FDA3EB1D720BC900BA2470 /* DiscoverTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3EA1D720BC900BA2470 /* DiscoverTableView.swift */; };
 		74FDA3EF1D720BEF00BA2470 /* DiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3EE1D720BEF00BA2470 /* DiscoverCell.swift */; };
-		74FDA3F11D720BFF00BA2470 /* DiscoverCellDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3F01D720BFF00BA2470 /* DiscoverCellDataProvider.swift */; };
+		74FDA3F11D720BFF00BA2470 /* LureDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3F01D720BFF00BA2470 /* LureDataProvider.swift */; };
 		74FDA3F31D720C0D00BA2470 /* DiscoverTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3F21D720C0D00BA2470 /* DiscoverTabView.swift */; };
 		74FDA3F51D720C1900BA2470 /* PollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3F41D720C1900BA2470 /* PollCell.swift */; };
 		74FDA3FC1D720C6300BA2470 /* LureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3FB1D720C6300BA2470 /* LureDetailViewController.swift */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		2A2EA3871D72B95900C9E9B9 /* BoostTargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoostTargetView.swift; sourceTree = "<group>"; };
+		2A2EA38C1D72F01000C9E9B9 /* PurchaseListDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseListDataProvider.swift; sourceTree = "<group>"; };
 		2A3EBBE71D72102900106483 /* ACTabScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTabScrollView.swift; sourceTree = "<group>"; };
 		2A3EBBE81D72102900106483 /* ACTabScrollView+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ACTabScrollView+Protocol.swift"; sourceTree = "<group>"; };
 		2A3EBBED1D72131900106483 /* Simplify.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Simplify.bundle; sourceTree = "<group>"; };
@@ -125,7 +127,7 @@
 		74FDA3E81D720BB200BA2470 /* DiscoverListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverListViewController.swift; sourceTree = "<group>"; };
 		74FDA3EA1D720BC900BA2470 /* DiscoverTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableView.swift; sourceTree = "<group>"; };
 		74FDA3EE1D720BEF00BA2470 /* DiscoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCell.swift; sourceTree = "<group>"; };
-		74FDA3F01D720BFF00BA2470 /* DiscoverCellDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCellDataProvider.swift; sourceTree = "<group>"; };
+		74FDA3F01D720BFF00BA2470 /* LureDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LureDataProvider.swift; sourceTree = "<group>"; };
 		74FDA3F21D720C0D00BA2470 /* DiscoverTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTabView.swift; sourceTree = "<group>"; };
 		74FDA3F41D720C1900BA2470 /* PollCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollCell.swift; sourceTree = "<group>"; };
 		74FDA3FB1D720C6300BA2470 /* LureDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LureDetailViewController.swift; sourceTree = "<group>"; };
@@ -272,7 +274,6 @@
 				2A3EBBF21D72241200106483 /* DiscoverListDataProvider.swift */,
 				74FDA3EA1D720BC900BA2470 /* DiscoverTableView.swift */,
 				74FDA3EE1D720BEF00BA2470 /* DiscoverCell.swift */,
-				74FDA3F01D720BFF00BA2470 /* DiscoverCellDataProvider.swift */,
 				74FDA3F21D720C0D00BA2470 /* DiscoverTabView.swift */,
 				2A2EA3871D72B95900C9E9B9 /* BoostTargetView.swift */,
 				74FDA3F41D720C1900BA2470 /* PollCell.swift */,
@@ -288,6 +289,7 @@
 				2A3EBC051D72456E00106483 /* LureDetailDataProvider.swift */,
 				2A3EBC161D72993500106483 /* LureTableViewController.swift */,
 				2A3EBC181D729B0A00106483 /* LureAttributeCell.swift */,
+				74FDA3F01D720BFF00BA2470 /* LureDataProvider.swift */,
 			);
 			name = Lure;
 			sourceTree = "<group>";
@@ -309,6 +311,7 @@
 			children = (
 				74FDA4061D720CB200BA2470 /* PurchaseNavigationController.swift */,
 				74FDA4081D720CC900BA2470 /* PurchaseListViewController.swift */,
+				2A2EA38C1D72F01000C9E9B9 /* PurchaseListDataProvider.swift */,
 				74FDA40A1D720CD600BA2470 /* PurchaseCell.swift */,
 				74FDA40C1D720CE900BA2470 /* PurchaseDetailViewController.swift */,
 			);
@@ -546,6 +549,7 @@
 				2A3EBC111D72516400106483 /* AppLoginViewController.swift in Sources */,
 				74FDA4091D720CC900BA2470 /* PurchaseListViewController.swift in Sources */,
 				74FDA4191D720D5600BA2470 /* SearchViewController.swift in Sources */,
+				2A2EA38D1D72F01000C9E9B9 /* PurchaseListDataProvider.swift in Sources */,
 				74FDA3CF1D72093200BA2470 /* AppDelegate.swift in Sources */,
 				2A3EBBFF1D722E8700106483 /* NetworkManager.swift in Sources */,
 				2A3EBC151D7260BF00106483 /* PollChoice.swift in Sources */,
@@ -559,7 +563,7 @@
 				74FDA3F31D720C0D00BA2470 /* DiscoverTabView.swift in Sources */,
 				2A3EBC061D72456E00106483 /* LureDetailDataProvider.swift in Sources */,
 				74FDA3E71D720B9900BA2470 /* DiscoverNavigationController.swift in Sources */,
-				74FDA3F11D720BFF00BA2470 /* DiscoverCellDataProvider.swift in Sources */,
+				74FDA3F11D720BFF00BA2470 /* LureDataProvider.swift in Sources */,
 				2A3EBBF31D72241200106483 /* DiscoverListDataProvider.swift in Sources */,
 				74FDA3E91D720BB200BA2470 /* DiscoverListViewController.swift in Sources */,
 				2A3EBC171D72993500106483 /* LureTableViewController.swift in Sources */,

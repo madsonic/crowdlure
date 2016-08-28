@@ -33,13 +33,17 @@ class DiscoverCell: UITableViewCell {
     
     var boostTargets: [BoostTargetView]
 
-    var dataProvider: DiscoverCellDataProvider
+    var dataProvider: LureDataProvider
 
     init(lure: JSON) {
-        self.dataProvider = DiscoverCellDataProvider(lure: lure)
+        self.dataProvider = LureDataProvider(lure: lure)
         
         self.boostTargets = [BoostTargetView]()
-        self.boostTargets.append(BoostTargetView())
+        var i = 0
+        for desc in self.dataProvider.getTargetDescriptions() {
+            self.boostTargets.append(BoostTargetView(description: desc, index: i))
+            i += 1
+        }
         
         super.init(style: .Default, reuseIdentifier: "DiscoverCell")
         setupUI()
@@ -77,7 +81,7 @@ class DiscoverCell: UITableViewCell {
         self.timeLeftLabel.translatesAutoresizingMaskIntoConstraints = false
         
         //
-        self.boostPercentLabel.text = "\(self.dataProvider.getBoostPercent())% Boosted"
+        self.boostPercentLabel.text = "\(String(format: "%.1f", self.dataProvider.getBoostPercent()))% Boosted"
         self.boostPercentLabel.sizeToFit()
         self.boostPercentLabel.font = UIFont.cairoBoldFont(13)
         self.boostPercentLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -104,7 +108,9 @@ class DiscoverCell: UITableViewCell {
         self.boostButton.translatesAutoresizingMaskIntoConstraints = false
 
         //
-        self.boostTargets[0].translatesAutoresizingMaskIntoConstraints = false
+        for boostTarget in self.boostTargets {
+            boostTarget.translatesAutoresizingMaskIntoConstraints = false
+        }
         
         self.containerView.backgroundColor = UIColor.whiteColor()
         self.containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -123,7 +129,9 @@ class DiscoverCell: UITableViewCell {
         self.boostView.addSubview(self.boostButton)
         self.containerView.addSubview(self.boostView)
         
-        self.containerView.addSubview(self.boostTargets[0])
+        for boostTarget in self.boostTargets {
+            self.containerView.addSubview(boostTarget)
+        }
         
         self.contentView.addSubview(self.containerView)
 
@@ -131,7 +139,7 @@ class DiscoverCell: UITableViewCell {
     }
 
     func setupLayoutConstraints() {
-        let views = [
+        var views = [
             "containerView": self.containerView,
             "imgView": self.imgView,
             "titleLabel": self.titleLabel,
@@ -142,9 +150,14 @@ class DiscoverCell: UITableViewCell {
             "countProgressView": self.countProgressView,
             "boostView": self.boostView,
             "priceLabel": self.priceLabel,
-            "boostButton": self.boostButton,
-            "boostTarget1": self.boostTargets[0]
+            "boostButton": self.boostButton
         ]
+        
+        var i = 1
+        for boostTarget in self.boostTargets {
+            views["boostTarget\(i)"] = boostTarget
+            i += 1
+        }
 
         var allConstraints = [NSLayoutConstraint]()
         allConstraints += getConstraintFromFormat("H:|[containerView]|", views: views)
@@ -161,14 +174,22 @@ class DiscoverCell: UITableViewCell {
         allConstraints += getConstraintFromFormat("H:|-16-[boostPercentLabel]-16-|", views: views)
         allConstraints += getConstraintFromFormat("H:|-16-[countProgressView]-16-|", views: views)
         
-        allConstraints += getConstraintFromFormat("H:|[boostView(140)][boostTarget1]-16-|", views: views)
+        for n in 1..<i {
+            allConstraints += getConstraintFromFormat("H:|[boostView(140)][boostTarget\(n)]-16-|", views: views)
+        }
         
         allConstraints += getConstraintFromFormat("H:|-[priceLabel]-|", views: views)
         allConstraints += getConstraintFromFormat("H:|-30-[boostButton(80)]-30-|", views: views)
         allConstraints += getConstraintFromFormat("V:|[priceLabel]-10-[boostButton(40)]", views: views)
         
         allConstraints += getConstraintFromFormat("V:|[imgView(140)]-14-[titleLabel]-5-[detailView]-10-[boostPercentLabel]-5-[countProgressView(10)]-16-[boostView]", views: views)
-        allConstraints += getConstraintFromFormat("V:|[imgView(140)]-14-[titleLabel]-5-[detailView]-10-[boostPercentLabel]-5-[countProgressView(10)]-20-[boostTarget1]", views: views)
+        
+        var boostTargetsFormat = "V:|[imgView(140)]-14-[titleLabel]-5-[detailView]-10-[boostPercentLabel]-5-[countProgressView(10)]"
+        for n in 1..<i {
+            boostTargetsFormat += "-20-[boostTarget\(n)]"
+        }
+        
+        allConstraints += getConstraintFromFormat(boostTargetsFormat, views: views)
 
         NSLayoutConstraint.activateConstraints(allConstraints)
     }
