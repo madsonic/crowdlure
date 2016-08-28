@@ -171,8 +171,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
             case .Favorites:
                 return self.dataProvider.lures.count
             case .Polls:
-                return 0
-                //return self.pollData.count
+                return self.dataProvider.polls.count
             }
         }
         return 0
@@ -184,7 +183,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if let discoverTableView = tableView as? DiscoverTableView where discoverTableView.category == .Polls {
-            return 250
+            return 200
         }
         return 430
     }
