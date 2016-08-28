@@ -32,18 +32,18 @@ class PollChoice {
     
     func setupUI() {
         self.choiceLabel.text = self.choiceText
-        self.choiceLabel.font = UIFont.systemFontOfSize(13)
+        self.choiceLabel.font = UIFont.cairoRegularFont(13)
         self.choiceLabel.textColor = UIColor.faintGrayColor()
         self.choiceLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.answeredLabel.text = "\(self.nReplies)"
-        self.answeredLabel.font = UIFont.systemFontOfSize(13)
+        self.answeredLabel.font = UIFont.cairoBoldFont(13)
         self.answeredLabel.textColor = UIColor.faintGrayColor()
         self.answeredLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.voteButton.setTitle("VOTE", forState: .Normal)
         self.voteButton.layer.cornerRadius = 15
-        self.voteButton.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
+        self.voteButton.titleLabel?.font = UIFont.cairoBoldFont(12)
         switch (self.choiceIndex % 3) {
         case 0:
             self.voteButton.backgroundColor = UIColor.pastelPurpleColor()

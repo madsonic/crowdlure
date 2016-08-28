@@ -57,18 +57,18 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         self.bizImageView.translatesAutoresizingMaskIntoConstraints = false
         
         self.bizNameLabel.text = "Ashtray"
-        self.bizNameLabel.font = UIFont.boldSystemFontOfSize(18)
+        self.bizNameLabel.font = UIFont.cairoBoldFont(18)
         self.bizNameLabel.textColor = UIColor.whiteColor()
         self.bizNameLabel.textAlignment = .Center
         self.bizNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.productLabel.text = "Philz Coffee"
-        self.productLabel.font = UIFont.boldSystemFontOfSize(18)
+        self.productLabel.font = UIFont.cairoBoldFont(20)
         self.productLabel.textColor = UIColor.whiteColor()
         self.productLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.incentiveLabel.text = "Get 20% off your next drink"
-        self.incentiveLabel.font = UIFont.systemFontOfSize(18)
+        self.incentiveLabel.font = UIFont.cairoRegularFont(18)
         self.incentiveLabel.numberOfLines = 0
         self.incentiveLabel.textColor = UIColor.whiteColor()
         self.incentiveLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -134,7 +134,7 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         allConstraints += getConstraintFromFormat("H:|[bizProfileView(160)][productLabel]-10-|", views: views)
         allConstraints += getConstraintFromFormat("H:|[bizProfileView(160)][incentiveLabel]-10-|", views: views)
         allConstraints += getConstraintFromFormat("V:|[bizProfileView]|", views: views)
-        allConstraints += getConstraintFromFormat("V:|-50-[productLabel]-10-[incentiveLabel]", views: views)
+        allConstraints += getConstraintFromFormat("V:|-50-[productLabel][incentiveLabel]", views: views)
         
         allConstraints += getConstraintFromFormat("V:|[purchaseDetailHeaderView(200)][purchaseDetailTabScrollView]|", views: views)
         allConstraints += getConstraintFromFormat("H:|[purchaseDetailHeaderView]|", views: views)
@@ -204,13 +204,13 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         } else {
             label.text = "REDEEM"
         }
-        label.font = UIFont.systemFontOfSize(16, weight: UIFontWeightThin)
-        label.textColor = UIColor(red: 77.0 / 255, green: 79.0 / 255, blue: 84.0 / 255, alpha: 1)
+        label.font = UIFont.cairoRegularFont(16)
+        label.textColor = .wordColor()
         label.textAlignment = .Center
         
         // if the size of your tab is not fixed, you can adjust the size by the following way.
         label.sizeToFit() // resize the label to the size of content
-        label.frame.size = CGSize(width: label.frame.size.width + 28, height: label.frame.size.height + 22) // add some paddings
+        label.frame.size = CGSize(width: label.frame.size.width + 28, height: label.frame.size.height + 13) // add some paddings
         return label
     }
     
@@ -223,17 +223,3 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

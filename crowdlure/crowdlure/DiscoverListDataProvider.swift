@@ -33,7 +33,6 @@ class DiscoverListDataProvider: DataProvider {
         lureRequest.responseJSON(
             successHandler: { rawResp in
                 let resp = JSON(rawResp)
-                print(resp)
                 self.lures = resp["lures"].arrayValue
                 self.delegate?.dataUpdated()
             },

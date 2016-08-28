@@ -19,9 +19,6 @@ class PollCell: UITableViewCell {
     // MARK: UI elements
     let containerView = UIView(frame: CGRectZero)
     let bgView = UIImageView()
-    let headerView = UIView()
-    let bizNameLabel = UILabel()
-    let bizLocationLabel = UILabel()
     let questionLabel = UILabel()
     
     var choices: [PollChoice]
@@ -66,35 +63,18 @@ class PollCell: UITableViewCell {
         self.containerView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.9)
         self.containerView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.headerView.backgroundColor = UIColor.deepGrayColor()
-        self.headerView.translatesAutoresizingMaskIntoConstraints = false
-
-        self.bizNameLabel.text = "\(self.bizName) asks"
-        self.bizNameLabel.font = UIFont.systemFontOfSize(13)
-        self.bizNameLabel.textColor = UIColor.whiteColor()
-        self.bizNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.bizLocationLabel.text = "\(self.bizName) asks"
-        self.bizLocationLabel.font = UIFont.systemFontOfSize(13)
-        self.bizLocationLabel.textColor = UIColor.pastelYellowColor()
-        self.bizLocationLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         self.questionLabel.text = self.question
         self.questionLabel.numberOfLines = 0
         self.questionLabel.textColor = UIColor.faintGrayColor()
-        self.questionLabel.font = UIFont.systemFontOfSize(15)
+        self.questionLabel.font = UIFont.cairoRegularFont(15)
         self.questionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.dateLeftLabel.text = "1 day left"
-        self.dateLeftLabel.font = UIFont.systemFontOfSize(10)
+        self.dateLeftLabel.font = UIFont.cairoRegularFont(10)
         self.dateLeftLabel.textColor = UIColor.faintGrayColor()
         self.dateLeftLabel.textAlignment = .Right
         self.dateLeftLabel.translatesAutoresizingMaskIntoConstraints = false
         
-
-        self.headerView.addSubview(self.bizNameLabel)
-        self.headerView.addSubview(self.bizLocationLabel)
-        self.containerView.addSubview(self.headerView)
         self.containerView.addSubview(self.questionLabel)
         self.containerView.addSubview(self.dateLeftLabel)
         self.containerView.addSubview(self.choices[0].mainView)
@@ -111,9 +91,6 @@ class PollCell: UITableViewCell {
         let views = [
             "containerView": self.containerView,
             "bgView": self.bgView,
-            "headerView": self.headerView,
-            "bizNameLabel": self.bizNameLabel,
-            "bizLocationLabel": self.bizLocationLabel,
             "dateLeftLabel": self.dateLeftLabel,
             "questionLabel": self.questionLabel,
             "choice1": self.choices[0].mainView,
@@ -126,12 +103,8 @@ class PollCell: UITableViewCell {
         allConstraints += getConstraintFromFormat("V:|[containerView]|", views: views)
         allConstraints += getConstraintFromFormat("H:|[bgView]|", views: views)
         allConstraints += getConstraintFromFormat("V:|[bgView]|", views: views)
-        allConstraints += getConstraintFromFormat("H:|[headerView]|", views: views)
-        allConstraints += getConstraintFromFormat("V:|[headerView(54)]-12-[questionLabel]-6-[choice1(40)][choice2(40)][choice3(40)]-12-[dateLeftLabel(10)]", views: views)
+        allConstraints += getConstraintFromFormat("V:|-10-[questionLabel]-6-[choice1(40)][choice2(40)][choice3(40)]-12-[dateLeftLabel(10)]", views: views)
         allConstraints += getConstraintFromFormat("H:|-30-[questionLabel]-30-|", views: views)
-        allConstraints += getConstraintFromFormat("H:|-20-[bizNameLabel]-20-|", views: views)
-        allConstraints += getConstraintFromFormat("H:|-20-[bizLocationLabel]-20-|", views: views)
-        allConstraints += getConstraintFromFormat("V:|-4-[bizNameLabel(22)]-2-[bizLocationLabel(22)]-4-|", views: views)
         allConstraints += getConstraintFromFormat("H:[dateLeftLabel]-30-|", views: views)
         allConstraints += getConstraintFromFormat("H:|-20-[choice1]-20-|", views: views)
         allConstraints += getConstraintFromFormat("H:|-20-[choice2]-20-|", views: views)

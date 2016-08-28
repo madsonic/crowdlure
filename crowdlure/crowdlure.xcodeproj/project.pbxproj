@@ -75,6 +75,7 @@
 		74FDA4371D720E8900BA2470 /* restaurants.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 74FDA4361D720E8900BA2470 /* restaurants.jpg */; };
 		74FDA43A1D7210F100BA2470 /* CampaignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA4391D7210F100BA2470 /* CampaignCell.swift */; };
 		74FDA4441D727F8B00BA2470 /* CampaignHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA4431D727F8B00BA2470 /* CampaignHeaderView.swift */; };
+		74FDA4461D7289EA00BA2470 /* TargetRewardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA4451D7289EA00BA2470 /* TargetRewardView.swift */; };
 		9B8B56AB13C6ECCF5AA2C338 /* Pods_crowdlure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675EA82E3AA875E92793113B /* Pods_crowdlure.framework */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +153,7 @@
 		74FDA4361D720E8900BA2470 /* restaurants.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = restaurants.jpg; sourceTree = "<group>"; };
 		74FDA4391D7210F100BA2470 /* CampaignCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignCell.swift; sourceTree = "<group>"; };
 		74FDA4431D727F8B00BA2470 /* CampaignHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignHeaderView.swift; sourceTree = "<group>"; };
+		74FDA4451D7289EA00BA2470 /* TargetRewardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetRewardView.swift; sourceTree = "<group>"; };
 		FDF323BDCA2956665A23C9A1 /* Pods-crowdlure.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crowdlure.release.xcconfig"; path = "Pods/Target Support Files/Pods-crowdlure/Pods-crowdlure.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -367,6 +369,7 @@
 			children = (
 				74FDA4391D7210F100BA2470 /* CampaignCell.swift */,
 				74FDA4431D727F8B00BA2470 /* CampaignHeaderView.swift */,
+				74FDA4451D7289EA00BA2470 /* TargetRewardView.swift */,
 			);
 			name = Campaign;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				74FDA4111D720D1400BA2470 /* ProfileTableViewController.swift in Sources */,
 				2A3EBC031D723CD900106483 /* Entities.swift in Sources */,
 				74FDA41F1D720D8700BA2470 /* SearchTableCell.swift in Sources */,
+				74FDA4461D7289EA00BA2470 /* TargetRewardView.swift in Sources */,
 				74FDA3F51D720C1900BA2470 /* PollCell.swift in Sources */,
 				74FDA4441D727F8B00BA2470 /* CampaignHeaderView.swift in Sources */,
 			);

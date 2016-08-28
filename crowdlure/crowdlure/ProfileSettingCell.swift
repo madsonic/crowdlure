@@ -36,7 +36,8 @@ class ProfileSettingCell: UITableViewCell {
     func setupUI() {
         self.backgroundColor = UIColor.clearColor()
         
-        self.titleLabel.text = self.title
+        self.titleLabel.text = self.title.uppercaseString
+        self.titleLabel.font = UIFont.cairoBoldFont(15)
         self.titleLabel.textColor = UIColor.whiteColor()
         self.titleLabel.textAlignment = .Center
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false

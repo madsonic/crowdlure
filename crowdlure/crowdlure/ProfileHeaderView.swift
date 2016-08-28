@@ -36,12 +36,12 @@ class ProfileHeaderView: UIView {
         self.profileImageView.translatesAutoresizingMaskIntoConstraints = false
 
         self.profileName.text = "WENQI WU"
-        self.profileName.font = UIFont.boldSystemFontOfSize(24)
+        self.profileName.font = UIFont.quattroBoldFont(24)
         self.profileName.textAlignment = .Center
         self.profileName.translatesAutoresizingMaskIntoConstraints = false
 
         self.purchaseCountLabel.text = "132 PURCHASES"
-        self.purchaseCountLabel.font = UIFont.systemFontOfSize(18)
+        self.purchaseCountLabel.font = UIFont.cairoRegularFont(13)
         self.purchaseCountLabel.textColor = UIColor.pastelTealColor()
         self.purchaseCountLabel.textAlignment = .Center
         self.purchaseCountLabel.translatesAutoresizingMaskIntoConstraints = false

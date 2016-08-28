@@ -25,12 +25,12 @@ class LureAttributeCell: UITableViewCell {
     func setupUI() {
         
         self.attributeNameLabel.text = "Name"
-        self.attributeNameLabel.font = UIFont.systemFontOfSize(15)
+        self.attributeNameLabel.font = UIFont.cairoRegularFont(15)
         self.attributeNameLabel.textColor = UIColor.darkGrayColor()
         self.attributeNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.attributeValueLabel.text = "Value"
-        self.attributeValueLabel.font = UIFont.systemFontOfSize(15)
+        self.attributeValueLabel.font = UIFont.cairoRegularFont(15)
         self.attributeValueLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.contentView.addSubview(self.attributeNameLabel)
