@@ -21,18 +21,31 @@ class AppTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for family: String in UIFont.familyNames()
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNamesForFamilyName(family)
+            {
+                print("== \(names)")
+            }
+        }
+        
         let discoverNC = DiscoverNavigationController()
-        discoverNC.tabBarItem = UITabBarItem(title: "Discover", image: UIImage(named: "discover.png"), selectedImage: nil)
+        discoverNC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "discover.png"), selectedImage: nil)
+        discoverNC.tabBarItem.imageInsets = UIEdgeInsets(top: 7, left: 0, bottom: -7, right: 0)
 
-        let searchNC = SearchNavigationController()
-        searchNC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "search.png"), selectedImage: nil)
+        //let searchNC = SearchNavigationController()
+        //searchNC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "search.png"), selectedImage: nil)
 
         let purchaseNC = PurchaseNavigationController()
-        purchaseNC.tabBarItem = UITabBarItem(title: "Purchases", image: UIImage(named: "purchases.png"), selectedImage: nil)
+        purchaseNC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "purchases.png"), selectedImage: nil)
+        purchaseNC.tabBarItem.imageInsets = UIEdgeInsets(top: 7, left: 0, bottom: -7, right: 0)
 
         let profileNC = ProfileNavigationController()
-        profileNC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile.png"), selectedImage: nil)
+        profileNC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "profile.png"), selectedImage: nil)
+        profileNC.tabBarItem.imageInsets = UIEdgeInsets(top: 7, left: 0, bottom: -7, right: 0)
 
-        self.setViewControllers([discoverNC, searchNC, purchaseNC, profileNC], animated: false)
+        self.setViewControllers([discoverNC, purchaseNC, profileNC], animated: false)
     }
 }

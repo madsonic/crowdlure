@@ -8,24 +8,150 @@
 
 import UIKit
 
-class PurchaseDetailViewController: UIViewController {
+class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrollViewDataSource {
 
-    let segControl = UISegmentedControl()
+    let purchaseDetailHeaderView = UIView()
+    let headerBgView = UIImageView()
+    let headerOverlayBgView = UIView()
+    let bizProfileView = UIView()
+    let bizImageView = UIImageView()
+    let bizNameLabel = UILabel()
+    let productLabel = UILabel()
+    let incentiveLabel = UILabel()
+    
+    let purchaseDetailTabScrollView = ACTabScrollView()
+    
     let ticketView = UIView()
-
-    var detailVC: LureDetailViewController
-    let titleLabel = UILabel()
-    let descLabel = UILabel()
     let qrCodeImageView = UIImageView()
     var qrCodeImage: CIImage?
+    
+    var detailVC: LureTableViewController
 
     init() {
-        self.detailVC = LureDetailViewController()
+        self.detailVC = LureTableViewController()
         super.init(nibName: nil, bundle: nil)
         self.edgesForExtendedLayout = UIRectEdge.None
         self.view.backgroundColor = UIColor.whiteColor()
-        setupSegControl()
         setupUI()
+    }
+    
+    func setupUI() {
+        
+        // Header
+        self.purchaseDetailHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.headerBgView.image = UIImage(named: "club.jpg")
+        self.headerBgView.translatesAutoresizingMaskIntoConstraints = false
+        self.headerBgView.contentMode = UIViewContentMode.ScaleAspectFill
+        self.headerBgView.clipsToBounds = true
+        
+        self.headerOverlayBgView.backgroundColor = UIColor.pastelTealColor().colorWithAlphaComponent(0.9)
+        self.headerOverlayBgView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.bizProfileView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.bizImageView.image = UIImage(named: "club.jpg")
+        self.bizImageView.layer.masksToBounds = false
+        self.bizImageView.layer.cornerRadius = 40
+        self.bizImageView.clipsToBounds = true
+        self.bizImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.bizNameLabel.text = "Ashtray"
+        self.bizNameLabel.font = UIFont.boldSystemFontOfSize(18)
+        self.bizNameLabel.textColor = UIColor.whiteColor()
+        self.bizNameLabel.textAlignment = .Center
+        self.bizNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.productLabel.text = "Philz Coffee"
+        self.productLabel.font = UIFont.boldSystemFontOfSize(18)
+        self.productLabel.textColor = UIColor.whiteColor()
+        self.productLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.incentiveLabel.text = "Get 20% off your next drink"
+        self.incentiveLabel.font = UIFont.systemFontOfSize(18)
+        self.incentiveLabel.numberOfLines = 0
+        self.incentiveLabel.textColor = UIColor.whiteColor()
+        self.incentiveLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Redeem view
+        self.ticketView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        self.qrCodeImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.bizProfileView.addSubview(self.bizImageView)
+        self.bizProfileView.addSubview(self.bizNameLabel)
+        self.purchaseDetailHeaderView.addSubview(self.headerBgView)
+        self.purchaseDetailHeaderView.addSubview(self.headerOverlayBgView)
+        self.purchaseDetailHeaderView.addSubview(self.bizProfileView)
+        self.purchaseDetailHeaderView.addSubview(self.productLabel)
+        self.purchaseDetailHeaderView.addSubview(self.incentiveLabel)
+        self.view.addSubview(self.purchaseDetailHeaderView)
+        
+        self.ticketView.addSubview(self.qrCodeImageView)
+        
+        generateQRCodeImage()
+        if let qr = qrCodeImage {
+            self.qrCodeImageView.image = UIImage(CIImage: qr)
+        }
+        
+        setupTabScrollView()
+        setupLayoutContraints()
+    }
+    
+    func setupLayoutContraints() {
+        let views = [
+            "purchaseDetailTabScrollView": self.purchaseDetailTabScrollView,
+            "purchaseDetailHeaderView": self.purchaseDetailHeaderView,
+            "headerBgView": self.headerBgView,
+            "headerOverlayBgView": self.headerOverlayBgView,
+            "bizProfileView": self.bizProfileView,
+            "bizImageView": self.bizImageView,
+            "bizNameLabel": self.bizNameLabel,
+            "productLabel": self.productLabel,
+            "incentiveLabel": self.incentiveLabel,
+            "ticketView": self.ticketView,
+            "qrCodeImageView": self.qrCodeImageView
+        ]
+        
+        var allConstraints = [NSLayoutConstraint]()
+        
+        allConstraints += getConstraintFromFormat("H:|[headerBgView]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|[headerBgView]|", views: views)
+        allConstraints += getConstraintFromFormat("H:|[headerOverlayBgView]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|[headerOverlayBgView]|", views: views)
+        
+        let qrCodeImageViewXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "V:[ticketView]-(<=1)-[qrCodeImageView]",
+            options: NSLayoutFormatOptions.AlignAllCenterX,
+            metrics: nil,
+            views: views)
+        allConstraints += qrCodeImageViewXConstraints
+        allConstraints += getConstraintFromFormat("V:|-50-[qrCodeImageView(120)]", views: views)
+        
+        allConstraints += getConstraintFromFormat("V:|-40-[bizImageView(80)]-10-[bizNameLabel]", views: views)
+        allConstraints += getConstraintFromFormat("H:|-40-[bizImageView(80)]-40-|", views: views)
+        allConstraints += getConstraintFromFormat("H:|-[bizNameLabel]-|", views: views)
+        
+        allConstraints += getConstraintFromFormat("H:|[bizProfileView(160)][productLabel]-10-|", views: views)
+        allConstraints += getConstraintFromFormat("H:|[bizProfileView(160)][incentiveLabel]-10-|", views: views)
+        allConstraints += getConstraintFromFormat("V:|[bizProfileView]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|-50-[productLabel]-10-[incentiveLabel]", views: views)
+        
+        allConstraints += getConstraintFromFormat("V:|[purchaseDetailHeaderView(200)][purchaseDetailTabScrollView]|", views: views)
+        allConstraints += getConstraintFromFormat("H:|[purchaseDetailHeaderView]|", views: views)
+        allConstraints += getConstraintFromFormat("H:|[purchaseDetailTabScrollView]|", views: views)
+        
+        NSLayoutConstraint.activateConstraints(allConstraints)
+    }
+    
+    func setupTabScrollView() {
+        self.purchaseDetailTabScrollView.translatesAutoresizingMaskIntoConstraints = false
+        self.purchaseDetailTabScrollView.defaultPage = 0
+        self.purchaseDetailTabScrollView.tabSectionHeight = 40
+        self.purchaseDetailTabScrollView.pagingEnabled = true
+        self.purchaseDetailTabScrollView.cachedPageLimit = 3
+        self.purchaseDetailTabScrollView.delegate = self
+        self.purchaseDetailTabScrollView.dataSource = self
+        self.view.addSubview(self.purchaseDetailTabScrollView)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -38,36 +164,6 @@ class PurchaseDetailViewController: UIViewController {
             child.view.removeFromSuperview()
             child.removeFromParentViewController()
         }
-    }
-
-    func setupSegControl() {
-        self.segControl.sizeToFit()
-        self.segControl.insertSegmentWithTitle("Ticket", atIndex: 0, animated: false)
-        self.segControl.insertSegmentWithTitle("Details", atIndex: 1, animated: false)
-        self.segControl.selectedSegmentIndex = 0
-        self.segControl.addTarget(self, action: #selector(PurchaseDetailViewController.didChangeSegControl), forControlEvents: .ValueChanged)
-        self.navigationItem.titleView = self.segControl
-    }
-
-    func didChangeSegControl() {
-        var v: UIView
-        if self.segControl.selectedSegmentIndex == 1 {
-            // Details
-            clearChildControllers()
-            addChildViewController(self.detailVC)
-            self.detailVC.didMoveToParentViewController(self)
-            v = self.detailVC.view
-        } else {
-            // Ticket
-            v = self.ticketView
-        }
-        v.frame = self.view.bounds
-        v.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(v)
-        v.leftAnchor.constraintEqualToAnchor(view.leftAnchor).active = true
-        v.rightAnchor.constraintEqualToAnchor(view.rightAnchor).active = true
-        v.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
-        v.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
     }
 
     func generateQRCodeImage() {
@@ -85,57 +181,59 @@ class PurchaseDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        didChangeSegControl()
-
     }
-
-    func setupUI() {
-        self.ticketView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-
-        self.titleLabel.text = "Philz Coffee"
-        self.titleLabel.font = UIFont.boldSystemFontOfSize(24)
-        self.titleLabel.textAlignment = .Center
-        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        self.descLabel.text = "Get 20% off your next drink"
-        self.descLabel.font = UIFont.systemFontOfSize(20)
-        self.descLabel.textAlignment = .Center
-        self.descLabel.numberOfLines = 0
-        self.descLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        self.qrCodeImageView.translatesAutoresizingMaskIntoConstraints = false
-
-        self.ticketView.addSubview(self.qrCodeImageView)
-        self.ticketView.addSubview(self.titleLabel)
-        self.ticketView.addSubview(self.descLabel)
-
-        generateQRCodeImage()
-        if let qr = qrCodeImage {
-            self.qrCodeImageView.image = UIImage(CIImage: qr)
+    
+    // MARK: ACTabScrollViewDelegate
+    func tabScrollView(tabScrollView: ACTabScrollView, didChangePageTo index: Int) {
+        
+    }
+    
+    func tabScrollView(tabScrollView: ACTabScrollView, didScrollPageTo index: Int) {
+        
+    }
+    
+    // MARK: ACTabScrollViewDataSource
+    func numberOfPagesInTabScrollView(tabScrollView: ACTabScrollView) -> Int {
+        return 2
+    }
+    
+    func tabScrollView(tabScrollView: ACTabScrollView, tabViewForPageAtIndex index: Int) -> UIView {
+        let label = UILabel()
+        if index == 0 {
+            label.text = "DETAILS"
+        } else {
+            label.text = "REDEEM"
         }
-
-        setupLayoutContraints()
+        label.font = UIFont.systemFontOfSize(16, weight: UIFontWeightThin)
+        label.textColor = UIColor(red: 77.0 / 255, green: 79.0 / 255, blue: 84.0 / 255, alpha: 1)
+        label.textAlignment = .Center
+        
+        // if the size of your tab is not fixed, you can adjust the size by the following way.
+        label.sizeToFit() // resize the label to the size of content
+        label.frame.size = CGSize(width: label.frame.size.width + 28, height: label.frame.size.height + 22) // add some paddings
+        return label
+    }
+    
+    func tabScrollView(tabScrollView: ACTabScrollView, contentViewForPageAtIndex index: Int) -> UIView {
+        if index == 0 {
+            return self.detailVC.view
+        } else {
+            return self.ticketView
+        }
     }
 
-    func setupLayoutContraints() {
-        let views = [
-            "ticketView": self.ticketView,
-            "titleLabel": self.titleLabel,
-            "descLabel": self.descLabel,
-            "qrCodeImageView": self.qrCodeImageView
-        ]
-
-        var allConstraints = [NSLayoutConstraint]()
-        let qrCodeImageViewXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:[ticketView]-(<=1)-[qrCodeImageView]",
-            options: NSLayoutFormatOptions.AlignAllCenterX,
-            metrics: nil,
-            views: views)
-        allConstraints += qrCodeImageViewXConstraints
-        allConstraints += getConstraintFromFormat("H:|-[titleLabel]-|", views: views)
-        allConstraints += getConstraintFromFormat("H:|-[descLabel]-|", views: views)
-        allConstraints += getConstraintFromFormat("V:|-50-[qrCodeImageView(120)]-50-[titleLabel]-30-[descLabel]", views: views)
-
-        NSLayoutConstraint.activateConstraints(allConstraints)
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

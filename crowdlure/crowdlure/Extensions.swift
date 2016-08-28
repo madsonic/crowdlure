@@ -47,7 +47,7 @@ extension UIColor {
     static func pastelPurpleColor() -> UIColor {
         return UIColor(red: CGFloat(118) / rgbRange,
                        green: CGFloat(78) / rgbRange,
-                       blue: CGFloat(90) / rgbRange,
+                       blue: CGFloat(190) / rgbRange,
                        alpha: 1)
     }
 

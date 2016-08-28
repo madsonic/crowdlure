@@ -7,22 +7,26 @@
 //
 
 import UIKit
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var hashToken: String? = nil
+    var fbToken: String? = nil
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.fbToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsInR5cGUiOiJVc2VyIn0.LvykZ9svrudRAGBFYZxfrxY3f7hSBxh3MRUE_ZeVEo8"
         self.initializeUIScreen(application)
-        return true
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
     func initializeUIScreen(application: UIApplication) {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.makeKeyAndVisible()
+        //let appLoginVC = AppLoginViewController()
+        //self.window?.rootViewController = appLoginVC
         let appTabBarController = AppTabBarController()
         self.window?.rootViewController = appTabBarController
     }
@@ -43,12 +47,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    func application(application: UIApplication,
+                            openURL url: NSURL,
+                            sourceApplication: String?,
+                            annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
 }
 

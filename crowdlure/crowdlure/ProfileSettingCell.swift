@@ -10,6 +10,7 @@ import UIKit
 
 enum TableCellType {
     case Alert,
+    Primary,
     Default
 }
 
@@ -18,6 +19,7 @@ class ProfileSettingCell: UITableViewCell {
     var title: String
     var type: TableCellType
 
+    let containerView = UIView()
     let titleLabel = UILabel()
 
     init(title: String, type: TableCellType = .Default) {
@@ -32,24 +34,35 @@ class ProfileSettingCell: UITableViewCell {
     }
 
     func setupUI() {
+        self.backgroundColor = UIColor.clearColor()
+        
         self.titleLabel.text = self.title
-        if self.type == .Alert {
-            self.titleLabel.textColor = UIColor.redColor()
-        }
+        self.titleLabel.textColor = UIColor.whiteColor()
         self.titleLabel.textAlignment = .Center
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        self.contentView.addSubview(self.titleLabel)
+        
+        if self.type == .Primary {
+            self.containerView.backgroundColor = UIColor.skyBlueColor()
+        } else if self.type == .Alert {
+            self.containerView.backgroundColor = UIColor.pastelRedColor()
+        }
+        self.containerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.containerView.addSubview(self.titleLabel)
+        self.contentView.addSubview(self.containerView)
 
         setupLayoutConstraints()
     }
 
     func setupLayoutConstraints() {
         let views = [
+            "containerView": self.containerView,
             "titleLabel": self.titleLabel
         ]
 
         var allConstraints = [NSLayoutConstraint]()
+        allConstraints += getConstraintFromFormat("H:|[containerView]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|-[containerView]-|", views: views)
         allConstraints += getConstraintFromFormat("H:|-[titleLabel]-|", views: views)
         allConstraints += getConstraintFromFormat("V:|-[titleLabel]-|", views: views)
 

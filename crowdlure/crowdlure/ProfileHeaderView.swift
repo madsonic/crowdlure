@@ -42,6 +42,7 @@ class ProfileHeaderView: UIView {
 
         self.purchaseCountLabel.text = "132 PURCHASES"
         self.purchaseCountLabel.font = UIFont.systemFontOfSize(18)
+        self.purchaseCountLabel.textColor = UIColor.pastelTealColor()
         self.purchaseCountLabel.textAlignment = .Center
         self.purchaseCountLabel.translatesAutoresizingMaskIntoConstraints = false
 

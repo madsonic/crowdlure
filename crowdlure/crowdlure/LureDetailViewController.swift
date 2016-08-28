@@ -8,102 +8,296 @@
 
 import UIKit
 import MapKit
+import SwiftyJSON
 
-class LureDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class LureDetailViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrollViewDataSource, SIMChargeCardViewControllerDelegate, DataProviderDelegate {
 
-    // MARK: UI elements
-    let lureTableView = LureTableView()
+    var lure: JSON?
+    
     let purchaseButton = UIButton()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    let purchaseDetailHeaderView = UIView()
+    let headerBgView = UIImageView()
+    let headerOverlayBgView = UIView()
+    let bizProfileView = UIView()
+    let bizImageView = UIImageView()
+    let bizNameLabel = UILabel()
+    let productLabel = UILabel()
+    let incentiveLabel = UILabel()
+    
+    let purchaseDetailTabScrollView = ACTabScrollView()
+    
+    let ticketView = UIView()
+    let qrCodeImageView = UIImageView()
+    var qrCodeImage: CIImage?
+    
+    var detailVC: LureTableViewController
+    
+    init() {
+        self.detailVC = LureTableViewController()
+        super.init(nibName: nil, bundle: nil)
+        self.edgesForExtendedLayout = UIRectEdge.None
+        self.view.backgroundColor = UIColor.whiteColor()
         setupUI()
     }
-
+    
+    init(lure: JSON) {
+        self.lure = lure
+        self.detailVC = LureTableViewController()
+        super.init(nibName: nil, bundle: nil)
+        self.edgesForExtendedLayout = UIRectEdge.None
+        self.view.backgroundColor = UIColor.whiteColor()
+        setupUI()
+    }
+    
     func setupUI() {
-        let view = UIView.init(frame: UIScreen.mainScreen().bounds)
-        view.backgroundColor = UIColor.whiteColor()
-        self.view = view
-
-        self.lureTableView.translatesAutoresizingMaskIntoConstraints = false
-        self.lureTableView.delegate = self
-        self.lureTableView.dataSource = self
-        self.lureTableView.estimatedRowHeight = 280
-        self.lureTableView.rowHeight = UITableViewAutomaticDimension
-
+        
+        // Header
+        self.purchaseDetailHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.headerBgView.image = UIImage(named: "club.jpg")
+        self.headerBgView.translatesAutoresizingMaskIntoConstraints = false
+        self.headerBgView.contentMode = UIViewContentMode.ScaleAspectFill
+        self.headerBgView.clipsToBounds = true
+        
+        self.headerOverlayBgView.backgroundColor = UIColor.pastelTealColor().colorWithAlphaComponent(0.9)
+        self.headerOverlayBgView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.bizProfileView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.bizImageView.image = UIImage(named: "club.jpg")
+        self.bizImageView.layer.masksToBounds = false
+        self.bizImageView.layer.cornerRadius = 40
+        self.bizImageView.clipsToBounds = true
+        self.bizImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.bizNameLabel.text = "Ashtray"
+        self.bizNameLabel.font = UIFont.boldSystemFontOfSize(18)
+        self.bizNameLabel.textColor = UIColor.whiteColor()
+        self.bizNameLabel.textAlignment = .Center
+        self.bizNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.productLabel.text = "Philz Coffee"
+        self.productLabel.font = UIFont.boldSystemFontOfSize(18)
+        self.productLabel.textColor = UIColor.whiteColor()
+        self.productLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.incentiveLabel.text = "Get 20% off your next drink"
+        self.incentiveLabel.font = UIFont.systemFontOfSize(18)
+        self.incentiveLabel.numberOfLines = 0
+        self.incentiveLabel.textColor = UIColor.whiteColor()
+        self.incentiveLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Redeem view
+        self.ticketView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        self.qrCodeImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Purchase button
         self.purchaseButton.setTitle("Purchase for $70", forState: .Normal)
         self.purchaseButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        self.purchaseButton.backgroundColor = self.view.tintColor
+        self.purchaseButton.backgroundColor = UIColor.skyBlueColor()
         self.purchaseButton.translatesAutoresizingMaskIntoConstraints = false
-
-        self.view.addSubview(self.lureTableView)
+        self.purchaseButton.addTarget(self, action: #selector(LureDetailViewController.didPressPurchaseButton), forControlEvents: .TouchUpInside)
+        
+        self.bizProfileView.addSubview(self.bizImageView)
+        self.bizProfileView.addSubview(self.bizNameLabel)
+        self.purchaseDetailHeaderView.addSubview(self.headerBgView)
+        self.purchaseDetailHeaderView.addSubview(self.headerOverlayBgView)
+        self.purchaseDetailHeaderView.addSubview(self.bizProfileView)
+        self.purchaseDetailHeaderView.addSubview(self.productLabel)
+        self.purchaseDetailHeaderView.addSubview(self.incentiveLabel)
+        
+        self.ticketView.addSubview(self.qrCodeImageView)
+        
+        self.view.addSubview(self.purchaseDetailHeaderView)
         self.view.addSubview(self.purchaseButton)
-
-        setupLayoutConstraints()
+        
+        generateQRCodeImage()
+        if let qr = qrCodeImage {
+            self.qrCodeImageView.image = UIImage(CIImage: qr)
+        }
+        
+        setupTabScrollView()
+        setupLayoutContraints()
     }
-
-    func setupLayoutConstraints() {
+    
+    func setupLayoutContraints() {
         let views = [
-            "lureTableView": self.lureTableView,
+            "purchaseDetailTabScrollView": self.purchaseDetailTabScrollView,
+            "purchaseDetailHeaderView": self.purchaseDetailHeaderView,
+            "headerBgView": self.headerBgView,
+            "headerOverlayBgView": self.headerOverlayBgView,
+            "bizProfileView": self.bizProfileView,
+            "bizImageView": self.bizImageView,
+            "bizNameLabel": self.bizNameLabel,
+            "productLabel": self.productLabel,
+            "incentiveLabel": self.incentiveLabel,
+            "ticketView": self.ticketView,
+            "qrCodeImageView": self.qrCodeImageView,
             "purchaseButton": self.purchaseButton
         ]
-
+        
         var allConstraints = [NSLayoutConstraint]()
-
-        let mainYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[lureTableView][purchaseButton(50)]|",
-            options: [],
+        
+        allConstraints += getConstraintFromFormat("H:|[headerBgView]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|[headerBgView]|", views: views)
+        allConstraints += getConstraintFromFormat("H:|[headerOverlayBgView]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|[headerOverlayBgView]|", views: views)
+        
+        let qrCodeImageViewXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "V:[ticketView]-(<=1)-[qrCodeImageView]",
+            options: NSLayoutFormatOptions.AlignAllCenterX,
             metrics: nil,
             views: views)
-        allConstraints += mainYConstraints
-
-        let purchaseButtonXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|[purchaseButton]|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += purchaseButtonXConstraints
-
-        let lureTableViewXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|[lureTableView]|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += lureTableViewXConstraints
-
+        allConstraints += qrCodeImageViewXConstraints
+        allConstraints += getConstraintFromFormat("V:|-50-[qrCodeImageView(120)]", views: views)
+        
+        allConstraints += getConstraintFromFormat("V:|-40-[bizImageView(80)]-10-[bizNameLabel]", views: views)
+        allConstraints += getConstraintFromFormat("H:|-40-[bizImageView(80)]-40-|", views: views)
+        allConstraints += getConstraintFromFormat("H:|-[bizNameLabel]-|", views: views)
+        
+        allConstraints += getConstraintFromFormat("H:|[bizProfileView(160)][productLabel]-10-|", views: views)
+        allConstraints += getConstraintFromFormat("H:|[bizProfileView(160)][incentiveLabel]-10-|", views: views)
+        allConstraints += getConstraintFromFormat("V:|[bizProfileView]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|-50-[productLabel]-10-[incentiveLabel]", views: views)
+        
+        allConstraints += getConstraintFromFormat("V:|[purchaseDetailHeaderView(200)][purchaseDetailTabScrollView][purchaseButton(50)]|", views: views)
+        allConstraints += getConstraintFromFormat("H:|[purchaseDetailHeaderView]|", views: views)
+        allConstraints += getConstraintFromFormat("H:|[purchaseDetailTabScrollView]|", views: views)
+        allConstraints += getConstraintFromFormat("H:|[purchaseButton]|", views: views)
+        
         NSLayoutConstraint.activateConstraints(allConstraints)
     }
-
-    // MARK: TableView
-
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5.0
+    
+    func setupTabScrollView() {
+        self.purchaseDetailTabScrollView.translatesAutoresizingMaskIntoConstraints = false
+        self.purchaseDetailTabScrollView.defaultPage = 0
+        self.purchaseDetailTabScrollView.tabSectionHeight = 40
+        self.purchaseDetailTabScrollView.pagingEnabled = true
+        self.purchaseDetailTabScrollView.cachedPageLimit = 3
+        self.purchaseDetailTabScrollView.delegate = self
+        self.purchaseDetailTabScrollView.dataSource = self
+        self.view.addSubview(self.purchaseDetailTabScrollView)
     }
-
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 5.0
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+    
+    func clearChildControllers(){
+        for child in childViewControllers {
+            child.willMoveToParentViewController(nil)
+            child.view.removeFromSuperview()
+            child.removeFromParentViewController()
+        }
     }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func generateQRCodeImage() {
+        let data = "Lure".dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            filter.setValue("Q", forKey: "inputCorrectionLevel")
+            if let qr = filter.outputImage {
+                let scaleX = 120.0 / qr.extent.size.width
+                let scaleY = 120.0 / qr.extent.size.height
+                self.qrCodeImage = qr.imageByApplyingTransform(CGAffineTransformMakeScale(scaleX, scaleY))
+            }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    // MARK: ACTabScrollViewDelegate
+    func tabScrollView(tabScrollView: ACTabScrollView, didChangePageTo index: Int) {
+        
+    }
+    
+    func tabScrollView(tabScrollView: ACTabScrollView, didScrollPageTo index: Int) {
+        
+    }
+    
+    // MARK: ACTabScrollViewDataSource
+    func numberOfPagesInTabScrollView(tabScrollView: ACTabScrollView) -> Int {
         return 1
     }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell
-        if indexPath.section == 0 {
-            cell = LureDetailCell()
-        } else {
-            cell = LureLocationCell()
-        }
-        return cell
+    
+    func tabScrollView(tabScrollView: ACTabScrollView, tabViewForPageAtIndex index: Int) -> UIView {
+        let label = UILabel()
+        label.text = "DETAILS"
+        label.font = UIFont.systemFontOfSize(16, weight: UIFontWeightThin)
+        label.textColor = UIColor(red: 77.0 / 255, green: 79.0 / 255, blue: 84.0 / 255, alpha: 1)
+        label.textAlignment = .Center
+        
+        // if the size of your tab is not fixed, you can adjust the size by the following way.
+        label.sizeToFit() // resize the label to the size of content
+        label.frame.size = CGSize(width: label.frame.size.width + 28, height: label.frame.size.height + 22) // add some paddings
+        return label
     }
-
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    
+    func tabScrollView(tabScrollView: ACTabScrollView, contentViewForPageAtIndex index: Int) -> UIView {
+        return self.detailVC.view
+    }
+    
+    func dataUpdated() {
+        print("Updated")
+    }
+    
+    func didPressPurchaseButton() {
+        let chargeVC:SIMChargeCardViewController = SIMChargeCardViewController.init(publicKey: "sbpb_MGU4MWQ5Y2ItMGI1Ny00MDhjLWEyMzEtMzhmMTBhMTlkMDZh")
+            chargeVC.delegate = self
+            self.presentViewController(chargeVC, animated: true, completion: nil)
+    }
+    
+    //MARK: SIMChargeCardViewControllerDelegate
+    
+    /**
+     Token cancel Callback. The User has elected to cancel the token generation workflow.
+     */
+    func chargeCardCancelled() {
+        
+    }
+    
+    /**
+     Token failure Callback. If token generation fails, this will be called back and an error will be provided with a localizedDescription and code.
+     */
+    func creditCardTokenFailedWithError(error: NSError) {
+        print(error.description)
+    }
+    
+    /**
+     Token success Callback. If token generation succeeds, this will be called back and the fully hydrated credit card token.
+     */
+    func creditCardTokenProcessed(token: SIMCreditCardToken) {
+        
+        let url = NSURL(string: "https://ariel-sia.herokuapp.com/charge.php")!
+        
+        let request = NSMutableURLRequest(
+            URL: url,
+            cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy,
+            timeoutInterval: 10.0)
+        
+        request.HTTPMethod = "POST"
+        var postString = "simplifyToken="
+        postString = postString.stringByAppendingString(token.token)
+        postString = postString.stringByAppendingString("&amount=1500000")
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            data, response, error in
+            
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            
+            print("response = \(response)")
+            
+            let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            print("responseString = \(responseString)")
+        }
+        task.resume()
     }
 
 }

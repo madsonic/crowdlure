@@ -21,13 +21,14 @@ class ProfileTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Profile"
+        self.navigationItem.title = "PROFILE"
     }
 
     func setupTableView() {
         self.tableView.allowsSelectionDuringEditing = true
         self.tableView.keyboardDismissMode = .OnDrag
         self.tableView.registerClass(ProfileSettingCell.self, forCellReuseIdentifier: "ProfileSettingCell")
+        self.tableView.separatorStyle = .None
     }
 
     func dataUpdated() {
@@ -47,7 +48,7 @@ class ProfileTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50
+        return 80
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,7 +57,7 @@ class ProfileTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            return ProfileSettingCell(title: "Payment Settings", type: .Default)
+            return ProfileSettingCell(title: "Payment Settings", type: .Primary)
         } else {
             return ProfileSettingCell(title: "Logout", type: .Alert)
         }

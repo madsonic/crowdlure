@@ -43,6 +43,7 @@ enum Endpoint: URLRequestConvertible {
     case submitChoiceForPoll(bizID: Int, pollID: Int, choiceID: Int?)
 
     // MARK:- Polls
+    case getPolls
     case getBusinessPoll(bizID: Int, pollID: Int)
     case getBusinessPolls(bizID: Int)
 
@@ -50,7 +51,7 @@ enum Endpoint: URLRequestConvertible {
     var URLRequest: NSMutableURLRequest {
         let url = NSURL(string: Endpoint.baseURL)!
         let mutableURLRequest = NSMutableURLRequest(URL: url.URLByAppendingPathComponent(path))
-        if let delegate = UIApplication.sharedApplication().delegate as? AppDelegate, token = delegate.hashToken {
+        if let delegate = UIApplication.sharedApplication().delegate as? AppDelegate, token = delegate.fbToken {
             mutableURLRequest.setValue(token, forHTTPHeaderField: "Authorization")
         }
         mutableURLRequest.HTTPMethod = method.rawValue
@@ -80,7 +81,7 @@ enum Endpoint: URLRequestConvertible {
                 break
             }
 
-        case .getBusinessPoll, getBusinessPolls:
+        case .getBusinessPoll, getBusinessPolls, .getPolls:
             break
 
         }
@@ -108,7 +109,8 @@ enum Endpoint: URLRequestConvertible {
              .getLures,
              .searchLure,
              .getBusinessPoll,
-             .getBusinessPolls:
+             .getBusinessPolls,
+             .getPolls:
 
             return .GET
         }
@@ -131,6 +133,7 @@ enum Endpoint: URLRequestConvertible {
 
         case let .getBusinessPoll(bizID, pollID): return "/businesses/\(bizID)/polls/\(pollID)"
         case let .getBusinessPolls(bizID): return "/businesses/\(bizID)/polls"
+        case .getPolls: return "/polls"
         }
     }
 }

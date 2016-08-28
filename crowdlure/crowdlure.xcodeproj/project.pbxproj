@@ -9,6 +9,33 @@
 /* Begin PBXBuildFile section */
 		2A3EBBE91D72102900106483 /* ACTabScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBBE71D72102900106483 /* ACTabScrollView.swift */; };
 		2A3EBBEA1D72102900106483 /* ACTabScrollView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBBE81D72102900106483 /* ACTabScrollView+Protocol.swift */; };
+		2A3EBBEF1D72131900106483 /* Simplify.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBBED1D72131900106483 /* Simplify.bundle */; };
+		2A3EBBF01D72131900106483 /* Simplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3EBBEE1D72131900106483 /* Simplify.framework */; };
+		2A3EBBF31D72241200106483 /* DiscoverListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBBF21D72241200106483 /* DiscoverListDataProvider.swift */; };
+		2A3EBBF51D72242F00106483 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBBF41D72242F00106483 /* DataProvider.swift */; };
+		2A3EBBFA1D72277600106483 /* BroadcastCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBBF91D72277600106483 /* BroadcastCenter.swift */; };
+		2A3EBBFF1D722E8700106483 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBBFE1D722E8700106483 /* NetworkManager.swift */; };
+		2A3EBC011D72339E00106483 /* AppHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBC001D72339E00106483 /* AppHelpers.swift */; };
+		2A3EBC031D723CD900106483 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBC021D723CD900106483 /* Entities.swift */; };
+		2A3EBC061D72456E00106483 /* LureDetailDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBC051D72456E00106483 /* LureDetailDataProvider.swift */; };
+		2A3EBC0D1D724EF800106483 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3EBC0A1D724EF800106483 /* FBSDKCoreKit.framework */; };
+		2A3EBC0E1D724EF800106483 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3EBC0B1D724EF800106483 /* FBSDKLoginKit.framework */; };
+		2A3EBC0F1D724EF800106483 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3EBC0C1D724EF800106483 /* FBSDKShareKit.framework */; };
+		2A3EBC111D72516400106483 /* AppLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBC101D72516400106483 /* AppLoginViewController.swift */; };
+		2A3EBC131D7251FB00106483 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3EBC121D7251FB00106483 /* Bolts.framework */; };
+		2A3EBC151D7260BF00106483 /* PollChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBC141D7260BF00106483 /* PollChoice.swift */; };
+		2A3EBC171D72993500106483 /* LureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBC161D72993500106483 /* LureTableViewController.swift */; };
+		2A3EBC191D729B0A00106483 /* LureAttributeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3EBC181D729B0A00106483 /* LureAttributeCell.swift */; };
+		2A3EBC211D72ABDF00106483 /* Cairo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC1B1D72ABDF00106483 /* Cairo-Black.ttf */; };
+		2A3EBC221D72ABDF00106483 /* Cairo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC1C1D72ABDF00106483 /* Cairo-Bold.ttf */; };
+		2A3EBC231D72ABDF00106483 /* Cairo-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC1D1D72ABDF00106483 /* Cairo-ExtraLight.ttf */; };
+		2A3EBC241D72ABDF00106483 /* Cairo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC1E1D72ABDF00106483 /* Cairo-Light.ttf */; };
+		2A3EBC251D72ABDF00106483 /* Cairo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC1F1D72ABDF00106483 /* Cairo-Regular.ttf */; };
+		2A3EBC261D72ABDF00106483 /* Cairo-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC201D72ABDF00106483 /* Cairo-SemiBold.ttf */; };
+		2A3EBC2B1D72ABF600106483 /* QuattrocentoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC271D72ABF600106483 /* QuattrocentoSans-Bold.ttf */; };
+		2A3EBC2C1D72ABF600106483 /* QuattrocentoSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC281D72ABF600106483 /* QuattrocentoSans-BoldItalic.ttf */; };
+		2A3EBC2D1D72ABF600106483 /* QuattrocentoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC291D72ABF600106483 /* QuattrocentoSans-Italic.ttf */; };
+		2A3EBC2E1D72ABF600106483 /* QuattrocentoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A3EBC2A1D72ABF600106483 /* QuattrocentoSans-Regular.ttf */; };
 		74FDA3CF1D72093200BA2470 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3CE1D72093200BA2470 /* AppDelegate.swift */; };
 		74FDA3D61D72093200BA2470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74FDA3D51D72093200BA2470 /* Assets.xcassets */; };
 		74FDA3D91D72093200BA2470 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FDA3D71D72093200BA2470 /* LaunchScreen.storyboard */; };
@@ -22,11 +49,7 @@
 		74FDA3F11D720BFF00BA2470 /* DiscoverCellDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3F01D720BFF00BA2470 /* DiscoverCellDataProvider.swift */; };
 		74FDA3F31D720C0D00BA2470 /* DiscoverTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3F21D720C0D00BA2470 /* DiscoverTabView.swift */; };
 		74FDA3F51D720C1900BA2470 /* PollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3F41D720C1900BA2470 /* PollCell.swift */; };
-		74FDA3F71D720C3200BA2470 /* PollFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3F61D720C3200BA2470 /* PollFormViewController.swift */; };
 		74FDA3FC1D720C6300BA2470 /* LureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3FB1D720C6300BA2470 /* LureDetailViewController.swift */; };
-		74FDA3FE1D720C7200BA2470 /* LureTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3FD1D720C7200BA2470 /* LureTableView.swift */; };
-		74FDA4001D720C7F00BA2470 /* LureDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA3FF1D720C7F00BA2470 /* LureDetailCell.swift */; };
-		74FDA4021D720C8C00BA2470 /* LureLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA4011D720C8C00BA2470 /* LureLocationCell.swift */; };
 		74FDA4071D720CB200BA2470 /* PurchaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA4061D720CB200BA2470 /* PurchaseNavigationController.swift */; };
 		74FDA4091D720CC900BA2470 /* PurchaseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA4081D720CC900BA2470 /* PurchaseListViewController.swift */; };
 		74FDA40B1D720CD600BA2470 /* PurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDA40A1D720CD600BA2470 /* PurchaseCell.swift */; };
@@ -55,6 +78,34 @@
 /* Begin PBXFileReference section */
 		2A3EBBE71D72102900106483 /* ACTabScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTabScrollView.swift; sourceTree = "<group>"; };
 		2A3EBBE81D72102900106483 /* ACTabScrollView+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ACTabScrollView+Protocol.swift"; sourceTree = "<group>"; };
+		2A3EBBED1D72131900106483 /* Simplify.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Simplify.bundle; sourceTree = "<group>"; };
+		2A3EBBEE1D72131900106483 /* Simplify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Simplify.framework; sourceTree = "<group>"; };
+		2A3EBBF11D72144C00106483 /* crowdlure-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "crowdlure-Bridging-Header.h"; path = "crowdlure/crowdlure-Bridging-Header.h"; sourceTree = "<group>"; };
+		2A3EBBF21D72241200106483 /* DiscoverListDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverListDataProvider.swift; sourceTree = "<group>"; };
+		2A3EBBF41D72242F00106483 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		2A3EBBF91D72277600106483 /* BroadcastCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadcastCenter.swift; sourceTree = "<group>"; };
+		2A3EBBFE1D722E8700106483 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		2A3EBC001D72339E00106483 /* AppHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppHelpers.swift; sourceTree = "<group>"; };
+		2A3EBC021D723CD900106483 /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
+		2A3EBC051D72456E00106483 /* LureDetailDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LureDetailDataProvider.swift; sourceTree = "<group>"; };
+		2A3EBC0A1D724EF800106483 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		2A3EBC0B1D724EF800106483 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		2A3EBC0C1D724EF800106483 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		2A3EBC101D72516400106483 /* AppLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLoginViewController.swift; sourceTree = "<group>"; };
+		2A3EBC121D7251FB00106483 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		2A3EBC141D7260BF00106483 /* PollChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollChoice.swift; sourceTree = "<group>"; };
+		2A3EBC161D72993500106483 /* LureTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LureTableViewController.swift; sourceTree = "<group>"; };
+		2A3EBC181D729B0A00106483 /* LureAttributeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LureAttributeCell.swift; sourceTree = "<group>"; };
+		2A3EBC1B1D72ABDF00106483 /* Cairo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Black.ttf"; sourceTree = "<group>"; };
+		2A3EBC1C1D72ABDF00106483 /* Cairo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Bold.ttf"; sourceTree = "<group>"; };
+		2A3EBC1D1D72ABDF00106483 /* Cairo-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-ExtraLight.ttf"; sourceTree = "<group>"; };
+		2A3EBC1E1D72ABDF00106483 /* Cairo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Light.ttf"; sourceTree = "<group>"; };
+		2A3EBC1F1D72ABDF00106483 /* Cairo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Regular.ttf"; sourceTree = "<group>"; };
+		2A3EBC201D72ABDF00106483 /* Cairo-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-SemiBold.ttf"; sourceTree = "<group>"; };
+		2A3EBC271D72ABF600106483 /* QuattrocentoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "QuattrocentoSans-Bold.ttf"; sourceTree = "<group>"; };
+		2A3EBC281D72ABF600106483 /* QuattrocentoSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "QuattrocentoSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		2A3EBC291D72ABF600106483 /* QuattrocentoSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "QuattrocentoSans-Italic.ttf"; sourceTree = "<group>"; };
+		2A3EBC2A1D72ABF600106483 /* QuattrocentoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "QuattrocentoSans-Regular.ttf"; sourceTree = "<group>"; };
 		2B8FC64FA10B7CABF05F3E0D /* Pods-crowdlure.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crowdlure.debug.xcconfig"; path = "Pods/Target Support Files/Pods-crowdlure/Pods-crowdlure.debug.xcconfig"; sourceTree = "<group>"; };
 		675EA82E3AA875E92793113B /* Pods_crowdlure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_crowdlure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74FDA3CB1D72093100BA2470 /* crowdlure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crowdlure.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,11 +123,7 @@
 		74FDA3F01D720BFF00BA2470 /* DiscoverCellDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCellDataProvider.swift; sourceTree = "<group>"; };
 		74FDA3F21D720C0D00BA2470 /* DiscoverTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTabView.swift; sourceTree = "<group>"; };
 		74FDA3F41D720C1900BA2470 /* PollCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollCell.swift; sourceTree = "<group>"; };
-		74FDA3F61D720C3200BA2470 /* PollFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollFormViewController.swift; sourceTree = "<group>"; };
 		74FDA3FB1D720C6300BA2470 /* LureDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LureDetailViewController.swift; sourceTree = "<group>"; };
-		74FDA3FD1D720C7200BA2470 /* LureTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LureTableView.swift; sourceTree = "<group>"; };
-		74FDA3FF1D720C7F00BA2470 /* LureDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LureDetailCell.swift; sourceTree = "<group>"; };
-		74FDA4011D720C8C00BA2470 /* LureLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LureLocationCell.swift; sourceTree = "<group>"; };
 		74FDA4061D720CB200BA2470 /* PurchaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseNavigationController.swift; sourceTree = "<group>"; };
 		74FDA4081D720CC900BA2470 /* PurchaseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseListViewController.swift; sourceTree = "<group>"; };
 		74FDA40A1D720CD600BA2470 /* PurchaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseCell.swift; sourceTree = "<group>"; };
@@ -108,6 +155,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B8B56AB13C6ECCF5AA2C338 /* Pods_crowdlure.framework in Frameworks */,
+				2A3EBC0D1D724EF800106483 /* FBSDKCoreKit.framework in Frameworks */,
+				2A3EBC0F1D724EF800106483 /* FBSDKShareKit.framework in Frameworks */,
+				2A3EBC131D7251FB00106483 /* Bolts.framework in Frameworks */,
+				2A3EBC0E1D724EF800106483 /* FBSDKLoginKit.framework in Frameworks */,
+				2A3EBBF01D72131900106483 /* Simplify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,9 +183,33 @@
 			name = ACTabScrollView;
 			sourceTree = "<group>";
 		};
+		2A3EBC1A1D72ABC500106483 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2A3EBC271D72ABF600106483 /* QuattrocentoSans-Bold.ttf */,
+				2A3EBC281D72ABF600106483 /* QuattrocentoSans-BoldItalic.ttf */,
+				2A3EBC291D72ABF600106483 /* QuattrocentoSans-Italic.ttf */,
+				2A3EBC2A1D72ABF600106483 /* QuattrocentoSans-Regular.ttf */,
+				2A3EBC1B1D72ABDF00106483 /* Cairo-Black.ttf */,
+				2A3EBC1C1D72ABDF00106483 /* Cairo-Bold.ttf */,
+				2A3EBC1D1D72ABDF00106483 /* Cairo-ExtraLight.ttf */,
+				2A3EBC1E1D72ABDF00106483 /* Cairo-Light.ttf */,
+				2A3EBC1F1D72ABDF00106483 /* Cairo-Regular.ttf */,
+				2A3EBC201D72ABDF00106483 /* Cairo-SemiBold.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		74FDA3C21D72093100BA2470 = {
 			isa = PBXGroup;
 			children = (
+				2A3EBBF11D72144C00106483 /* crowdlure-Bridging-Header.h */,
+				2A3EBC121D7251FB00106483 /* Bolts.framework */,
+				2A3EBC0A1D724EF800106483 /* FBSDKCoreKit.framework */,
+				2A3EBC0B1D724EF800106483 /* FBSDKLoginKit.framework */,
+				2A3EBC0C1D724EF800106483 /* FBSDKShareKit.framework */,
+				2A3EBBED1D72131900106483 /* Simplify.bundle */,
+				2A3EBBEE1D72131900106483 /* Simplify.framework */,
 				74FDA3CD1D72093200BA2470 /* crowdlure */,
 				74FDA3CC1D72093100BA2470 /* Products */,
 				A83084B779A944E6A519E92E /* Pods */,
@@ -153,19 +229,25 @@
 			isa = PBXGroup;
 			children = (
 				74FDA3CE1D72093200BA2470 /* AppDelegate.swift */,
+				2A3EBC101D72516400106483 /* AppLoginViewController.swift */,
 				74FDA3E01D720B4E00BA2470 /* AppTabBarController.swift */,
 				74FDA3E21D720B6E00BA2470 /* AppNavigationController.swift */,
 				74FDA3E41D720B8200BA2470 /* ModalNavigationController.swift */,
+				2A3EBC001D72339E00106483 /* AppHelpers.swift */,
 				74FDA3F81D720C3E00BA2470 /* Discover */,
 				74FDA3FA1D720C4F00BA2470 /* Lure */,
 				74FDA4031D720C9600BA2470 /* Search */,
 				74FDA4041D720C9C00BA2470 /* Purchase */,
 				74FDA4051D720CA300BA2470 /* Profile */,
-				74FDA4201D720DB400BA2470 /* Extensions.swift */,
 				2A3EBBEB1D72103000106483 /* Third Party */,
 				74FDA4281D720E2700BA2470 /* Resources */,
+				2A3EBBF91D72277600106483 /* BroadcastCenter.swift */,
+				2A3EBC021D723CD900106483 /* Entities.swift */,
+				2A3EBBF41D72242F00106483 /* DataProvider.swift */,
+				2A3EBBFE1D722E8700106483 /* NetworkManager.swift */,
 				74FDA4241D720DED00BA2470 /* Endpoint.swift */,
 				74FDA4261D720E0500BA2470 /* Constants.swift */,
+				74FDA4201D720DB400BA2470 /* Extensions.swift */,
 				74FDA3D51D72093200BA2470 /* Assets.xcassets */,
 				74FDA3D71D72093200BA2470 /* LaunchScreen.storyboard */,
 				74FDA3DA1D72093200BA2470 /* Info.plist */,
@@ -178,12 +260,13 @@
 			children = (
 				74FDA3E61D720B9900BA2470 /* DiscoverNavigationController.swift */,
 				74FDA3E81D720BB200BA2470 /* DiscoverListViewController.swift */,
+				2A3EBBF21D72241200106483 /* DiscoverListDataProvider.swift */,
 				74FDA3EA1D720BC900BA2470 /* DiscoverTableView.swift */,
 				74FDA3EE1D720BEF00BA2470 /* DiscoverCell.swift */,
 				74FDA3F01D720BFF00BA2470 /* DiscoverCellDataProvider.swift */,
 				74FDA3F21D720C0D00BA2470 /* DiscoverTabView.swift */,
 				74FDA3F41D720C1900BA2470 /* PollCell.swift */,
-				74FDA3F61D720C3200BA2470 /* PollFormViewController.swift */,
+				2A3EBC141D7260BF00106483 /* PollChoice.swift */,
 			);
 			name = Discover;
 			sourceTree = "<group>";
@@ -192,9 +275,9 @@
 			isa = PBXGroup;
 			children = (
 				74FDA3FB1D720C6300BA2470 /* LureDetailViewController.swift */,
-				74FDA3FD1D720C7200BA2470 /* LureTableView.swift */,
-				74FDA3FF1D720C7F00BA2470 /* LureDetailCell.swift */,
-				74FDA4011D720C8C00BA2470 /* LureLocationCell.swift */,
+				2A3EBC051D72456E00106483 /* LureDetailDataProvider.swift */,
+				2A3EBC161D72993500106483 /* LureTableViewController.swift */,
+				2A3EBC181D729B0A00106483 /* LureAttributeCell.swift */,
 			);
 			name = Lure;
 			sourceTree = "<group>";
@@ -236,6 +319,7 @@
 		74FDA4281D720E2700BA2470 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2A3EBC1A1D72ABC500106483 /* Fonts */,
 				74FDA4291D720E3100BA2470 /* Images */,
 			);
 			name = Resources;
@@ -349,11 +433,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				74FDA3D91D72093200BA2470 /* LaunchScreen.storyboard in Resources */,
+				2A3EBC2C1D72ABF600106483 /* QuattrocentoSans-BoldItalic.ttf in Resources */,
+				2A3EBC2D1D72ABF600106483 /* QuattrocentoSans-Italic.ttf in Resources */,
+				2A3EBC2B1D72ABF600106483 /* QuattrocentoSans-Bold.ttf in Resources */,
 				74FDA4341D720E7800BA2470 /* purchases@2x.png in Resources */,
+				2A3EBC261D72ABDF00106483 /* Cairo-SemiBold.ttf in Resources */,
 				74FDA4371D720E8900BA2470 /* restaurants.jpg in Resources */,
+				2A3EBC221D72ABDF00106483 /* Cairo-Bold.ttf in Resources */,
 				74FDA42D1D720E6700BA2470 /* club.jpg in Resources */,
+				2A3EBBEF1D72131900106483 /* Simplify.bundle in Resources */,
 				74FDA4351D720E7800BA2470 /* search@2x.png in Resources */,
+				2A3EBC231D72ABDF00106483 /* Cairo-ExtraLight.ttf in Resources */,
+				2A3EBC251D72ABDF00106483 /* Cairo-Regular.ttf in Resources */,
+				2A3EBC241D72ABDF00106483 /* Cairo-Light.ttf in Resources */,
+				2A3EBC2E1D72ABF600106483 /* QuattrocentoSans-Regular.ttf in Resources */,
 				74FDA3D61D72093200BA2470 /* Assets.xcassets in Resources */,
+				2A3EBC211D72ABDF00106483 /* Cairo-Black.ttf in Resources */,
 				74FDA4321D720E7800BA2470 /* discover@2x.png in Resources */,
 				74FDA4331D720E7800BA2470 /* profile@2x.png in Resources */,
 			);
@@ -420,32 +515,39 @@
 				74FDA4171D720D4300BA2470 /* SearchNavigationController.swift in Sources */,
 				74FDA4151D720D3400BA2470 /* ProfileSettingCell.swift in Sources */,
 				2A3EBBE91D72102900106483 /* ACTabScrollView.swift in Sources */,
+				2A3EBBF51D72242F00106483 /* DataProvider.swift in Sources */,
+				2A3EBC011D72339E00106483 /* AppHelpers.swift in Sources */,
 				74FDA40B1D720CD600BA2470 /* PurchaseCell.swift in Sources */,
 				74FDA3FC1D720C6300BA2470 /* LureDetailViewController.swift in Sources */,
+				2A3EBC191D729B0A00106483 /* LureAttributeCell.swift in Sources */,
 				74FDA4271D720E0500BA2470 /* Constants.swift in Sources */,
 				74FDA4251D720DED00BA2470 /* Endpoint.swift in Sources */,
+				2A3EBC111D72516400106483 /* AppLoginViewController.swift in Sources */,
 				74FDA4091D720CC900BA2470 /* PurchaseListViewController.swift in Sources */,
-				74FDA4021D720C8C00BA2470 /* LureLocationCell.swift in Sources */,
 				74FDA4191D720D5600BA2470 /* SearchViewController.swift in Sources */,
 				74FDA3CF1D72093200BA2470 /* AppDelegate.swift in Sources */,
+				2A3EBBFF1D722E8700106483 /* NetworkManager.swift in Sources */,
+				2A3EBC151D7260BF00106483 /* PollChoice.swift in Sources */,
 				74FDA3EB1D720BC900BA2470 /* DiscoverTableView.swift in Sources */,
 				74FDA3E11D720B4E00BA2470 /* AppTabBarController.swift in Sources */,
 				74FDA4071D720CB200BA2470 /* PurchaseNavigationController.swift in Sources */,
-				74FDA3FE1D720C7200BA2470 /* LureTableView.swift in Sources */,
+				2A3EBBFA1D72277600106483 /* BroadcastCenter.swift in Sources */,
 				74FDA4131D720D2300BA2470 /* ProfileHeaderView.swift in Sources */,
 				74FDA40D1D720CE900BA2470 /* PurchaseDetailViewController.swift in Sources */,
 				74FDA3EF1D720BEF00BA2470 /* DiscoverCell.swift in Sources */,
 				74FDA3F31D720C0D00BA2470 /* DiscoverTabView.swift in Sources */,
-				74FDA4001D720C7F00BA2470 /* LureDetailCell.swift in Sources */,
+				2A3EBC061D72456E00106483 /* LureDetailDataProvider.swift in Sources */,
 				74FDA3E71D720B9900BA2470 /* DiscoverNavigationController.swift in Sources */,
 				74FDA3F11D720BFF00BA2470 /* DiscoverCellDataProvider.swift in Sources */,
+				2A3EBBF31D72241200106483 /* DiscoverListDataProvider.swift in Sources */,
 				74FDA3E91D720BB200BA2470 /* DiscoverListViewController.swift in Sources */,
-				74FDA3F71D720C3200BA2470 /* PollFormViewController.swift in Sources */,
+				2A3EBC171D72993500106483 /* LureTableViewController.swift in Sources */,
 				74FDA41D1D720D7800BA2470 /* SearchResultsController.swift in Sources */,
 				74FDA4211D720DB400BA2470 /* Extensions.swift in Sources */,
 				2A3EBBEA1D72102900106483 /* ACTabScrollView+Protocol.swift in Sources */,
 				74FDA3E51D720B8200BA2470 /* ModalNavigationController.swift in Sources */,
 				74FDA4111D720D1400BA2470 /* ProfileTableViewController.swift in Sources */,
+				2A3EBC031D723CD900106483 /* Entities.swift in Sources */,
 				74FDA41F1D720D8700BA2470 /* SearchTableCell.swift in Sources */,
 				74FDA3F51D720C1900BA2470 /* PollCell.swift in Sources */,
 			);
@@ -486,6 +588,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -506,6 +609,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -532,6 +636,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -545,6 +650,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -555,8 +661,23 @@
 			baseConfigurationReference = 2B8FC64FA10B7CABF05F3E0D /* Pods-crowdlure.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = crowdlure/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"ACTabScrollView\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gerald.crowdlure;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -567,8 +688,23 @@
 			baseConfigurationReference = FDF323BDCA2956665A23C9A1 /* Pods-crowdlure.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = crowdlure/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"ACTabScrollView\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gerald.crowdlure;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -8,11 +8,26 @@
 
 import UIKit
 
-class PurchaseListViewController: UITableViewController {
+class PurchaseListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ACTabScrollViewDelegate, ACTabScrollViewDataSource, DataProviderDelegate {
 
+    private let purchaseTabScrollView = ACTabScrollView()
+    private let redeemedTableView = UITableView()
+    private let unredeemedTableView = UITableView()
+    
     init() {
-        super.init(style: .Grouped)
-        self.tableView.separatorStyle = .None
+        super.init(nibName: nil, bundle: nil)
+        
+        self.redeemedTableView.separatorStyle = .None
+        self.redeemedTableView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        self.redeemedTableView.delegate = self
+        self.redeemedTableView.dataSource = self
+        self.redeemedTableView.registerClass(PurchaseCell.self, forCellReuseIdentifier: "PurchaseCell")
+
+        self.unredeemedTableView.separatorStyle = .None
+        self.unredeemedTableView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        self.unredeemedTableView.delegate = self
+        self.unredeemedTableView.dataSource = self
+        self.unredeemedTableView.registerClass(PurchaseCell.self, forCellReuseIdentifier: "PurchaseCell")
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -21,37 +36,107 @@ class PurchaseListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Purchases"
+        self.navigationItem.title = "PURCHASES"
+        let view = UIView.init(frame: UIScreen.mainScreen().bounds)
+        view.backgroundColor = UIColor.whiteColor()
+        self.view = view
+        
+        setupTabScrollView()
+        setupLayoutConstraints()
     }
-
-    // MARK: TableView
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 10.0
+    
+    func setupTabScrollView() {
+        self.purchaseTabScrollView.translatesAutoresizingMaskIntoConstraints = false
+        self.purchaseTabScrollView.defaultPage = 1
+        self.purchaseTabScrollView.tabSectionHeight = 40
+        self.purchaseTabScrollView.pagingEnabled = true
+        self.purchaseTabScrollView.cachedPageLimit = 3
+        self.purchaseTabScrollView.delegate = self
+        self.purchaseTabScrollView.dataSource = self
+        self.view.addSubview(self.purchaseTabScrollView)
+    }
+    
+    func setupLayoutConstraints() {
+        let views = [
+            "purchaseTabScrollView": self.purchaseTabScrollView
+        ]
+        
+        var allConstraints = [NSLayoutConstraint]()
+        allConstraints += getConstraintFromFormat("H:|[purchaseTabScrollView]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|-65-[purchaseTabScrollView]-49-|", views: views)
+        NSLayoutConstraint.activateConstraints(allConstraints)
+    }
+    
+    func dataUpdated() {
+       
+    }
+    
+    // MARK: ACTabScrollViewDelegate
+    func tabScrollView(tabScrollView: ACTabScrollView, didChangePageTo index: Int) {
+        
+    }
+    
+    func tabScrollView(tabScrollView: ACTabScrollView, didScrollPageTo index: Int) {
+        
+    }
+    
+    // MARK: ACTabScrollViewDataSource
+    func numberOfPagesInTabScrollView(tabScrollView: ACTabScrollView) -> Int {
+        return 2
+    }
+    
+    func tabScrollView(tabScrollView: ACTabScrollView, tabViewForPageAtIndex index: Int) -> UIView {
+        let label = UILabel()
+        if index == 0 {
+            label.text = "UNREDEEMED"
         } else {
-            return 5.0
+            label.text = "REDEEMED"
+        }
+        label.font = UIFont.systemFontOfSize(16, weight: UIFontWeightThin)
+        label.textColor = UIColor(red: 77.0 / 255, green: 79.0 / 255, blue: 84.0 / 255, alpha: 1)
+        label.textAlignment = .Center
+        
+        // if the size of your tab is not fixed, you can adjust the size by the following way.
+        label.sizeToFit() // resize the label to the size of content
+        label.frame.size = CGSize(width: label.frame.size.width + 28, height: label.frame.size.height + 22) // add some paddings
+        return label
+    }
+    
+    func tabScrollView(tabScrollView: ACTabScrollView, contentViewForPageAtIndex index: Int) -> UIView {
+        if index == 0 {
+            return self.unredeemedTableView
+        } else {
+            return self.redeemedTableView
         }
     }
 
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 5.0
+    // MARK: TableView
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 16.0
+        }
+        return 8.0
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 8.0
+    }
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 5
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 90
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 130
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: PurchaseCell
-        if indexPath.section > 2 {
+        if indexPath.row > 2 {
             cell = PurchaseCell(expired: true)
         } else {
             cell = PurchaseCell()
@@ -59,7 +144,7 @@ class PurchaseListViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let vc = PurchaseDetailViewController()
         vc.hidesBottomBarWhenPushed = true
