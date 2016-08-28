@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class DiscoverListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ACTabScrollViewDelegate, ACTabScrollViewDataSource, DataProviderDelegate {
+class DiscoverListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ACTabScrollViewDelegate, ACTabScrollViewDataSource, DataProviderDelegate, PollCellDelegate {
     
     let pollData = [
         ["Philz Coffee", "What flavour of coffee would you like to see?", 5, 12],
@@ -137,6 +137,13 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
         return tabViews[index]
     }
 
+    // MARK: PollCellDelegate
+    func dismissCell(cell: UITableViewCell) {
+        let pollTableView = self.tabViews[0]
+        if let idx = pollTableView.indexPathForCell(cell)?.section {
+            self.dataProvider.removePollAtIndex(idx)
+        }
+    }
 
     // MARK: TableView
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -189,6 +196,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
         if discoverTableView.category == .Polls {
             let poll = self.dataProvider.polls[indexPath.section]
             let cell = PollCell(poll: poll)
+            cell.delegate = self
             return cell
         } else {
             let lureInfo = self.dataProvider.lures[indexPath.section]

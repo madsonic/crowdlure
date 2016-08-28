@@ -48,7 +48,7 @@ class PollCellDataProvider {
     }
 
     var endDate: String {
-        return poll["end_date"].stringValue
+        return poll["end_date"].string?.simplifyDate() ?? ""
     }
 
     init(poll: JSON) {

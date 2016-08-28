@@ -22,8 +22,11 @@ class PollChoice {
     let choiceLabel = UILabel()
     let answeredLabel = UILabel()
     let voteButton = UIButton()
-
-    init(choiceText: String, nReplies: Int, choiceIndex: Int, choiceID: Int, pollID: Int) {
+    
+    var pollMaster: PollCell
+    
+    init(pollMaster: PollCell, choiceText: String, nReplies: Int, choiceIndex: Int, choiceID: Int, pollID: Int) {
+        self.pollMaster = pollMaster
         self.choiceText = choiceText
         self.nReplies = nReplies
         self.choiceIndex = choiceIndex
@@ -100,6 +103,7 @@ class PollChoice {
             dispatch_async(dispatch_get_main_queue()) {
                 self.nReplies = resp["poll"]["choices"][self.choiceIndex]["count"].intValue
                 self.answeredLabel.text = String(self.nReplies)
+                self.pollMaster.dismissPoll()
             }
         }, failureHandler: { error in
             print(error)

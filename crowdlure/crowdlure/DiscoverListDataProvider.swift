@@ -21,6 +21,13 @@ class DiscoverListDataProvider: DataProvider {
         super.init()
     }
     
+    func removePollAtIndex(idx: Int) {
+        if idx < self.polls.count {
+            self.polls.removeAtIndex(idx)
+            self.delegate?.dataUpdated()
+        }
+    }
+    
     override func loadServerData(loadMore loadMore: Bool = false) {
         let lureRequest = request(Endpoint.getLures)
         lureRequest.responseJSON(

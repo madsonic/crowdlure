@@ -9,8 +9,14 @@
 import UIKit
 import SwiftyJSON
 
+protocol PollCellDelegate: class {
+    func dismissCell(cell: UITableViewCell)
+}
+
 class PollCell: UITableViewCell {
 
+    weak var delegate: PollCellDelegate?
+    
     // MARK: Data
     var dataProvider: PollCellDataProvider
 
@@ -25,20 +31,15 @@ class PollCell: UITableViewCell {
 
     init(poll: JSON) {
         self.dataProvider = PollCellDataProvider(poll: poll)
-
         self.choices = [PollChoice]()
 
-        for i in 0..<dataProvider.choices.count {
-            let choice = PollChoice(choiceText: dataProvider.choicesTexts[i],
-                                    nReplies: dataProvider.choicesVotes[i],
-                                    choiceIndex: i,
-                                    choiceID: dataProvider.choiceID[i],
-                                    pollID: dataProvider.pollID)
-            self.choices.append(choice)
-        }
-
         super.init(style: .Default, reuseIdentifier: "PollCell")
-
+        
+        for i in 0..<self.dataProvider.choices.count {
+            let c = PollChoice(pollMaster: self, choiceText: self.dataProvider.choicesTexts[i], nReplies: self.dataProvider.choicesVotes[i], choiceIndex: i, choiceID: self.dataProvider.choiceID[i], pollID: self.dataProvider.pollID)
+            self.choices.append(c)
+        }
+        
         selectionStyle = .None
         setupUI()
     }
@@ -64,7 +65,7 @@ class PollCell: UITableViewCell {
         self.questionLabel.font = UIFont.cairoRegularFont(15)
         self.questionLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        self.dateLeftLabel.text = "1 day left"
+        self.dateLeftLabel.text = "Valid Till \(self.dataProvider.endDate)"
         self.dateLeftLabel.font = UIFont.cairoRegularFont(10)
         self.dateLeftLabel.textColor = UIColor.faintGrayColor()
         self.dateLeftLabel.textAlignment = .Right
@@ -72,7 +73,7 @@ class PollCell: UITableViewCell {
         
         self.containerView.addSubview(self.questionLabel)
         self.containerView.addSubview(self.dateLeftLabel)
-        for i in 0..<choices.count {
+        for i in 0..<self.choices.count {
             self.containerView.addSubview(self.choices[i].mainView)
         }
         self.contentView.addSubview(self.bgView)
@@ -86,20 +87,17 @@ class PollCell: UITableViewCell {
             "containerView": self.containerView,
             "bgView": self.bgView,
             "dateLeftLabel": self.dateLeftLabel,
-            "questionLabel": self.questionLabel,
-            "choice1": self.choices[0].mainView,
-            "choice2": self.choices[1].mainView,
-            "choice3": self.choices[2].mainView
+            "questionLabel": self.questionLabel
         ]
 
-        for i in 0..<choices.count {
-            views["choice\(i)"] = choices[i].mainView
+        for i in 0..<self.choices.count {
+            views["choice\(i)"] = self.choices[i].mainView
         }
 
         var allConstraints = [NSLayoutConstraint]()
         
         var choicesGrp = ""
-        for i in 0..<choices.count {
+        for i in 0..<self.choices.count {
             allConstraints += getConstraintFromFormat("H:|-20-[choice\(i)]-20-|", views: views)
             var choiceStr = "[choice"
             choiceStr += String(i)
@@ -116,5 +114,9 @@ class PollCell: UITableViewCell {
         allConstraints += getConstraintFromFormat("H:[dateLeftLabel]-30-|", views: views)
 
         NSLayoutConstraint.activateConstraints(allConstraints)
+    }
+    
+    func dismissPoll() {
+        self.delegate?.dismissCell(self)
     }
 }

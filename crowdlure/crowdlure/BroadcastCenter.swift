@@ -9,14 +9,14 @@
 import Foundation
 
 enum BCNotificationKey: String {
-    case HasMore = "hasMore",
-    HasNew = "hasNew"
+    case id = "id"
 }
 
 enum BCNotification: String
 {
     case PaymentSuccessful = "PaymentSuccessful",
-    PaymentFailure = "PaymentFailure"
+    PaymentFailure = "PaymentFailure",
+    HasSubmittedPoll = "HasSubmittedPoll"
 }
 
 class BroadcastCenter {
