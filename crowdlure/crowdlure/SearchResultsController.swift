@@ -47,10 +47,10 @@ class SearchResultsController: UITableViewController, UISearchResultsUpdating, U
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let vc = LureDetailViewController()
-        vc.hidesBottomBarWhenPushed = true
-        self.parentVC?.navigationController?.pushViewController(vc, animated: true)
+//        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+//        let vc = LureDetailViewController()
+//        vc.hidesBottomBarWhenPushed = true
+//        self.parentVC?.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

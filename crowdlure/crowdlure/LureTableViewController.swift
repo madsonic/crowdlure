@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class LureTableViewController: UITableViewController {
     
-    let purchaseDate = "12 August 2016"
-    let validTill = "2 September 2016"
-    let address = "Happy Tree Street CA 123201"
-    let contact = "650 653 1033"
+    var dataProvider: LureDataProvider
     
-    init() {
+    init(lure: JSON) {
+        self.dataProvider = LureDataProvider(lure: lure)
         super.init(style: UITableViewStyle.Plain)
         self.tableView.separatorStyle = .None
     }
@@ -44,11 +43,26 @@ class LureTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 6
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return LureAttributeCell()
+        if indexPath.row == 0 || indexPath.row == 3 {
+            return LureAttributeCell(key: nil, val: nil)
+        } else {
+            switch (indexPath.row) {
+            case 1:
+                return LureAttributeCell(key: "Started", val: self.dataProvider.getStartDate())
+            case 2:
+                return LureAttributeCell(key: "Ends", val: self.dataProvider.getValidTill())
+            case 4:
+                return LureAttributeCell(key: "Address", val: self.dataProvider.getLocation())
+            case 5:
+                return LureAttributeCell(key: "Phone", val: self.dataProvider.getPhoneNumber())
+            default:
+                return LureAttributeCell(key: nil, val: nil)
+            }
+        }
     }
     
 }

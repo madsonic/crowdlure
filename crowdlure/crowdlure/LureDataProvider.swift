@@ -8,13 +8,36 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
-class DiscoverCellDataProvider {
+class LureDataProvider: DataProvider {
 
     var lure: JSON
+    var imgData: NSData?
+    var bizLogoData: NSData?
     
     init(lure: JSON) {
         self.lure = lure
+        super.init()
+    }
+    
+    override func loadServerData(loadMore loadMore: Bool) {
+        getDataFromUrl(NSURL(string: self.lure["image_url"].string ?? "")!) { (data, response, error)  in
+            guard let data = data where error == nil else { return }
+            dispatch_async(dispatch_get_main_queue(), {
+                self.imgData = data
+            })
+        }
+    }
+    
+    func downloadImage(url: NSURL){
+        print("Download Started")
+        getDataFromUrl(url) { (data, response, error)  in
+            guard let data = data where error == nil else { return }
+            dispatch_async(dispatch_get_main_queue(), {
+                
+            })
+        }
     }
     
     func getTitle() -> String {
@@ -32,6 +55,10 @@ class DiscoverCellDataProvider {
     
     func getTargetCount() -> Int {
         return self.lure["targets"][0]["amount"].int ?? 0
+    }
+    
+    func getStartDate() -> String {
+        return self.lure["start_date"].string ?? ""
     }
     
     func getValidTill() -> String {
@@ -56,5 +83,21 @@ class DiscoverCellDataProvider {
             descriptions.append(self.lure["targets"][i]["description"].string ?? "")
         }
         return descriptions
+    }
+    
+    func getLureTitle() -> String {
+        return self.lure["title"].string ?? ""
+    }
+    
+    func getBusinessName() -> String {
+        return self.lure["business"]["name"].string ?? ""
+    }
+    
+    func getLocation() -> String {
+        return self.lure["location"].string ?? ""
+    }
+    
+    func getPhoneNumber() -> String {
+        return "650 123 4567"
     }
 }

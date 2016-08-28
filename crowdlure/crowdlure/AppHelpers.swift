@@ -12,6 +12,13 @@ func getFBToken() -> String? {
     return (UIApplication.sharedApplication().delegate as! AppDelegate).fbToken
 }
 
+func getDataFromUrl(url: NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
+    NSURLSession.sharedSession().dataTaskWithURL(url) {
+        (data, response, error) in
+        completion(data: data, response: response, error: error)
+        }.resume()
+}
+
 public extension UIViewController {
     func presentModalView(vc:UIViewController, animated: Bool = true) {
         let nav = UINavigationController(rootViewController: vc)

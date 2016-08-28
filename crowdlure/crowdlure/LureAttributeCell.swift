@@ -13,7 +13,12 @@ class LureAttributeCell: UITableViewCell {
     let attributeNameLabel = UILabel()
     let attributeValueLabel = UILabel()
     
-    init() {
+    var key: String
+    var val: String
+    
+    init(key: String?, val: String?) {
+        self.key = key ?? ""
+        self.val = val ?? ""
         super.init(style: .Default, reuseIdentifier: "LureDetailCell")
         setupUI()
     }
@@ -24,12 +29,12 @@ class LureAttributeCell: UITableViewCell {
     
     func setupUI() {
         
-        self.attributeNameLabel.text = "Name"
+        self.attributeNameLabel.text = self.key
         self.attributeNameLabel.font = UIFont.cairoRegularFont(15)
         self.attributeNameLabel.textColor = UIColor.darkGrayColor()
         self.attributeNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        self.attributeValueLabel.text = "Value"
+        self.attributeValueLabel.text = self.val
         self.attributeValueLabel.font = UIFont.cairoRegularFont(15)
         self.attributeValueLabel.translatesAutoresizingMaskIntoConstraints = false
         
