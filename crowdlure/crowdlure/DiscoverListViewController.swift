@@ -157,8 +157,10 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
                 let location = self.dataProvider.lures[section]["location"].string ?? ""
                 return CampaignHeaderView(merchantName: name , merchantLocation: location)
             } else {
-                let name = self.dataProvider.lures[section]["business"]["name"].string ?? ""
-                return CampaignHeaderView(merchantName: name , merchantLocation: "")
+
+                if let name = self.dataProvider.polls[section]["business"]["name"].string {
+                    return CampaignHeaderView(merchantName: name , merchantLocation: "")
+                }
             }
         }
         return nil
