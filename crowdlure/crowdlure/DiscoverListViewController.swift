@@ -139,7 +139,7 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
 
     // MARK: TableView
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 60
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
