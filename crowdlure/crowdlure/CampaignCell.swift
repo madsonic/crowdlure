@@ -9,7 +9,9 @@
 import UIKit
 
 class CampaignCell: UITableViewCell {
+
     static let identifier = "CampaignCell"
+
     // data
     var merchantName: String
     var merchantLocation: String?
@@ -19,14 +21,6 @@ class CampaignCell: UITableViewCell {
 
     // ui
     var containerView = UIView(frame: CGRectZero)
-
-    var merchantContainerView = UIView(frame: CGRectZero)
-    var merchantInfoStackView = UIStackView()
-    var merchantStackView = UIStackView()
-
-    var merchantInitialsLabel = UILabel()
-    var merchantNameLabel = UILabel()
-    var merchantLocationLabel = UILabel()
 
     var merchantImageView = UIImageView(frame: CGRectZero)
 
@@ -43,21 +37,19 @@ class CampaignCell: UITableViewCell {
 //    // to find out how to implement
     var progressBar = UIView(frame: CGRectZero)
     var progressLabels = UILabel()
-//
-//    var priceLabel = UILabel()
-//    var boostButton = UIButton()
-//
-//    // subclass this
-//    var firstTarget = UIView(frame: CGRectZero)
-//    var targetLabel = UILabel()
-//    var targetDescriptionLabel = UILabel()
-//    var targetParticipantsView = UIView() // subclass this decorated label
-//
-//    var moreButton = UIButton()
+
+    var priceBoostStackView = UIStackView()
+    var priceLabel = UILabel()
+    var boostButton = UIButton()
+
+    var targetStackView = UIStackView()
+    var targetDetailsStackView = UIStackView()
+    // subclass this
+    var targetLabel = UILabel()
+    var targetDescriptionLabel = UILabel()
+    var targetParticipantsLabel = UILabel() // subclass this decorated label
 
     init(merchantName: String, merchantLocation: String? = nil, totalParticipants: Int = 0, participantsForEachTarget: [Int] = [0, 0, 0], price: Double) {
-
-        print("campaign cell init")
 
         self.merchantName = merchantName
         self.merchantLocation = merchantLocation
@@ -66,10 +58,8 @@ class CampaignCell: UITableViewCell {
         self.price = price
 
         super.init(style: .Default, reuseIdentifier: CampaignCell.identifier)
-
         setupUI()
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -79,57 +69,66 @@ class CampaignCell: UITableViewCell {
         containerView.backgroundColor = .whiteColor()
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
-        merchantContainerView.backgroundColor = .greenColor()
-        merchantContainerView.translatesAutoresizingMaskIntoConstraints = false
-
-        merchantStackView.axis = .Horizontal
-        merchantStackView.addArrangedSubview(merchantInitialsLabel)
-        merchantStackView.addArrangedSubview(merchantInfoStackView)
-        merchantStackView.translatesAutoresizingMaskIntoConstraints = false
-
-        merchantInfoStackView.axis = .Vertical
-        merchantInfoStackView.distribution = .FillProportionally
-        merchantInfoStackView.alignment = .Leading
-        merchantInfoStackView.spacing = 5
-        merchantInfoStackView.addArrangedSubview(merchantNameLabel)
-        merchantInfoStackView.addArrangedSubview(merchantLocationLabel)
-        merchantInfoStackView.translatesAutoresizingMaskIntoConstraints = false
-
-        merchantNameLabel.text = "kajnwdnawd"
-        merchantNameLabel.backgroundColor = .redColor()
-        merchantNameLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        merchantLocationLabel.text = "akwuhdajwkd"
-        merchantLocationLabel.backgroundColor = .cyanColor()
-        merchantLocationLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        merchantInitialsLabel.text = "Aalkwjd"
-        merchantInitialsLabel.backgroundColor = .blueColor()
-        merchantInitialsLabel.translatesAutoresizingMaskIntoConstraints = false
-
         merchantImageView.image = UIImage(named: "club.jpg")
         merchantImageView.contentMode = .ScaleAspectFit
         merchantImageView.translatesAutoresizingMaskIntoConstraints = false
 
-        boostDetailsContainerView.backgroundColor = .blueColor()
         boostDetailsContainerView.translatesAutoresizingMaskIntoConstraints = false
 
         boostPercentageLabel.text = "114% boosted"
+        boostPercentageLabel.textColor = .wordColor()
         boostPercentageLabel.translatesAutoresizingMaskIntoConstraints = false
 
         totalParticipantNumberLabel.text = "160"
+        totalParticipantNumberLabel.textColor = .faintGrayColor()
         totalParticipantNumberLabel.translatesAutoresizingMaskIntoConstraints = false
 
         remainingTimeLabel.text = "3 Hours"
+        remainingTimeLabel.textColor = .faintGrayColor()
         remainingTimeLabel.translatesAutoresizingMaskIntoConstraints = false
 
         progressBar.backgroundColor = .redColor()
         progressBar.translatesAutoresizingMaskIntoConstraints = false
 
-        contentView.addSubview(containerView)
+        priceBoostStackView.axis = .Vertical
+        priceBoostStackView.distribution = .FillProportionally
+        priceBoostStackView.spacing = 10
+        priceBoostStackView.addArrangedSubview(priceLabel)
+        priceBoostStackView.addArrangedSubview(boostButton)
+        priceBoostStackView.translatesAutoresizingMaskIntoConstraints = false
 
-        containerView.addSubview(merchantContainerView)
-        merchantContainerView.addSubview(merchantStackView)
+        priceLabel.text = "$25"
+        priceLabel.textColor = .wordColor()
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        boostButton.setTitle("BOOST", forState: .Normal)
+        boostButton.setTitleColor(.blackColor(), forState: .Normal)
+        boostButton.translatesAutoresizingMaskIntoConstraints = false
+
+        targetStackView.axis = .Horizontal
+        targetStackView.distribution = .FillProportionally
+        targetStackView.spacing = 10
+        targetStackView.addArrangedSubview(targetLabel)
+        targetStackView.addArrangedSubview(targetDetailsStackView)
+        targetStackView.translatesAutoresizingMaskIntoConstraints = false
+
+        targetDetailsStackView.axis = .Vertical
+        targetDetailsStackView.distribution = .FillProportionally
+        targetDetailsStackView.alignment = .Leading
+        targetDetailsStackView.addArrangedSubview(targetDescriptionLabel)
+        targetDetailsStackView.addArrangedSubview(targetParticipantsLabel)
+        targetDetailsStackView.translatesAutoresizingMaskIntoConstraints = false
+
+        targetLabel.text = "1"
+        targetLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        targetDescriptionLabel.text = "Get your second chili crab at 20% off"
+        targetDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        targetParticipantsLabel.text = "10/100"
+        targetParticipantsLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(containerView)
 
         containerView.addSubview(merchantImageView)
 
@@ -138,30 +137,8 @@ class CampaignCell: UITableViewCell {
         boostDetailsContainerView.addSubview(totalParticipantNumberLabel)
         boostDetailsContainerView.addSubview(remainingTimeLabel)
         boostDetailsContainerView.addSubview(progressBar)
-
-
-//        containerView.addSubview(merchantImageView)
-//
-//        containerView.addSubview(totalParticipantsView)
-//        containerView.addSubview(participantIcon)
-//        containerView.addSubview(targetDescriptionLabel)
-//
-//        containerView.addSubview(remainingTimeView)
-//        containerView.addSubview(clockIcon)
-//        containerView.addSubview(remainingTimeLabel)
-//
-//        containerView.addSubview(progressBar)
-//        containerView.addSubview(progressLabels)
-//
-//        containerView.addSubview(priceLabel)
-//        containerView.addSubview(boostButton)
-//
-//        containerView.addSubview(firstTarget)
-//        containerView.addSubview(targetLabel)
-//        containerView.addSubview(targetDescriptionLabel)
-//        containerView.addSubview(targetParticipantsView)
-//        
-//        containerView.addSubview(moreButton)
+        boostDetailsContainerView.addSubview(priceBoostStackView)
+        boostDetailsContainerView.addSubview(targetStackView)
 
         setupLayoutConstraints()
     }
@@ -172,12 +149,6 @@ class CampaignCell: UITableViewCell {
 
         let views = [
             "containerView": containerView,
-            "merchantContainerView": merchantContainerView,
-            "merchantStackView": merchantStackView,
-            "merchantInfoStackView": merchantInfoStackView,
-            "merchantInitialsLabel": merchantInitialsLabel,
-            "merchantNameLabel": merchantNameLabel,
-            "merchantLocationLabel": merchantLocationLabel,
             "merchantImageView": merchantImageView,
             "boostDetailsContainerView": boostDetailsContainerView,
             "boostPercentageLabel": boostPercentageLabel,
@@ -187,12 +158,13 @@ class CampaignCell: UITableViewCell {
             "remainingTimeLabel": remainingTimeLabel,
             "progressBar": progressBar,
 //            "progressLabels": progressLabels,
-//            "priceLabel": priceLabel,
-//            "boostButton": boostButton,
-//            "firstTarget": firstTarget,
-//            "targetLabel": targetLabel,
-//            "targetDescriptionLabel": targetDescriptionLabel,
-//            "targetParticipantsView": targetParticipantsView
+            "priceBoostStackView": priceBoostStackView,
+            "priceLabel": priceLabel,
+            "boostButton": boostButton,
+            "targetStackView": targetStackView,
+            "targetDetailsStackView": targetDetailsStackView,
+            "targetLabel": targetLabel,
+            "targetDescriptionLabel": targetDescriptionLabel,
         ]
 
         let containerViewXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
@@ -210,39 +182,11 @@ class CampaignCell: UITableViewCell {
         allConstraints += containerViewYConstraints
 
         let contentYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[merchantContainerView(50)][merchantImageView][boostDetailsContainerView(150)]|",
+            "V:|[merchantImageView][boostDetailsContainerView(200)]|",
             options: NSLayoutFormatOptions.AlignAllCenterX,
             metrics: nil,
             views: views)
         allConstraints += contentYConstraints
-
-        let merchantContainerXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|[merchantContainerView]|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += merchantContainerXConstraints
-
-        let merchantStackViewXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|[merchantStackView]|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += merchantStackViewXConstraints
-
-        let merchantStackViewYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[merchantStackView]|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += merchantStackViewYConstraints
-
-        let merchantInfoStackViewYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[merchantInfoStackView]|",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += merchantInfoStackViewYConstraints
 
         let boostDetailsContainerViewXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|[boostDetailsContainerView]|",
@@ -258,12 +202,19 @@ class CampaignCell: UITableViewCell {
             views: views)
         allConstraints += boostDetailsSummaryLabelsXConstraints
 
-        let boostPercentageLabelYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[boostPercentageLabel]",
+        let boostDetailsYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "V:|[boostPercentageLabel]-(10)-[progressBar(10)]-(15)-[priceLabel]-(10)-[boostButton]",
             options: [],
             metrics: nil,
             views: views)
-        allConstraints += boostPercentageLabelYConstraints
+        allConstraints += boostDetailsYConstraints
+
+        let priceBoostStackViewConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "V:[progressBar]-10-[priceBoostStackView]",
+            options: [],
+            metrics: nil,
+            views: views)
+        allConstraints += priceBoostStackViewConstraints
 
         let totalParticipantLabelYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
             "V:|[totalParticipantNumberLabel]",
@@ -279,13 +230,6 @@ class CampaignCell: UITableViewCell {
             views: views)
         allConstraints += timeRemainingLabelYConstraints
 
-        let progressBarYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-(30)-[progressBar(10)]",
-            options: [],
-            metrics: nil,
-            views: views)
-        allConstraints += progressBarYConstraints
-
         let progressBarXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|[progressBar]|",
             options: [],
@@ -293,7 +237,27 @@ class CampaignCell: UITableViewCell {
             views: views)
         allConstraints += progressBarXConstraints
 
+        let targetStackViewYConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "V:[progressBar]-20-[targetStackView]",
+            options: [],
+            metrics: nil,
+            views: views)
+        allConstraints += targetStackViewYConstraints
+
+        let targetStackViewXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:[targetStackView]|",
+            options: [],
+            metrics: nil,
+            views: views)
+        allConstraints += targetStackViewXConstraints
+
+        let boostDetailsContainerXConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:[priceBoostStackView]-(>=10)-[targetStackView]",
+            options: [],
+            metrics: nil,
+            views: views)
+        allConstraints += boostDetailsContainerXConstraints
+
         NSLayoutConstraint.activateConstraints(allConstraints)
     }
-
 }
