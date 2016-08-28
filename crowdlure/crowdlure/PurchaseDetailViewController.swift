@@ -20,6 +20,8 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
     let productLabel = UILabel()
     let incentiveLabel = UILabel()
     
+    let blackLine = UIView()
+    
     let purchaseDetailTabScrollView = ACTabScrollView()
     
     let ticketView = UIView()
@@ -64,6 +66,9 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         self.headerOverlayBgView.translatesAutoresizingMaskIntoConstraints = false
         
         self.bizProfileView.translatesAutoresizingMaskIntoConstraints = false
+
+        self.blackLine.backgroundColor = UIColor.blackColor()
+        self.blackLine.translatesAutoresizingMaskIntoConstraints = false
         
         self.bizImageView.image = UIImage(named: "placeholder.png")
         self.bizImageView.layer.masksToBounds = false
@@ -105,6 +110,7 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
         self.purchaseDetailHeaderView.addSubview(self.incentiveLabel)
         self.view.addSubview(self.purchaseDetailHeaderView)
         
+        self.ticketView.addSubview(self.blackLine)
         self.ticketView.addSubview(self.qrCodeImageView)
         
         generateQRCodeImage()
@@ -128,6 +134,7 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
             "productLabel": self.productLabel,
             "incentiveLabel": self.incentiveLabel,
             "ticketView": self.ticketView,
+            "blackLine": self.blackLine,
             "qrCodeImageView": self.qrCodeImageView
         ]
         
@@ -144,6 +151,8 @@ class PurchaseDetailViewController: UIViewController, ACTabScrollViewDelegate, A
             metrics: nil,
             views: views)
         allConstraints += qrCodeImageViewXConstraints
+        allConstraints += getConstraintFromFormat("H:|[blackLine]|", views: views)
+        allConstraints += getConstraintFromFormat("V:|[blackLine(1)]", views: views)
         allConstraints += getConstraintFromFormat("V:|-60-[qrCodeImageView(160)]", views: views)
         
         allConstraints += getConstraintFromFormat("V:|-40-[bizImageView(80)]-10-[bizNameLabel]", views: views)

@@ -58,7 +58,10 @@ class DiscoverListViewController: UIViewController, UITableViewDelegate, UITable
         spinner.center = self.view.center
         UIApplication.sharedApplication().keyWindow?.addSubview(spinner)
         spinner.startAnimating()
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.dataProvider.viewDidLoad()
     }
     
