@@ -65,6 +65,7 @@ class TargetRewardView: UIView {
         rewardInfoStackView.translatesAutoresizingMaskIntoConstraints = false
 
         rewardDescriptionLabel.text = rewardDescription
+        rewardDescriptionLabel.numberOfLines = 0
         rewardDescriptionLabel.textColor = .wordColor()
         rewardDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
